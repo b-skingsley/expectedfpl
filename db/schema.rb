@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_180252) do
+ActiveRecord::Schema.define(version: 2021_03_02_111314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 2021_03_01_180252) do
     t.string "form"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fixtures", force: :cascade do |t|
+    t.datetime "kickoff"
+    t.integer "gameweek"
+    t.integer "h_score"
+    t.integer "a_score"
+    t.bigint "home_team_id", null: false
+    t.bigint "away_team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "index_fixtures_on_away_team_id"
+    t.index ["home_team_id"], name: "index_fixtures_on_home_team_id"
   end
 
   create_table "footballers", force: :cascade do |t|
@@ -54,6 +67,17 @@ ActiveRecord::Schema.define(version: 2021_03_01_180252) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "odds", force: :cascade do |t|
+    t.string "event"
+    t.float "probability"
+    t.bigint "footballer_id", null: false
+    t.bigint "fixture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fixture_id"], name: "index_odds_on_fixture_id"
+    t.index ["footballer_id"], name: "index_odds_on_footballer_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -97,7 +121,11 @@ ActiveRecord::Schema.define(version: 2021_03_01_180252) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "fixtures", "clubs", column: "away_team_id"
+  add_foreign_key "fixtures", "clubs", column: "home_team_id"
   add_foreign_key "footballers", "clubs"
+  add_foreign_key "odds", "fixtures"
+  add_foreign_key "odds", "footballers"
   add_foreign_key "players", "footballers"
   add_foreign_key "players", "teams"
   add_foreign_key "team_entries", "leagues"
