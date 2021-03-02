@@ -1,0 +1,16 @@
+<div class="container">
+  <table>
+    <thead>
+      <th>Player Name</th>
+      <th>Player Position</th>
+      <th>Club</th>
+    </thead>
+    <tbody>
+      <% @footballers.each do |footballer| %>
+        <td><%= footballer.name %></td>
+        <td><%= footballer.position %></td>
+        <td><%= footballer.club.name %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

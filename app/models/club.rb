@@ -1,6 +1,6 @@
 class Club < ApplicationRecord
   has_many :footballers
-  has_many :fixtures
+  has_many :fixtures, dependent: :destroy
 
   validates :name, :short_name, presence: true
   validates :form, length: { maximum: 5 }
