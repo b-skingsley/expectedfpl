@@ -19,5 +19,3 @@ puts "Destroyed all existing Users\n____________________"
 end
 
 puts "______________\nDB Seeding Complete"
-
-
