@@ -3,102 +3,122 @@ class PremierLeague
     {
       name: 'Arsenal',
       short_name: 'ARS',
-      form: ''
+      form: 'LLWLW',
+      fplid: 1
     },
     {
       name: 'Aston Villa',
       short_name: 'AVL',
-      form: ''
+      form: 'LWDLW',
+      fplid: 2
     },
     {
       name: 'Brighton and Hove Albion',
       short_name: 'BHA',
-      form: ''
+      form: 'WDDLL',
+      fplid: 3
     },
     {
       name: 'Burnley',
       short_name: 'BUR',
-      form: ''
+      form: 'DWDDL',
+      fplid: 4
     },
     {
       name: 'Chelsea',
       short_name: 'CHE',
-      form: ''
+      form: 'WWWDD',
+      fplid: 5
     },
     {
       name: 'Crystal Palace',
       short_name: 'CRY',
-      form: ''
+      form: 'WLLWD',
+      fplid: 6
     },
     {
       name: 'Everton',
       short_name: 'EVE',
-      form: ''
+      form: 'DLLWW',
+      fplid: 7
     },
     {
       name: 'Fulham',
       short_name: 'FUL',
-      form: ''
+      form: 'DWDWD',
+      fplid: 8
     },
     {
       name: 'Leeds United',
       short_name: 'LEE',
-      form: ''
+      form: 'WLLWL',
+      fplid: 9
     },
     {
       name: 'Leicester City',
       short_name: 'LEI',
-      form: ''
+      form: 'WDWWL',
+      fplid: 10
     },
     {
       name: 'Liverpool',
       short_name: 'LIV',
-      form: ''
+      form: 'LLLLW',
+      fplid: 11
     },
     {
       name: 'Manchester City',
       short_name: 'MCI',
-      form: ''
+      form: 'WWWWW',
+      fplid: 12
     },
     {
       name: 'Manchester United',
       short_name: 'MUN',
-      form: ''
+      form: 'WDDWD',
+      fplid: 13
     },
     {
       name: 'Newcastle United',
       short_name: 'NEW',
-      form: ''
+      form: 'LWLLD',
+      fplid: 14
     },
     {
       name: 'Sheffield United',
       short_name: 'SHU',
-      form: ''
+      form: 'WLLLL',
+      fplid: 15
     },
     {
       name: 'Southampton',
       short_name: 'SOU',
-      form: ''
+      form: 'LLDLL',
+      fplid: 16
     },
     {
       name: 'Tottenham Hotspur',
       short_name: 'TOT',
-      form: ''
+      form: 'LWLLW',
+      fplid: 17
     },
     {
       name: 'West Bromwich Albion',
       short_name: 'WBA',
-      form: ''
+      form: 'LLDDW',
+      fplid: 18
     },
     {
       name: 'West Ham United',
       short_name: 'WHU',
-      form: ''
+      form: 'WDWWL',
+      fplid: 19
     },
     {
       name: 'Wolverhampton Wanderers',
       short_name: 'WOL',
-      form: ''
+      form: 'WDWWD',
+      fplid: 20
     }
   ]
 end
