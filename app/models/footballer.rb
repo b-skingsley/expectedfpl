@@ -9,6 +9,11 @@ class Footballer < ApplicationRecord
 
   before_save :uppercase_position
 
+  scope :fwds, -> { where(position: "FWD") }
+  scope :mids, -> { where(position: "MID") }
+  scope :defs, -> { where(position: "DEF") }
+  scope :gks, -> { where(position: "GK") }
+
   def uppercase_position
     position.upcase!
   end
