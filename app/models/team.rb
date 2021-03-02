@@ -3,4 +3,7 @@ class Team < ApplicationRecord
   has_many :team_entries
   has_many :players
   has_many :leagues, through: :team_entries
+
+  validates :fpl_team_id, :name, :summary_overall_points, :summary_overall_rank, :user_id, presence: true
+  validates :fpl_team_id, :summary_overall_points, :summary_overall_rank, numericality: { only_integer: true }
 end
