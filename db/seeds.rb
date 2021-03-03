@@ -82,7 +82,8 @@ deserialized['elements'].each do |footballer|
     penalties_missed: footballer['penalties_missed'],
     bonus: footballer['bonus'],
     bps: footballer['bps'],
-    club: club
+    club: club,
+    fplid: footballer['id']
     )
   footballer_count += 1
 end
