@@ -14,7 +14,10 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div id="pitch-bg" style="background-image: url('<%= image_path "pitch_background_#{rand(1..7)}.jpg" %>')">
+      <div class="container overlay-container">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

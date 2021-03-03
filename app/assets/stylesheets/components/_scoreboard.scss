@@ -1,0 +1,25 @@
+#scoreboard-team-div {
+    width: 500px;
+}
+
+#scoreboard-row-a {
+    background-color: rgba(176, 181, 185, 0.8);
+}
+
+#scoreboard-row-b {
+    background-color: rgba(148, 151, 154, 0.8);
+}
+
+#scrollable {
+    max-height: 1000px;
+    overflow: auto;
+
+    // Firefox
+    scrollbar-color: rgb(153, 153, 153) rgb(100, 100, 100);
+    scrollbar-width: thin;
+}
+
+#scrollable::-webkit-scrollbar {
+    width: 5px;
+    
+}

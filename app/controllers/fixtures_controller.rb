@@ -3,7 +3,8 @@ class FixturesController < ApplicationController
   # before_action :set_fixture, only: [:show]
 
   def index
-    @fixtures = get_fixtures()
+    @fixtures = Fixture.all
+    @clubs = Club.all
   end
   
   # def show
