@@ -88,16 +88,19 @@ deserialized['elements'].each do |footballer|
 end
 puts "#{footballer_count} footballers seeded\n__________________\n"
 
-# --------------------------------------------------
 
-# - Fixtures
+# ------------- Fixture Seeding -----------------
 
+fixture_count = 0
 ApplicationController.helpers.get_fixtures.each do |fixture|
   home_team_id = Club.find_by(name: fixture["home_team"])[:id]
   away_team_id = Club.find_by(name: fixture["away_team"])[:id]
   if fixture["gameweek"] || fixture["kickoff_time"]
     Fixture.create!(kickoff: fixture["kickoff_time"], gameweek: fixture["gameweek"].to_i, h_score: fixture["home_score"].to_i, a_score: fixture["a_score"].to_i, home_team_id: home_team_id, away_team_id: away_team_id)
+    fixture_count += 1
   end
+
 end
+puts "#{fixture_count} fixtures seeded\n__________________\n"
 
 puts "DB Seeding Complete"

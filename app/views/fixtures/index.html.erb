@@ -1,0 +1,50 @@
+
+<div class="container">
+  <% @fixtures.each do |fixture| %>
+    <% if fixture.id.even? %>
+      <div id="scoreboard-row-a" class="d-flex justify-content-between p-3">
+        <div id="scoreboard-team-div" class="flex-item text-left flex-grow bg-info"><%= Club.find(fixture.home_team_id)[:name] %></div>
+        <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
+          <% if result == "W" %>
+            <div class="flex-item">🟢</div>
+          <% elsif result == "D" %>
+            <div class="flex-item">⚪</div>
+          <% else %>
+            <div class="flex-item">🔴</div>
+          <% end %>
+        <% end %>
+        <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
+        <div class="flex-item text-light">-</div>
+        <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>
+        <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
+          <% if result == "W" %>
+            <div class="flex-item">🟢</div>
+          <% elsif result == "D" %>
+            <div class="flex-item">⚪</div>
+          <% else %>
+            <div class="flex-item">🔴</div>
+          <% end %>
+        <% end %>         
+        <div id="scoreboard-team-div" class="flex-item text-right flex-grow bg-primary"><%= Club.find(fixture.away_team_id)[:name] %></div>
+      </div>
+    <% else %>
+      <div id="scoreboard-row-b" class="d-flex justify-content-between p-3">
+        <div id="scoreboard-team-div" class="flex-item text-left flex-grow bg-info"><%= Club.find(fixture.home_team_id)[:name] %></div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
+        <div class="flex-item text-light">-</div>
+        <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div class="flex-item">🟢</div>
+        <div id="scoreboard-team-div" class="flex-item text-right flex-grow bg-primary"><%= Club.find(fixture.away_team_id)[:name] %></div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
