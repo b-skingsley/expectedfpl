@@ -1,5 +1,3 @@
-require_relative "../app/helpers/premier_league"
-
 class UpdateFootballersJob < ApplicationJob
   queue_as :default
 
@@ -9,41 +7,69 @@ class UpdateFootballersJob < ApplicationJob
     response = URI.open(url).read
     deserialized = JSON.parse(response)
 
+    # Iterate over each player in API response
     deserialized['elements'].each do |footballer|
-
-    case footballer['element_type']
-    when 1 then position = 'GK'
-    when 2 then position = 'DEF'
-    when 3 then position = 'MID'
-    when 4 then position = 'FWD'
-    else
-      position = 'UNKNOWN'
-    end
-
-    club = Club.find_by(fplid: footballer['team'])
-
-    Footballer.create!(
-      first_name: footballer['first_name'],
-      last_name: footballer['second_name'],
-      web_name: footballer['web_name'],
-      price: footballer['now_cost'],
-      position: position,
-      total_points: footballer['total_points'],
-      goals: footballer['goals_scored'],
-      assists: footballer['assists'],
-      clean_sheets: footballer['clean_sheets'],
-      yellow_cards: footballer['yellow_cards'],
-      red_cards: footballer['red_cards'],
-      saves: footballer['saves'],
-      goals_conceded: footballer['goals_conceded'],
-      own_goals: footballer['own_goals'],
-      penalties_saved: footballer['penalties_saved'],
-      penalties_missed: footballer['penalties_missed'],
-      bonus: footballer['bonus'],
-      bps: footballer['bps'],
-      club: club,
-      fplid: footballer['id']
-      )
+      # Finds club from DB and initialized instance
+      club = Club.find_by(fplid: footballer['team'])
+      # Converts FPL position code to applicable string
+      case footballer['element_type']
+      when 1 then position = 'GK'
+      when 2 then position = 'DEF'
+      when 3 then position = 'MID'
+      when 4 then position = 'FWD'
+      else
+        position = 'UNKNOWN'
+      end
+      # Checks to see if player exists in DB, and if so initializes instance
+      player = Footballer.find_by(fplid: footballer['team'])
+      # If instance is nil, we do not hold in DB, and therefore create new player
+      if player.nil?
+        Footballer.create!(
+          first_name: footballer['first_name'],
+          last_name: footballer['second_name'],
+          web_name: footballer['web_name'],
+          price: footballer['now_cost'],
+          position: position,
+          total_points: footballer['total_points'],
+          goals: footballer['goals_scored'],
+          assists: footballer['assists'],
+          clean_sheets: footballer['clean_sheets'],
+          yellow_cards: footballer['yellow_cards'],
+          red_cards: footballer['red_cards'],
+          saves: footballer['saves'],
+          goals_conceded: footballer['goals_conceded'],
+          own_goals: footballer['own_goals'],
+          penalties_saved: footballer['penalties_saved'],
+          penalties_missed: footballer['penalties_missed'],
+          bonus: footballer['bonus'],
+          bps: footballer['bps'],
+          club: club,
+          fplid: footballer['id']
+          )
+      # Else player DOES exist in DB, and therefore we update values
+      else
+        player.update!(
+          first_name: footballer['first_name'],
+          last_name: footballer['second_name'],
+          web_name: footballer['web_name'],
+          price: footballer['now_cost'],
+          position: position,
+          total_points: footballer['total_points'],
+          goals: footballer['goals_scored'],
+          assists: footballer['assists'],
+          clean_sheets: footballer['clean_sheets'],
+          yellow_cards: footballer['yellow_cards'],
+          red_cards: footballer['red_cards'],
+          saves: footballer['saves'],
+          goals_conceded: footballer['goals_conceded'],
+          own_goals: footballer['own_goals'],
+          penalties_saved: footballer['penalties_saved'],
+          penalties_missed: footballer['penalties_missed'],
+          bonus: footballer['bonus'],
+          bps: footballer['bps'],
+          club: club,
+          )
+      end
     end
   end
 end
