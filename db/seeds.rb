@@ -5,6 +5,9 @@ puts "Destroying all existing Footballers...\n____________________"
 Footballer.destroy_all
 puts "All existing Footballers Destroyed\n____________________\n"
 
+Fixture.destroy_all
+puts "Destroying all existing fixtures...\n____________________"
+
 puts "Destroying all existing Clubs...\n____________________"
 Club.destroy_all
 puts "All existing Users Destroyed\n____________________\n"
@@ -86,5 +89,15 @@ end
 puts "#{footballer_count} footballers seeded\n__________________\n"
 
 # --------------------------------------------------
+# - Fixtures
+    
+counter = 1
+ApplicationController.helpers.get_fixtures.each do |fixture|
+  unless fixture["gameweek"].nil? || fixture["kickoff_time"].nil?
+    Fixture.create!(kickoff: fixture["kickoff_time"], gameweek: fixture["gameweek"].to_i, h_score: fixture["home_score"], a_score: fixture["a_score"], home_team_id: fixture["home_team_id"], away_team_id: fixture["away_team_id"])
+    puts "Fixture #{counter} created."
+    counter += 1
+  end
+end
 
 puts "DB Seeding Complete"
