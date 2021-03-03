@@ -6,8 +6,7 @@ class Footballer < ApplicationRecord
   validates :first_name, :last_name, :position, :price, :fplid, presence: true
   validates :position, inclusion: { in: %w(GK DEF MID FWD UNKNOWN gk def mid fwd) }
   validates :price, numericality: { greater_than: 30, less_than: 150 }
-
-  before_save :uppercase_position
+  validates :fplid, uniqueness: true
 
   scope :fwds, -> { where(position: "FWD") }
   scope :mids, -> { where(position: "MID") }
@@ -15,7 +14,4 @@ class Footballer < ApplicationRecord
   scope :gks, -> { where(position: "GK") }
   scope :unknowns, -> { where(position: "UNKNOWN") }
 
-  def uppercase_position
-    self.position.upcase!
-  end
 end
