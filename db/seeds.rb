@@ -21,7 +21,7 @@ puts "All existing Users Destroyed\n____________________\n"
 puts "Seeding Users...\n____________________"
 users_count = 0
 %w(ben@expectedfpl.com matt@expectedfpl.com mark@expectedfpl.com marcel@expectedfpl.com).each do |email|
-  User.create!(email: email, password: 'password')
+  User.create!(email: email, password: 'password', admin: true)
   users_count += 1
 end
 puts "#{users_count} Users seeded\n____________________\n"
@@ -90,7 +90,7 @@ puts "#{footballer_count} footballers seeded\n__________________\n"
 
 # --------------------------------------------------
 # - Fixtures
-    
+
 counter = 1
 ApplicationController.helpers.get_fixtures.each do |fixture|
   unless fixture["gameweek"].nil? || fixture["kickoff_time"].nil?
