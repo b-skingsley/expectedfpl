@@ -89,14 +89,14 @@ end
 puts "#{footballer_count} footballers seeded\n__________________\n"
 
 # --------------------------------------------------
+
 # - Fixtures
-    
-counter = 1
+
 ApplicationController.helpers.get_fixtures.each do |fixture|
-  unless fixture["gameweek"].nil? || fixture["kickoff_time"].nil?
-    Fixture.create!(kickoff: fixture["kickoff_time"], gameweek: fixture["gameweek"].to_i, h_score: fixture["home_score"], a_score: fixture["a_score"], home_team_id: fixture["home_team_id"], away_team_id: fixture["away_team_id"])
-    puts "Fixture #{counter} created."
-    counter += 1
+  home_team_id = Club.find_by(name: fixture["home_team"])[:id]
+  away_team_id = Club.find_by(name: fixture["away_team"])[:id]
+  if fixture["gameweek"] || fixture["kickoff_time"]
+    Fixture.create!(kickoff: fixture["kickoff_time"], gameweek: fixture["gameweek"].to_i, h_score: fixture["home_score"].to_i, a_score: fixture["a_score"].to_i, home_team_id: home_team_id, away_team_id: away_team_id)
   end
 end
 
