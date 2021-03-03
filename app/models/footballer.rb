@@ -14,4 +14,10 @@ class Footballer < ApplicationRecord
   scope :gks, -> { where(position: "GK") }
   scope :unknowns, -> { where(position: "UNKNOWN") }
 
+  include PgSearch::Model
+  pg_search_scope :search_by_first_and_last_name,
+    against: [ :first_name, :last_name ],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

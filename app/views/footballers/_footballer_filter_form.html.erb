@@ -1,0 +1,18 @@
+<% clubs = Club.all.map { |club| club.name } %>
+
+<%= form_tag footballers_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control form-control-sm mb-2",
+    placeholder: "Filter by Name..."
+  %>
+  <%= select_tag :filter_by_position, options_for_select(%w[GK DEF MID FWD]),
+    include_blank: 'Filter by Position...',
+    class: "form-control form-control-sm mb-2"
+  %>
+  <%= select_tag :filter_by_club, options_for_select(clubs),
+    include_blank: 'Filter by Club...',
+    class: "form-control form-control-sm mb-2"
+  %>
+  <%= submit_tag "Go", class: "btn btn-primary btn-sm" %>
+<% end %>
