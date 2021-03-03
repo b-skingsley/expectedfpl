@@ -21,7 +21,7 @@ puts "All existing Users Destroyed\n____________________\n"
 puts "Seeding Users...\n____________________"
 users_count = 0
 %w(ben@expectedfpl.com matt@expectedfpl.com mark@expectedfpl.com marcel@expectedfpl.com).each do |email|
-  User.create!(email: email, password: 'password')
+  User.create!(email: email, password: 'password', admin: true)
   users_count += 1
 end
 puts "#{users_count} Users seeded\n____________________\n"
@@ -82,7 +82,8 @@ deserialized['elements'].each do |footballer|
     penalties_missed: footballer['penalties_missed'],
     bonus: footballer['bonus'],
     bps: footballer['bps'],
-    club: club
+    club: club,
+    fplid: footballer['id']
     )
   footballer_count += 1
 end

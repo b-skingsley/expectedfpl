@@ -23,4 +23,10 @@ Rails.application.routes.draw do
 
   #Routes for leagues
   resources :leagues, only: [:show]
+
+  # Routes for sidekiq
+  require "sidekiq/web"
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
