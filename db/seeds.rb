@@ -19,3 +19,6 @@ puts "Destroyed all existing Users\n____________________"
 end
 
 puts "______________\nDB Seeding Complete"
+
+# Fixtures
+require_relative "../app/helpers/fixtures.rb"
