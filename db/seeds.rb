@@ -1,3 +1,5 @@
+# include ActionView::Helpers
+
 # require_relative "premier_league"
 
 # Club.destroy_all
@@ -21,4 +23,13 @@ end
 puts "______________\nDB Seeding Complete"
 
 # Fixtures
-require_relative "../app/helpers/fixtures.rb"
+Fixture.destroy_all
+puts "Destroying all existing fixtures...\n____________________"
+counter = 1
+ApplicationController.helpers.get_fixtures.each do |fixture|
+  unless fixture["gameweek"].nil? || fixture["kickoff_time"].nil?
+    Fixture.create!(kickoff: fixture["kickoff_time"], gameweek: fixture["gameweek"].to_i, h_score: fixture["home_score"], a_score: fixture["a_score"], home_team_id: fixture["home_team_id"], away_team_id: fixture["away_team_id"])
+    puts "Fixture #{counter} created."
+    counter += 1
+  end
+end
