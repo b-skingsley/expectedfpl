@@ -1,56 +1,78 @@
 <div class="container" id="overlay-container">
-  <h1> <%= @team.name %> </h1>
+  <div class="left-section">
+    <div class="team-view" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.3)), url('<%= image_path "team-background.jpg" %>')">
+      <div class="main-team">
 
-  <% unless @team.summary_overall_points %>
-    <h3> Overall Points: <%= @team.summary_overall_points %> </h3>
-  <% end %>
+      </div>
+      <div class="bench">
+        <div class="bench-player-gk">
 
-  <% unless @team.summary_overall_rank %>
-    <h3> Overall Rank: <%= @team.summary_overall_rank %> </h3>
-  <% end %>
+        </div>
+        <div class="bench-player">
 
-  <h3> Goalkeepers </h3>
-  <% @team.footballers.gks.each do |player| %>
-    <h4> <%= player.first_name %> <%= player.web_name %> </h4>
-    <p>
-      Price: <%= fplprice(player.price) %>
-      Club: <%= player.club.name %>
-      Clean Sheets: <%= player.clean_sheets %>
-      Saves: <%= player.saves %>
-    </p>
-  <% end %>
+        </div>
+        <div class="bench-player">
 
-  <h3> Defenders </h3>
-  <% @team.footballers.defs.each do |player| %>
-    <h4> <%= player.first_name %> <%= player.web_name %> </h4>
-    <p>
-      Price: <%= fplprice(player.price) %>
-      Club: <%= player.club.name %>
-      Clean Sheets: <%= player.clean_sheets %>
-      Goals: <%= player.goals %>
-      Assists: <%= player.assists %>
-    </p>
-  <% end %>
+        </div>
+        <div class="bench-player">
 
-  <h3> Midfielders </h3>
-  <% @team.footballers.mids.each do |player| %>
-    <h4> <%= player.first_name %> <%= player.web_name %> </h4>
-    <p>
-      Price: <%= fplprice(player.price) %>
-      Club: <%= player.club.name %>
-      Goals: <%= player.goals %>
-      Assists: <%= player.assists %>
-    </p>
-  <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right-section">
+  <h3> <%= @team.name %> </h3>
+    <% unless @team.summary_overall_points %>
+      <h4> Overall Points: <%= @team.summary_overall_points %> </h4>
+    <% end %>
 
-  <h3> Forwards </h3>
-  <% @team.footballers.fwds.each do |player| %>
-    <h4> <%= player.first_name %> <%= player.web_name %> </h4>
-    <p>
-      Price: <%= fplprice(player.price) %>
-      Club: <%= player.club.name %>
-      Goals: <%= player.goals %>
-      Assists: <%= player.assists %>
-    </p>
-  <% end %>
+    <% unless @team.summary_overall_rank %>
+      <h4> Overall Rank: <%= @team.summary_overall_rank %> </h4>
+    <% end %>
+
+    <h4> Goalkeepers </h4>
+    <% @team.footballers.gks.each do |player| %>
+      <p> <%= player.first_name %> <%= player.web_name %> </p>
+      <!-- <p>
+        Price: <%= fplprice(player.price) %>
+        Club: <%= player.club.name %>
+        Clean Sheets: <%= player.clean_sheets %>
+        Saves: <%= player.saves %>
+      </p> -->
+    <% end %>
+
+    <h4> Defenders </h4>
+    <% @team.footballers.defs.each do |player| %>
+      <p> <%= player.first_name %> <%= player.web_name %> </p>
+      <!-- <p>
+        Price: <%= fplprice(player.price) %>
+        Club: <%= player.club.name %>
+        Clean Sheets: <%= player.clean_sheets %>
+        Goals: <%= player.goals %>
+        Assists: <%= player.assists %>
+      </p> -->
+    <% end %>
+
+    <h4> Midfielders </h4>
+    <% @team.footballers.mids.each do |player| %>
+      <p> <%= player.first_name %> <%= player.web_name %> </p>
+      <!-- <p>
+        Price: <%= fplprice(player.price) %>
+        Club: <%= player.club.name %>
+        Goals: <%= player.goals %>
+        Assists: <%= player.assists %>
+      </p> -->
+    <% end %>
+
+    <h4> Forwards </h4>
+    <% @team.footballers.fwds.each do |player| %>
+      <p> <%= player.first_name %> <%= player.web_name %> </p>
+      <!-- <p>
+        Price: <%= fplprice(player.price) %>
+        Club: <%= player.club.name %>
+        Goals: <%= player.goals %>
+        Assists: <%= player.assists %>
+      </p> -->
+    <% end %>
+  </div>
 </div>

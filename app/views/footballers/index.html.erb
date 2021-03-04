@@ -1,34 +1,56 @@
-<div class="container pt-4" id="overlay-container">
+<div class="container background-transparent mt-4">
   <h2>Player Directory</h2>
-  <div class="row mb-3">
-    <div class="col-4">
+  <div class="row m-3 justify-content-between">
+    <div>
       <%= render "footballer_filter_form" %>
     </div>
   </div>
-  <div style="overflow:scroll; max-height:600px;">
-    <table class="table table-hover">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">Full Player Name</th>
-          <th scope="col">Common Name</th>
-          <th scope="col">Player Position</th>
-          <th scope="col">Club</th>
-          <th scope="col">Price</th>
-          <th scope="col">Total Points</th>
-        </tr>
-      </thead>
-        <tbody>
-          <% @footballers.each do |footballer| %>
-            <tr>
-              <td scope="row"><%= "#{footballer.first_name} #{footballer.last_name}" %></td>
-              <td><%= footballer.web_name %></td>
-              <td><%= footballer.position %></td>
-              <td><%= footballer.club.name %></td>
-              <td><%= fplprice(footballer.price) %></td>
-              <td><%= footballer.total_points %></td>
-            </tr>
+  <div class="container">
+    <div class="row justify-content-between table-header align-content-center">
+      <div class="col">
+        <p>Name</p>
+      </div>
+      <div class="col">
+        <p>Player Position
+          <% if params[:filter_by_position].present? %>
+            </p><p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_position] %>
           <% end %>
-        </tbody>
-    </table>
+        </p>
+      </div>
+      <div class="col">
+        <p>Club
+          <% if params[:filter_by_club].present? %>
+            </p><p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_club] %>
+          <% end %>
+        </p>
+      </div>
+      <div class="col">
+        <p>Price
+          <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
+            </p><p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %>
+          <% end %>
+        </p>
+      </div>
+      <div class="col">
+        <p>Total Points</p>
+      </div>
+    </div>
+  </div>
+  <div class="container table-body" style="overflow:scroll; max-height:600px;">
+    <% unless @footballers.present? %>
+    <div class="text-center">
+      <div class="m-4"><h3>⚽️😐 No Players Matching Your Filter Criteria 😐⚽️</h3></div>
+      <div><%= link_to "Reset Filters", footballers_path, class: "btn btn-secondary btn-sm", data: { turbolinks: false } %></div>
+    </div>
+    <% end %>
+    <% @footballers.each do |footballer| %>
+    <div class="row justify-content-between table-row align-content-center">
+          <div class="col"><%= footballer.web_name %></div>
+          <div class="col"><%= footballer.position %></div>
+          <div class="col"><%= footballer.club.name %></div>
+          <div class="col"><%= fplprice(footballer.price) %></div>
+          <div class="col"><%= footballer.total_points %></div>
+    </div>
+    <% end %>
   </div>
 </div>

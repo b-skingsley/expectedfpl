@@ -1,7 +1,14 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= image_path "pitch_background_#{rand(1..7)}.jpg" %>')">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.4)), url('<%= image_path "pitch_background_#{rand(1..7)}.jpg" %>')">
   <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <!-- <a class="btn btn-flat" href="#">Apply now</a> -->
+    <h1>FPL made quick, easy and data driven</h1>
+    <p>Climb up your Fantasy Premier League rankings with ExpectedFPL. We do all the hard work and drown out all the noise and analytics so you pick your team fast and efficiently </p>
+    <% if user_signed_in? %>
+      <div><%= link_to "Save some time this GW", team_path(current_user.teams.first), id: "call-to-action" %></div>
+    <% else %>
+      <div><%= link_to "Save some time this GW", new_user_registration_path, id: "call-to-action" %></div>
+    <% end %>
   </div>
+</div>
+<div class="content">
+
 </div>
