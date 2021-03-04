@@ -1,18 +1,28 @@
-<% clubs = Club.all.map { |club| club.name } %>
+<% clubs = @clubs.map { |club| club.name } %>
 
-<%= form_tag footballers_path, method: :get do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control form-control-sm mb-2",
-    placeholder: "Filter by Name..."
-  %>
-  <%= select_tag :filter_by_position, options_for_select(%w[GK DEF MID FWD]),
-    include_blank: 'Filter by Position...',
-    class: "form-control form-control-sm mb-2"
-  %>
-  <%= select_tag :filter_by_club, options_for_select(clubs),
-    include_blank: 'Filter by Club...',
-    class: "form-control form-control-sm mb-2"
-  %>
-  <%= submit_tag "Go", class: "btn btn-primary btn-sm" %>
-<% end %>
+<div class="inline-table-filters">
+  <%= form_tag footballers_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control form-control-sm mb-2",
+      placeholder: "Filter by Name..."
+    %>
+    <%= select_tag :filter_by_position, options_for_select(%w[GK DEF MID FWD]),
+      include_blank: 'Filter by Position...',
+      class: "form-control form-control-sm mb-2"
+    %>
+    <%= select_tag :filter_by_club, options_for_select(clubs),
+      include_blank: 'Filter by Club...',
+      class: "form-control form-control-sm mb-2"
+    %>
+    <%= label_tag :filter_by_max_price, 'Max Price' %>
+    <%= range_field_tag :filter_by_max_price,
+      min: @min_p,
+      max: @max_p,
+      step: 10,
+      value: @max_p,
+      class: "form-control form-control-sm mb-2"
+    %>
+    <%= submit_tag "Go", class: "btn btn-primary btn-sm" %>
+  <% end %>
+</div>

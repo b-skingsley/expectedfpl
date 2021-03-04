@@ -3,6 +3,8 @@ class Footballer < ApplicationRecord
   has_many :players
   has_many :odds
 
+  default_scope { order(price: :desc) }
+
   validates :first_name, :last_name, :position, :price, :fplid, presence: true
   validates :position, inclusion: { in: %w(GK DEF MID FWD UNKNOWN gk def mid fwd) }
   validates :price, numericality: { greater_than: 30, less_than: 150 }

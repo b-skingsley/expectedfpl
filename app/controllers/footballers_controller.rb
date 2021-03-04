@@ -1,29 +1,33 @@
 class FootballersController < ApplicationController
   def index
-    if params[:query].present? || params[:filter_by_position].present? || params[:filter_by_club].present?
-      if params[:query].present? && params[:filter_by_position].present? && params[:filter_by_club].present?
-        @footballers = Footballer.search_by_first_and_last_name(params[:query])
-        club_id = Club.find_by(name: params[:filter_by_club])
-        @footballers = @footballers.where(position: params[:filter_by_position], club_id: club_id)
-      elsif params[:query].present? && params[:filter_by_position].present?
-        @footballers = Footballer.search_by_first_and_last_name(params[:query])
-        @footballers = @footballers.where(position: params[:filter_by_position])
-      elsif params[:query].present? && params[:filter_by_club].present?
-        club_id = Club.find_by(name: params[:filter_by_club])
-        @footballers = Footballer.search_by_first_and_last_name(params[:query])
-        @footballers = @footballers.where(club_id: club_id)
+    @footballers = Footballer.all
+    @clubs = Club.all
+
+    if params[:query].present?
+      @footballers = @footballers.search_by_first_and_last_name(params[:query])
+    elsif params[:filter_by_position].present? || params[:filter_by_club].present? || params[:filter_by_max_price].present?
+      position = params[:filter_by_position]
+      club_id = @clubs.find_by(name: params[:filter_by_club]).id if params[:filter_by_club].present?
+      max_p = params[:filter_by_max_price]
+      if params[:filter_by_position].present? && params[:filter_by_club].present? && params[:filter_by_max_price].present?
+        @footballers = @footballers.where(position: position, club_id: club_id).where("price <= ?", max_p)
       elsif params[:filter_by_position].present? && params[:filter_by_club].present?
-        club_id = Club.find_by(name: params[:filter_by_club])
-        @footballers = Footballer.where(position: params[:filter_by_position], club_id: club_id)
+        @footballers = @footballers.where(position: position, club_id: club_id)
+      elsif params[:filter_by_position].present? && params[:filter_by_max_price].present?
+        @footballers = @footballers.where(position: position).where("price <= ?", max_p)
+      elsif params[:filter_by_club].present? && params[:filter_by_max_price].present?
+        @footballers = @footballers.where(club_id: club_id).where("price <= ?", max_p)
       elsif params[:filter_by_position].present?
-        @footballers = Footballer.where(position: params[:filter_by_position])
+        @footballers = @footballers.where(position: position)
       elsif params[:filter_by_club].present?
-        @footballers = Footballer.where(club_id: club_id)
+        @footballers = @footballers.where(club_id: club_id)
       else
-        @footballers = Footballer.search_by_first_and_last_name(params[:query])
+        @footballers = @footballers.where("price <= ?", max_p)
       end
-    else
-      @footballers = Footballer.all
+    end
+    if @footballers.present?
+      @max_p = @footballers.first.price
+      @min_p = @footballers.last.price
     end
   end
 

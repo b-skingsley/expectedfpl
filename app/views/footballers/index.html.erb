@@ -9,7 +9,8 @@
     <table class="table table-hover">
       <thead class="table-dark">
         <tr>
-          <th scope="col">Player Name</th>
+          <th scope="col">Full Player Name</th>
+          <th scope="col">Common Name</th>
           <th scope="col">Player Position</th>
           <th scope="col">Club</th>
           <th scope="col">Price</th>
@@ -20,6 +21,7 @@
           <% @footballers.each do |footballer| %>
             <tr>
               <td scope="row"><%= "#{footballer.first_name} #{footballer.last_name}" %></td>
+              <td><%= footballer.web_name %></td>
               <td><%= footballer.position %></td>
               <td><%= footballer.club.name %></td>
               <td><%= fplprice(footballer.price) %></td>
