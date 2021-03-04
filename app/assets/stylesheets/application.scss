@@ -17,7 +17,6 @@
 // Background
 div#pitch-bg {
   /* Set rules to fill background */
-  min-height: 100%;
   min-width: 1024px;
   /* Set up proportionate scaling */
   width: 100%;
@@ -27,8 +26,8 @@ div#pitch-bg {
   background-position: center;
 }
 
-body {
-
+.body-content {
+  min-height: calc(100vh - 72px);
 }
 
 
