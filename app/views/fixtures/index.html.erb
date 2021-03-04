@@ -1,4 +1,4 @@
-<div class="container dashboard-bg">
+<div class="container dashboard-bg" id="overlay-container">
   <div id="scrollable" class="container">
     <% @fixtures.each do |fixture| %>
       <% if fixture.id.even? %>
@@ -24,7 +24,7 @@
             <% else %>
               <div class="flex-item">🔴</div>
             <% end %>
-          <% end %>         
+          <% end %>
           <div id="scoreboard-team-div" class="flex-item text-right flex-grow bg-primary"><%= Club.find(fixture.away_team_id)[:name] %></div>
         </div>
       <% else %>
