@@ -1,12 +1,17 @@
 require "nokogiri"
 require 'open-uri'
 
-url = "https://fantasy.premierleague.com/entry/4921261/event/26/"
+team_id = 4921261
+url = "https://www.premierfantasytools.com/live-fpl-rank/?teamid=#{team_id}"
 
 html = URI.open(url).read
 doc = Nokogiri::HTML(html)
-puts doc.text
-puts doc.search(".Panel__PanelHeading-sc-1nmpshp-2")
-doc.search("div[class='PitchElementData__ElementName-sc-1u4y6pr-0.eMnDEV']").each do |data|
-  puts data.text
-end
+# puts doc.text.strip
+# doc.search(".playerRow").each do |data|
+#   puts data.text.strip
+# end
+puts doc.search("#name1").text
+
+# doc.search("div[class='PitchElementData__ElementName-sc-1u4y6pr-0.eMnDEV']").each do |data|
+#   puts data.text
+# end
