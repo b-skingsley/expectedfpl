@@ -16,7 +16,11 @@
             <i class="fas fa-bars"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Team", team_path(current_user.teams.first), class: "dropdown-item" %>
+            <% if current_user.teams.present? %>
+              <%= link_to "Team", team_path(current_user.teams.first), class: "dropdown-item" %>
+            <% else %>
+              <%= link_to "Create Team", new_team_path, class: "dropdown-item" %>
+            <% end %>
             <%= link_to "Fixtures", fixtures_path, class: "dropdown-item" %>
             <%= link_to "Player Stats", footballers_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
