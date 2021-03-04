@@ -26,19 +26,12 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 import { rangeValue } from '../components/range_value';
+import { disableFilterFields } from '../components/disable_filter_fields';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  // dynamically updates display of the max-price-filter-value on footballers index
   rangeValue();
-
-});
-
-document.addEventListener('turbolinks:render', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-  rangeValue();
-
+  // toggles disabled attributes of filter inputs depending on if a search value is present
+  disableFilterFields();
 });
