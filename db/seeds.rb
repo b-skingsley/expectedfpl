@@ -1,6 +1,10 @@
 require_relative "../app/helpers/premier_league"
 
 #  ------------ Destroying Records--------------------
+puts "Destroying all existing Players...\n____________________"
+Player.destroy_all
+puts "All existing Players Destroyed\n____________________\n"
+
 puts "Destroying all existing Footballers...\n____________________"
 Footballer.destroy_all
 puts "All existing Footballers Destroyed\n____________________\n"
@@ -11,6 +15,14 @@ puts "Destroying all existing fixtures...\n____________________"
 puts "Destroying all existing Clubs...\n____________________"
 Club.destroy_all
 puts "All existing Users Destroyed\n____________________\n"
+
+puts "Destroying all existing Team Entries...\n____________________"
+TeamEntry.destroy_all
+puts "All existing Team Entries Destroyed\n____________________\n"
+
+puts "Destroying all existing Leagues...\n____________________"
+League.destroy_all
+puts "All existing Leagues Destroyed\n____________________\n"
 
 puts "Destroying all existing Users...\n____________________"
 User.destroy_all
@@ -24,6 +36,9 @@ users_count = 0
   User.create!(email: email, password: 'password', admin: true)
   users_count += 1
 end
+barry = User.create!(email: "barry@expectedfpl.com", password: 'password')
+users_count += 1
+
 puts "#{users_count} Users seeded\n____________________\n"
 
 # ------------- Club Seeding -----------------
@@ -89,6 +104,38 @@ deserialized['elements'].each do |footballer|
 end
 puts "#{footballer_count} footballers seeded\n__________________\n"
 
+# ------------- Team Seeding -----------------
+
+team = Team.create!(
+  fpl_team_id: 38281,
+  budget: 3,
+  user: barry,
+  name: "Barry's Angels",
+  summary_overall_points: 1580,
+  summary_overall_rank: 625291
+)
+
+"Barry's team created"
+
+# ------------- Player Seeding -----------------
+
+Player.create!(team: team, footballer: Footballer.where(web_name: "Martínez", position: "GK").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Pope", position: "GK").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Digne", position: "DEF").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Cancelo", position: "DEF").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Stones", position: "DEF").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Coufal", position: "DEF").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Dallas", position: "DEF").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Bale", position: "MID").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Salah", position: "MID").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Fernandes", position: "MID").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Gündogan", position: "MID").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Barnes", position: "MID").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Bamford", position: "FWD").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Calvert-Lewin", position: "FWD").first)
+Player.create!(team: team, footballer: Footballer.where(web_name: "Watkins", position: "FWD").first)
+
+puts "#{Player.count} players seeded"
 
 # ------------- Fixture Seeding -----------------
 
