@@ -1,15 +1,24 @@
-<div class="container dashboard-bg id="overlay-container"">
-  
-  <%= simple_form_for :search, url: fixtures_path, method: :get do |f| %>
-    <%= f.input :query, input_html: {value: params.dig(:search, :query)} %>
-    <%= f.submit "Filter" %>
-  <% end %>
-    
-  <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) })%>
-  <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }) %>
-  <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }) %>
+<div class="container dashboard-bg pt-4" id="overlay-container">
+
+  <h2>Fixtures</h2>
+  <div class="row mb-3">
+    <div class="col-4">
+      <%= render "fixture_filter_form" %>
+    </div>
+  </div>
 
   <div id="scrollable" class="container">
+    <div class="d-flex justify-content-left p-1 bg-dark rounded-top">
+      <div class="flex-item mx-5 text-light">
+        <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) }), class: "link-tab #{'link-tab-active' if params[:status] == 'past'}" %>
+      </div>
+      <div class="flex-item mx-5 text-light">
+        <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "link-tab #{'link-tab-active' if params[:status] == 'current'}"%>
+      </div>
+      <div class="flex-item mx-5 text-light">
+        <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }), class: "link-tab #{'link-tab-active' if params[:status] == 'future'}"%>
+      </div>
+    </div>
     <% @fixtures.each do |fixture| %>
       <% if fixture.id.even? %>
         <div id="scoreboard-row-a" class="d-flex justify-content-between p-3">
@@ -23,10 +32,15 @@
               <div class="flex-item">🔴</div>
             <% end %>
           <% end %>
-          if 
-          <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
-          <div class="flex-item text-light">-</div>
-          <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>
+          <% if fixture.kickoff > DateTime.now() %>
+            <div class="flex-item mx-5 text-light"></div>
+            <div class="flex-item text-light">V</div>
+            <div class="flex-item mx-5 text-light"></div>
+          <% else %>
+            <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
+            <div class="flex-item text-light">-</div>
+            <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>           
+          <% end %>
           <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
             <% if result == "W" %>
               <div class="flex-item">🟢</div>
@@ -41,19 +55,33 @@
       <% else %>
         <div id="scoreboard-row-b" class="d-flex justify-content-between p-3">
           <div id="scoreboard-team-div" class="flex-item text-left flex-grow bg-info"><%= Club.find(fixture.home_team_id)[:name] %></div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
-          <div class="flex-item text-light">-</div>
-          <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
-          <div class="flex-item">🟢</div>
+          <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
+            <% if result == "W" %>
+              <div class="flex-item">🟢</div>
+            <% elsif result == "D" %>
+              <div class="flex-item">⚪</div>
+            <% else %>
+              <div class="flex-item">🔴</div>
+            <% end %>
+          <% end %>
+          <% if fixture.kickoff > DateTime.now() %>
+            <div class="flex-item mx-5 text-light"></div>
+            <div class="flex-item text-light">V</div>
+            <div class="flex-item mx-5 text-light"></div>
+          <% else %>
+            <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
+            <div class="flex-item text-light">-</div>
+            <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>           
+          <% end %>
+          <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
+            <% if result == "W" %>
+              <div class="flex-item">🟢</div>
+            <% elsif result == "D" %>
+              <div class="flex-item">⚪</div>
+            <% else %>
+              <div class="flex-item">🔴</div>
+            <% end %>
+          <% end %>
           <div id="scoreboard-team-div" class="flex-item text-right flex-grow bg-primary"><%= Club.find(fixture.away_team_id)[:name] %></div>
         </div>
       <% end %>
