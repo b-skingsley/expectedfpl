@@ -49,15 +49,15 @@ class PremierLeague
       fplid: 8
     },
     {
-      name: 'Leeds United',
-      short_name: 'LEE',
-      form: 'WLLWL',
-      fplid: 9
-    },
-    {
       name: 'Leicester City',
       short_name: 'LEI',
       form: 'WDWWL',
+      fplid: 9
+    },
+    {
+      name: 'Leeds United',
+      short_name: 'LEE',
+      form: 'WLLWL',
       fplid: 10
     },
     {
