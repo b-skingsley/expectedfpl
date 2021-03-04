@@ -1,4 +1,4 @@
-<div class="container dashboard-bg">
+<div class="container dashboard-bg id="overlay-container"">
   
   <%= simple_form_for :search, url: fixtures_path, method: :get do |f| %>
     <%= f.input :query, input_html: {value: params.dig(:search, :query)} %>
@@ -8,7 +8,7 @@
   <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) })%>
   <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }) %>
   <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }) %>
-  
+
   <div id="scrollable" class="container">
     <% @fixtures.each do |fixture| %>
       <% if fixture.id.even? %>
@@ -35,7 +35,7 @@
             <% else %>
               <div class="flex-item">🔴</div>
             <% end %>
-          <% end %>         
+          <% end %>
           <div id="scoreboard-team-div" class="flex-item text-right flex-grow bg-primary"><%= Club.find(fixture.away_team_id)[:name] %></div>
         </div>
       <% else %>
