@@ -1,4 +1,14 @@
 <div class="container dashboard-bg">
+  
+  <%= simple_form_for :search, url: fixtures_path, method: :get do |f| %>
+    <%= f.input :query, input_html: {value: params.dig(:search, :query)} %>
+    <%= f.submit "Filter" %>
+  <% end %>
+    
+  <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) })%>
+  <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }) %>
+  <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }) %>
+  
   <div id="scrollable" class="container">
     <% @fixtures.each do |fixture| %>
       <% if fixture.id.even? %>
@@ -13,6 +23,7 @@
               <div class="flex-item">🔴</div>
             <% end %>
           <% end %>
+          if 
           <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
           <div class="flex-item text-light">-</div>
           <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>
