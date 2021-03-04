@@ -8,7 +8,7 @@ class FootballersController < ApplicationController
     elsif params[:filter_by_position].present? || params[:filter_by_club].present? || params[:filter_by_max_price].present?
       position = params[:filter_by_position]
       club_id = @clubs.find_by(name: params[:filter_by_club]).id if params[:filter_by_club].present?
-      max_p = params[:filter_by_max_price]
+      max_p = (params[:filter_by_max_price].to_f * 10).to_i
       if params[:filter_by_position].present? && params[:filter_by_club].present? && params[:filter_by_max_price].present?
         @footballers = @footballers.where(position: position, club_id: club_id).where("price <= ?", max_p)
       elsif params[:filter_by_position].present? && params[:filter_by_club].present?
@@ -25,10 +25,9 @@ class FootballersController < ApplicationController
         @footballers = @footballers.where("price <= ?", max_p)
       end
     end
-    if @footballers.present?
-      @max_p = @footballers.first.price
-      @min_p = @footballers.last.price
-    end
+    # price (float) instance variables for use in the view
+    @max_p = (Footballer.all.first.price) / 10.0
+    @min_p = (Footballer.all.last.price) / 10.0
   end
 
   def show

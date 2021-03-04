@@ -1,28 +1,39 @@
 <% clubs = @clubs.map { |club| club.name } %>
 
-<div class="inline-table-filters">
-  <%= form_tag footballers_path, method: :get do %>
+<%= form_tag footballers_path, class: "form-inline", method: :get do %>
+  <div class="col">
     <%= text_field_tag :query,
       params[:query],
       class: "form-control form-control-sm mb-2",
       placeholder: "Filter by Name..."
     %>
-    <%= select_tag :filter_by_position, options_for_select(%w[GK DEF MID FWD]),
+  </div>
+  <div class="col">
+    <%= select_tag :filter_by_position, options_for_select(%w[GK DEF MID FWD], params[:filter_by_position]),
       include_blank: 'Filter by Position...',
       class: "form-control form-control-sm mb-2"
     %>
-    <%= select_tag :filter_by_club, options_for_select(clubs),
+  </div>
+  <div class="col">
+    <%= select_tag :filter_by_club, options_for_select(clubs, params[:filter_by_club]),
       include_blank: 'Filter by Club...',
       class: "form-control form-control-sm mb-2"
     %>
-    <%= label_tag :filter_by_max_price, 'Max Price' %>
+  </div>
+  <div class="col">
+    <%= label_tag :filter_by_max_price, 'Max Price', class: 'm-0' %>
+    <p id="max-price-value" class="m-0 text-center"></p>
     <%= range_field_tag :filter_by_max_price,
+      params[:filter_by_max_price].present? ? params[:filter_by_max_price] : @max_p,
       min: @min_p,
       max: @max_p,
-      step: 10,
-      value: @max_p,
+      step: 0.1,
       class: "form-control form-control-sm mb-2"
     %>
-    <%= submit_tag "Go", class: "btn btn-primary btn-sm" %>
-  <% end %>
-</div>
+  </div>
+  <div class="row m-3 justify-content-between">
+    <%= submit_tag "Go", class: "btn btn-success btn-sm mx-2" %>
+    <%= link_to "Reset", footballers_path, class: "btn btn-secondary btn-sm mx-2", data: { turbolinks: false } %>
+  </div>
+<% end %>
+
