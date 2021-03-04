@@ -27,8 +27,18 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { rangeValue } from '../components/range_value';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  rangeValue();
+
+});
+
+document.addEventListener('turbolinks:render', () => {
+  // Call your functions here, e.g:
+  // initSelect2();
+  rangeValue();
+
 });

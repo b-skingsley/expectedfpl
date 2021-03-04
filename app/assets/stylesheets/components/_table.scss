@@ -1,0 +1,24 @@
+.table-header {
+  background: rgba(133, 167, 214, 0.7);
+  font-weight: bolder;
+}
+
+.table-row {
+  min-height: 32px;
+  border-bottom: 0.5px solid grey;
+}
+
+.table-body {
+  padding-bottom: 56px;
+}
+
+.filter-feedback {
+  font-weight: lighter;
+  font-size: 14px;
+  color: green;
+}
+
+.form-inline {
+  display: flex;
+  justify-content: space-between;
+}

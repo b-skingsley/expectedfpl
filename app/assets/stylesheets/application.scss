@@ -31,6 +31,9 @@ div#pitch-bg {
   min-height: calc(100vh - 72px);
 }
 
+.background-transparent {
+  background-color: rgba(247, 251, 252, 0.8);
+}
 
 #overlay-container {
     background-color: rgba(247, 251, 252, 0.8);
