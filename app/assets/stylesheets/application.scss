@@ -23,19 +23,15 @@ div#pitch-bg {
   width: 100%;
   height: auto;
   /* Set up positioning */
-  position: fixed;
-  top: 50;
-  left: 0;
+  background-size: cover;
+  background-position: center;
 }
 
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  div#pitch-bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
+body {
+
 }
+
 
 #overlay-container {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    background-color: rgba(247, 251, 252, 0.8);
 }
