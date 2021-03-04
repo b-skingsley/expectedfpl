@@ -2,7 +2,11 @@
   <div class="container">
     <h1>FPL made quick, easy and data driven</h1>
     <p>Climb up your Fantasy Premier League rankings with ExpectedFPL. We do all the hard work and drown out all the noise and analytics so you pick your team fast and efficiently </p>
-    <div><%= link_to "Save some time this GW", new_user_registration_path, id: "call-to-action" %></div>
+    <% if user_signed_in? %>
+      <div><%= link_to "Save some time this GW", team_path(current_user.teams.first), id: "call-to-action" %></div>
+    <% else %>
+      <div><%= link_to "Save some time this GW", new_user_registration_path, id: "call-to-action" %></div>
+    <% end %>
   </div>
 </div>
 <div class="content">
