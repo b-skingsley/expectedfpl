@@ -1,0 +1,6 @@
+  <% clubs = @clubs.map { |club| club.name } %>
+
+  <%= simple_form_for :search, url: fixtures_path, method: :get do |f| %>
+    <%= f.input :query, input_html: {value: params.dig(:search, :query)}, label: false, placeholder: "Search by club", collection: clubs %>
+    <%= f.submit "Search" %>
+  <% end %>
