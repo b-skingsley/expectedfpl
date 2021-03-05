@@ -25,6 +25,11 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pg_search', '~> 2.3.0'
+# Adds support for Capybara system testing and selenium driver
+gem 'selenium-webdriver'
+# Easy installation and use of web drivers to run system tests with browsers
+gem 'webdrivers'
+gem 'capybara', '>= 2.15'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -55,11 +60,6 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
