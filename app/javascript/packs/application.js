@@ -24,19 +24,30 @@ require("algoliasearch").start()
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 import { rangeValue } from '../components/range_value';
+import { disableFilterFields } from '../components/disable_filter_fields';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  // dynamically updates display of the max-price-filter-value on footballers index
   rangeValue();
-
+  // toggles disabled attributes of filter inputs depending on if a search value is present
+  disableFilterFields();
 });
 
-document.addEventListener('turbolinks:render', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-  rangeValue();
+const switches = document.getElementById("switch")
 
-});
+const benchHtml = (player) => {
+  '<div class="bench-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+}
+
+const starterHtml = (player) => {
+  '<div class="starting-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+}
+
+// const player1 = document.getElementById(`player${player.fplid}`)
+
+const movePlayer = (player1, player2) => {
+  playerTwoHtml = player2.outerHTML
+}
+
+
