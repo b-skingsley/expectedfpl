@@ -6,7 +6,6 @@
     background-color: $off-white;
     min-height: 100vh;
   }
-
   .navbar {
     background-color: transparent ;
     background-image: none;
@@ -16,6 +15,9 @@
     left:0;
     z-index: 10;
     width: 100%;
+    a {
+      color: $off-white;
+    }
   }
 
   .banner {

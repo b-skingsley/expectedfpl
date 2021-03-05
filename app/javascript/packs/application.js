@@ -31,34 +31,38 @@ import { disableFilterFields } from '../components/disable_filter_fields';
 
 document.addEventListener('turbolinks:load', () => {
   // dynamically updates display of the max-price-filter-value on footballers index
-  // rangeValue();
+  rangeValue();
   // toggles disabled attributes of filter inputs depending on if a search value is present
   disableFilterFields();
+  switchfunctionality();
+  algoliaFunctionality();
 });
 
-const switches = document.querySelectorAll(".switch");
-const switch1 = document.getElementById("switch1");
-const switch2 = document.getElementById("switch2");
-const form = document.querySelector(".edit_team")
-let counter = 0;
+const switchfunctionality = () => {
+  const switches = document.querySelectorAll(".switch");
+  const switch1 = document.getElementById("switch1");
+  const switch2 = document.getElementById("switch2");
+  const form = document.querySelector(".edit_team")
+  let counter = 0;
 
-// add if statement for if you're unselecting a player switch
+  // add if statement for if you're unselecting a player switch
 
-if (switches) {
-  switches.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      const parent = event.currentTarget.parentElement;
-      if (counter == 0) {
-        parent.classList.toggle("active");
-        counter += 1;
-        switch1.value = parent.parentElement.dataset.id;
-      } else if (counter == 1) {
-        parent.classList.toggle("active");
-        switch2.value = parent.parentElement.dataset.id;
-        form.submit();
-      }
+  if (switches) {
+    switches.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const parent = event.currentTarget.parentElement;
+        if (counter == 0) {
+          parent.classList.toggle("active");
+          counter += 1;
+          switch1.value = parent.parentElement.dataset.id;
+        } else if (counter == 1) {
+          parent.classList.toggle("active");
+          switch2.value = parent.parentElement.dataset.id;
+          form.submit();
+        }
+      });
     });
-  });
+  }
 }
 
 // const benchHtml = (player) => {
@@ -71,37 +75,38 @@ if (switches) {
 
 // const player1 = document.getElementById(`player${player.fplid}`)
 
+const algoliaFunctionality = () => {
+  const client = algoliasearch('GESYNVBKIC', '4f4cbe53efd0df512c25a4ec2a75e42c');
+  const index = client.initIndex('Footballer');
 
-var client = algoliasearch('GESYNVBKIC', '4f4cbe53efd0df512c25a4ec2a75e42c');
-var index = client.initIndex('Footballer');
+  const playerResults = document.getElementById("player-search-results");
 
-const playerResults = document.getElementById("player-search-results");
+  const selectPlayer = () => {
+    console.log("I was clicked");
+  }
 
-const selectPlayer = () => {
-  console.log("I was clicked");
-}
-
-const playerSearch = document.getElementById("player-search")
-playerSearch.addEventListener('keyup', () => {
-  playerResults.innerHTML = "";
-  index.search(playerSearch.value, { hitsPerPage: 10, page: 0 })
-    .then(function searchDone(content) {
-      content.hits.forEach((hit) => {
-        playerResults.insertAdjacentHTML("beforeend", `<p class="click-player">${hit.full_name}</p>`);
-      })
-      document.querySelectorAll(".click-player").forEach((player) => {
-        player.addEventListener("click", (event) => {
-          console.log(event.currentTarget.innerText);
-          document.getElementById("clickable-players").value = event.currentTarget.innerText;
-          // document.getElementById("submit-player-search").click();
+  const playerSearch = document.getElementById("player-search")
+  if (playerSearch) {
+    playerSearch.addEventListener('keyup', () => {
+      playerResults.innerHTML = "";
+      index.search(playerSearch.value, { hitsPerPage: 10, page: 0 })
+        .then(function searchDone(content) {
+          content.hits.forEach((hit) => {
+            playerResults.insertAdjacentHTML("beforeend", `<p class="click-player">${hit.full_name}</p>`);
+          })
+          document.querySelectorAll(".click-player").forEach((player) => {
+            player.addEventListener("click", (event) => {
+              console.log(event.currentTarget.innerText);
+              document.getElementById("clickable-players").value = event.currentTarget.innerText;
+              // document.getElementById("submit-player-search").click();
+            });
+          })
+        })
+        .catch(function searchFailure(err) {
+          console.error(err);
         });
-      })
     })
-    .catch(function searchFailure(err) {
-      console.error(err);
-    });
-})
-
-
+  };
+}
 
 // 0: { first_name: "Willian José", last_name: "Da Silva", full_name: "Willian José Da Silva", objectID: "2723", _highlightResult: { … } }
