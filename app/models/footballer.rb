@@ -22,4 +22,16 @@ class Footballer < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  include AlgoliaSearch
+  algoliasearch do
+    attributes :first_name, :last_name
+    attribute :full_name
+    searchableAttributes ['unordered(last_name)', 'unordered(first_name)']
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
 end

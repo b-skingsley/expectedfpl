@@ -1,0 +1,1 @@
+AlgoliaSearch.configuration = { application_id: 'GESYNVBKIC', api_key: ENV['ALGOLIA_API_KEY'] }

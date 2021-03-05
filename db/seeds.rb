@@ -135,7 +135,7 @@ Player.create!(team: team, starter: true, footballer: Footballer.where(web_name:
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Calvert-Lewin", position: "FWD").first)
 Player.create!(team: team, footballer: Footballer.where(web_name: "Watkins", position: "FWD").first)
 
-puts "#{Player.count} players seeded"
+puts "#{Player.count} players seeded\n__________________\n"
 
 # ------------- Fixture Seeding -----------------
 

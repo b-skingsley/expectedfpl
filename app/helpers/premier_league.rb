@@ -86,13 +86,13 @@ class PremierLeague
     },
     {
       name: 'Sheffield United',
-      short_name: 'SHU',
+      short_name: 'SHE',
       form: 'WLLLL',
       fplid: 15
     },
     {
       name: 'Southampton',
-      short_name: 'SOU',
+      short_name: 'STN',
       form: 'LLDLL',
       fplid: 16
     },
@@ -116,7 +116,7 @@ class PremierLeague
     },
     {
       name: 'Wolverhampton Wanderers',
-      short_name: 'WOL',
+      short_name: 'WOV',
       form: 'WDWWD',
       fplid: 20
     }
