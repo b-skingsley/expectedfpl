@@ -1,55 +1,64 @@
 <div class="container dashboard-bg py-4" id="overlay-container">
 
-  <h2>Fixtures</h2>
+  <h2 class="col">Fixtures</h2>
   <div class="row mb-3">
     <div class="col-4">
       <%= render "fixture_filter_form" %>
     </div>
   </div>
 
-  <div id="scrollable" class="container stats">
-    <div class="d-flex justify-content-center p-1 bg-dark rounded-top">
-      <div class="flex-item mx-5 text-light">
-        <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) }), class: "link-tab #{'link-tab-active' if params[:status] == 'past'}" %>
-      </div>
-      <div class="flex-item mx-5 text-light">
-        <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "link-tab #{'link-tab-active' if params[:status] == 'current'}"%>
-      </div>
-      <div class="flex-item mx-5 text-light">
-        <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }), class: "link-tab #{'link-tab-active' if params[:status] == 'future'}"%>
-      </div>
-    </div>
+  
+  <div id="tabs" class="d-flex my-0">
+    <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) }), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'past'}" %>
+    <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'current'}"%>
+    <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'future'}"%>
+  </div>
+ 
+  <div id="scrollable" class="container stats mt-0">
+    <div class="d-flex p-1 table-header shadow-sm"></div>
     <% @fixtures.each do |fixture| %>
-      <div id="scoreboard-row" class="d-flex justify-content-between p-3">
-        <div id="scoreboard-team-div" class="flex-item text-left flex-grow <%= Club.find(fixture.home_team_id).short_name %> rounded shadow-sm"><%= Club.find(fixture.home_team_id)[:name] %></div>
-        <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
-          <% if result == "W" %>
-            <div class="flex-item">🟢</div>
-          <% elsif result == "D" %>
-            <div class="flex-item">⚪</div>
-          <% else %>
-            <div class="flex-item">🔴</div>
-          <% end %>
-        <% end %>
+      <div id="scoreboard-row" class="d-flex align-items-center justify-content-between p-3">
+        <%= image_tag("shirts/#{@clubs.find(fixture.home_team_id).short_name.downcase}.png", size: "65x45")  %>
+        <div id="scoreboard-team-div" class="flex-item text-left flex-grow ml-3">
+          <%= @clubs.find(fixture.home_team_id).name %>
+          <div class="flex-item d-flex justify-content-start">
+            <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
+              <% case result %>
+              <% when "W" %>
+                <div class="flex-item">🟢</div>
+              <% when "D" %>
+                <div class="flex-item">⚪</div>
+              <% else %>
+                <div class="flex-item">🔴</div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
         <% if fixture.kickoff > DateTime.now() %>
           <div class="flex-item mx-5 text-light"></div>
-          <div class="flex-item text-light">V</div>
+          <div class="flex-item text-light">-</div>
           <div class="flex-item mx-5 text-light"></div>
         <% else %>
           <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
           <div class="flex-item text-light">-</div>
           <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>           
         <% end %>
-        <% Club.find(fixture.away_team_id)[:form].split("").each do |result| %>
-          <% if result == "W" %>
-            <div class="flex-item">🟢</div>
-          <% elsif result == "D" %>
-            <div class="flex-item">⚪</div>
-          <% else %>
-            <div class="flex-item">🔴</div>
-          <% end %>
-        <% end %>
-        <div id="scoreboard-team-div" class="flex-item text-right flex-grow <%= Club.find(fixture.away_team_id).short_name %> rounded shadow-sm"><%= Club.find(fixture.away_team_id)[:name] %></div>
+        <div id="scoreboard-team-div" class="flex-item text-right flex-grow mr-3">
+          <%= @clubs.find(fixture.away_team_id).name %>
+          <div class="flex-item d-flex justify-content-end">
+            <% Club.find(fixture.away_team_id)[:form].split("").each do |result| %>
+              <% case result %>
+              <% when "W" %>
+                <div class="flex-item">🟢</div>
+              <% when "D" %>
+                <div class="flex-item">⚪</div>
+              <% else %>
+                <div class="flex-item">🔴</div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%= image_tag("shirts/#{@clubs.find(fixture.away_team_id).short_name.downcase}.png", size: "65x45")  %>
       </div>
     <% end %>
   </div>

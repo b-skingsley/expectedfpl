@@ -1,5 +1,5 @@
 #scoreboard-team-div {
-    width: 500px;
+    width: 400px;
 }
 
 .stats div#scoreboard-row:nth-child(even) {
@@ -8,6 +8,10 @@
 
 .stats div#scoreboard-row:nth-child(odd) {
     background-color: rgba(136, 140, 143, 0.8);
+}
+
+#tabs {
+    margin-left: 15px;
 }
 
 
@@ -25,12 +29,14 @@
 }
 
 .link-tab {
-    color: rgba(148, 151, 154, 0.8);
+    color: black;
+    margin-bottom: 0;
 }
 
 .link-tab-active {
     color: white;
-    background-color: rgb(52, 58, 64);
+    background-color: rgba(133, 167, 214, 0.7);
+    margin-bottom: 0;
 }
 
 #player-search-results {

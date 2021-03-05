@@ -1,13 +1,2 @@
-  <% clubs = @clubs.map { |club| club.name } %>
 
-  <input id="player-search" type="text">
-
-  <div id="player-search-results">
-
-  </div>
-
-  <%= simple_form_for :search, url: fixtures_path, method: :get do |f| %>
-    <%= f.input :query, input_html: {value: params.dig(:search, :query)}, label: "Search by club", collection: clubs %>
-    <%= f.input :query, input_html: {value: params.dig(:search, :query)}, label: "Search by player", input_html: {id: "clickable-players"} %>
-    <%= f.submit "Search", id: "submit-player-search" %>
-  <% end %>
+  <%# input_html: {value: params.dig(:search, :query)} %>
