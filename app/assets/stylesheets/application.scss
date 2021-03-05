@@ -1,6 +1,7 @@
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
+@import "config/clubs";
 @import "config/bootstrap_variables";
 
 // External libraries
@@ -39,4 +40,5 @@ div#pitch-bg {
 
 #overlay-container {
     background-color: rgba(247, 251, 252, 0.8);
+    top: 30px;
 }
