@@ -57,7 +57,7 @@ module ApplicationHelper
     end
     return outfielders
   end
-  
+
   def form_formatter(form)
     form > 5.0 ? '🔥' : ''
   end
@@ -76,4 +76,11 @@ module ApplicationHelper
       return '😩'
     end
   end
+
+  def next_deadline()
+    next_gw = Fixture.gameweek.first.gameweek
+    deadline = 90.minutes.before(Fixture.where(gameweek: next_gw).first.kickoff)
+    return deadline.strftime("%a %b-%-dth @ %H:%M")
+  end
+
 end
