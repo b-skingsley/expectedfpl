@@ -47,4 +47,23 @@ module ApplicationHelper
     end
     return gks
   end
+
+  def form_formatter(form)
+    form > 5.0 ? '🔥' : ''
+  end
+
+  def chances_formatter(chance)
+    case chance
+    when 100
+      return '😃'
+    when 75
+      return '🤨'
+    when 50
+      return '😬'
+    when 25
+      return '🙁'
+    else
+      return '😩'
+    end
+  end
 end

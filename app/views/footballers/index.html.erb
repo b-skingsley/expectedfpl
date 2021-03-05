@@ -25,6 +25,12 @@
         </p>
       </div>
       <div class="col">
+        <p>Form</p>
+      </div>
+      <div class="col">
+        <p>Fit?</p>
+      </div>
+      <div class="col">
         <p>Price
           <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
             </p><p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %>
@@ -36,7 +42,7 @@
       </div>
     </div>
   </div>
-  <div class="container table-body" style="overflow:scroll; max-height:600px;">
+  <div class="container table-body" style="overflow:scroll; max-height:50vh;">
     <% unless @footballers.present? %>
     <div class="text-center">
       <div class="m-4"><h3>⚽️😐 No Players Matching Your Filter Criteria 😐⚽️</h3></div>
@@ -45,11 +51,13 @@
     <% end %>
     <% @footballers.each do |footballer| %>
     <div class="row justify-content-between table-row align-content-center">
-          <div class="col"><%= footballer.web_name %></div>
-          <div class="col"><%= footballer.position %></div>
-          <div class="col"><%= footballer.club.name %></div>
-          <div class="col"><%= fplprice(footballer.price) %></div>
-          <div class="col"><%= footballer.total_points %></div>
+      <div class="col"><%= footballer.web_name %></div>
+      <div class="col"><%= footballer.position %></div>
+      <div class="col"><%= footballer.club.name %></div>
+      <div class="col"><%= form_formatter(footballer.form.to_f) %></div>
+      <div class="col"><%= chances_formatter(footballer.chance_of_playing_next_round) %></div>
+      <div class="col"><%= fplprice(footballer.price) %></div>
+      <div class="col"><%= footballer.total_points %></div>
     </div>
     <% end %>
   </div>
