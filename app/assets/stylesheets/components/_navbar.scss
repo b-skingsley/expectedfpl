@@ -9,6 +9,24 @@
   height: 100px;
 }
 
+#deadline {
+  border: 0.3px solid grey;
+  border-radius: 3px;
+  background: rgba(40, 40, 40, 0.1);
+  padding: 4px 16px 4px 16px;
+  margin-right: 32px;
+
+  #deadline-time {
+    color: orange;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }

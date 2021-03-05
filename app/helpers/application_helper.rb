@@ -77,7 +77,14 @@ module ApplicationHelper
     end
   end
 
+  def next_deadline()
+    next_gw = Fixture.gameweek.first.gameweek
+    deadline = 90.minutes.before(Fixture.where(gameweek: next_gw).first.kickoff)
+    return deadline.strftime("%a %b-%-dth @ %H:%M")
+  end
+
   def next_fixture(footballer)
     club = footballer.club
   end
+
 end
