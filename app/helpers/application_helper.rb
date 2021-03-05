@@ -47,4 +47,14 @@ module ApplicationHelper
     end
     return gks
   end
+
+  def outfielders(players)
+    outfielders = []
+    players.each do |player|
+      unless player.footballer.position == "GK"
+        outfielders << player.footballer
+      end
+    end
+    return outfielders
+  end
 end

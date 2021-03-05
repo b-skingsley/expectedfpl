@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :leagues, only: [:index]
     member do
       get 'finalize', as: :finalize
+      patch 'switch', as: :switch
     end
   end
 

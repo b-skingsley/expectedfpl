@@ -3,18 +3,18 @@
     <div class="team-view" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.3)), url('<%= image_path "team-background.jpg" %>')">
       <div class="main-team">
         <div class="row gks">
-          <div class="starting-player" id="player<%= gks(@starters)[0].fplid %>">
+          <div class="starting-player" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
             <div class="player-content">
-              <i class="fas fa-exchange-alt" id="switch"></i>
+              <i class="fas fa-exchange-alt switch"></i>
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
             </div>
           </div>
         </div>
         <div class="row defs">
           <% defs(@starters).each do |defender| %>
-            <div class="starting-player" id="player<%= defender.fplid %>">
+            <div class="starting-player" id="player<%= defender.fplid %>" data-id="<%= defender.id %>">
               <div class="player-content">
-                <i class="fas fa-exchange-alt" id="switch"></i>
+                <i class="fas fa-exchange-alt switch"></i>
                 <div class="player-name"><%= defender.web_name %></div>
               </div>
             </div>
@@ -22,9 +22,9 @@
         </div>
         <div class="row mids">
           <% mids(@starters).each do |mid| %>
-            <div class="starting-player" id="player<%= mid.fplid %>">
+            <div class="starting-player" id="player<%= mid.fplid %>" data-id="<%= mid.id %>">
               <div class="player-content">
-                <i class="fas fa-exchange-alt" id="switch"></i>
+                <i class="fas fa-exchange-alt switch"></i>
                 <div class="player-name"><%= mid.web_name %></div>
               </div>
             </div>
@@ -32,9 +32,9 @@
         </div>
         <div class="row fwds">
           <% fwds(@starters).each do |fwd| %>
-            <div class="starting-player" id="player<%= fwd.fplid %>">
+            <div class="starting-player" id="player<%= fwd.fplid %>" data-id="<%= fwd.id %>">
               <div class="player-content">
-                <i class="fas fa-exchange-alt" id="switch"></i>
+                <i class="fas fa-exchange-alt switch"></i>
                 <div class="player-name"><%= fwd.web_name %></div>
               </div>
             </div>
@@ -42,28 +42,28 @@
         </div>
       </div>
       <div class="bench">
-        <div class="bench-player gk" id="player<%= gks(@bench)[0].fplid %>">
+        <div class="bench-player gk" id="player<%= gks(@bench)[0].fplid %>" data-id="<%= gks(@bench)[0].id %>">
           <div class="player-content">
-            <i class="fas fa-exchange-alt" id="switch"></i>
+            <i class="fas fa-exchange-alt switch"></i>
             <div class="player-name"><%= gks(@bench)[0].web_name %></div>
           </div>
         </div>
-        <div class="bench-player" id="player<%= @firstsub.fplid %>">
+        <div class="bench-player" id="player<%= outfielders(@bench)[0].fplid %>" data-id="<%= outfielders(@bench)[0].id %>">
           <div class="player-content">
-            <i class="fas fa-exchange-alt" id="switch"></i>
-            <div class="player-name"><%= @firstsub.web_name %></div>
+            <i class="fas fa-exchange-alt switch"></i>
+            <div class="player-name"><%= outfielders(@bench)[0].web_name %></div>
           </div>
         </div>
-        <div class="bench-player" id="player<%= @firstsub.fplid %>">
+        <div class="bench-player" id="player<%= outfielders(@bench)[1].fplid %>" data-id="<%=outfielders(@bench)[1].id %>">
           <div class="player-content">
-            <i class="fas fa-exchange-alt" id="switch"></i>
-            <div class="player-name"><%= @secondsub.web_name %></div>
+            <i class="fas fa-exchange-alt switch"></i>
+            <div class="player-name"><%= outfielders(@bench)[1].web_name %></div>
           </div>
         </div>
-        <div class="bench-player" id="player<%= @firstsub.fplid %>">
+        <div class="bench-player" id="player<%= outfielders(@bench)[2].fplid %>" data-id="<%= outfielders(@bench)[2].id %>">
           <div class="player-content">
-            <i class="fas fa-exchange-alt" id="switch"></i>
-            <div class="player-name"><%= @thirdsub.web_name %></div>
+            <i class="fas fa-exchange-alt switch"></i>
+            <div class="player-name"><%= outfielders(@bench)[2].web_name %></div>
           </div>
         </div>
       </div>
@@ -124,4 +124,15 @@
       </p> -->
     <% end %>
   </div>
+</div>
+
+<div class="player-switch-form">
+  <%= form_for(@team, url: switch_team_path) do |f| %>
+    <%= f.hidden_field :player1, id: "switch1", value: 0 %>
+    <%= f.hidden_field :player2, id: "switch2", value: 0 %>
+
+    <div class="form-actions" id="">
+      <%= f.button :submit, class: 'btn btn-outline-light hidden' %>
+    </div>
+  <% end %>
 </div>

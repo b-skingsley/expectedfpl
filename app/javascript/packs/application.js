@@ -34,20 +34,40 @@ document.addEventListener('turbolinks:load', () => {
   disableFilterFields();
 });
 
-const switches = document.getElementById("switch")
+const switches = document.querySelectorAll(".switch");
+const switch1 = document.getElementById("switch1");
+const switch2 = document.getElementById("switch2");
+const form = document.querySelector(".edit_team")
+let counter = 0;
 
-const benchHtml = (player) => {
-  '<div class="bench-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+// add if statement for if you're unselecting a player switch
+
+if (switches) {
+  switches.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const parent = event.currentTarget.parentElement;
+      if (counter == 0) {
+        parent.classList.toggle("active");
+        counter += 1;
+        switch1.value = parent.parentElement.dataset.id;
+      } else if (counter == 1) {
+        parent.classList.toggle("active");
+        switch2.value = parent.parentElement.dataset.id;
+        form.submit();
+      }
+    });
+  });
 }
 
-const starterHtml = (player) => {
-  '<div class="starting-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
-}
+// const benchHtml = (player) => {
+//   '<div class="bench-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+// }
+
+// const starterHtml = (player) => {
+//   '<div class="starting-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+// }
 
 // const player1 = document.getElementById(`player${player.fplid}`)
 
-const movePlayer = (player1, player2) => {
-  playerTwoHtml = player2.outerHTML
-}
 
 
