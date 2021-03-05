@@ -31,6 +31,9 @@
 .link-tab {
     color: black;
     margin-bottom: 0;
+    &:hover {
+        background-color: $lighter-blue;
+    }
 }
 
 .link-tab-active {
@@ -43,3 +46,12 @@
     max-height: 200px;
     overflow: auto;
 }
+
+#algolia-input {
+    border: none;
+}
+
+#algolia-result {
+    border: none;
+}
+

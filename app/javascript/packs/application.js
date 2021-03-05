@@ -78,29 +78,24 @@ const switchfunctionality = () => {
 const algoliaFunctionality = () => {
   const client = algoliasearch('GESYNVBKIC', '4f4cbe53efd0df512c25a4ec2a75e42c');
   const index = client.initIndex('Footballer');
+  const playerResults = document.getElementById("algolia-result");
+  const RefineFixtures = document.getElementById("refine-by-player")
+  const playerSearch = document.getElementById("query")
 
-  const playerResults = document.getElementById("player-search-results");
-
-  const selectPlayer = () => {
-    console.log("I was clicked");
+  const refineFixtureByPlayer = () => {
+    playerSearch.value = playerResults.value;
+    RefineFixtures.click();
   }
-
-  const playerSearch = document.getElementById("player-search")
+  
   if (playerSearch) {
     playerSearch.addEventListener('keyup', () => {
       playerResults.innerHTML = "";
-      index.search(playerSearch.value, { hitsPerPage: 10, page: 0 })
+      index.search(playerSearch.value, { hitsPerPage: 1, page: 0 })
         .then(function searchDone(content) {
           content.hits.forEach((hit) => {
-            playerResults.insertAdjacentHTML("beforeend", `<p class="click-player">${hit.full_name}</p>`);
+            playerResults.value = `${hit.full_name}`;
           })
-          document.querySelectorAll(".click-player").forEach((player) => {
-            player.addEventListener("click", (event) => {
-              console.log(event.currentTarget.innerText);
-              document.getElementById("clickable-players").value = event.currentTarget.innerText;
-              // document.getElementById("submit-player-search").click();
-            });
-          })
+            playerResults.addEventListener("click", refineFixtureByPlayer);
         })
         .catch(function searchFailure(err) {
           console.error(err);
@@ -108,5 +103,3 @@ const algoliaFunctionality = () => {
     })
   };
 }
-
-// 0: { first_name: "Willian José", last_name: "Da Silva", full_name: "Willian José Da Silva", objectID: "2723", _highlightResult: { … } }
