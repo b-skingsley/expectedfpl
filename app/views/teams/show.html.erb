@@ -46,12 +46,14 @@
         </div>
       </div>
       <div class="bench">
+        <div class="bench-name"><h4>Bench:</h4></div>
         <div class="bench-player gk" id="player<%= gks(@bench)[0].fplid %>" data-id="<%= gks(@bench)[0].id %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt switch"></i>
             <div class="shirt"><%= image_tag("shirts/#{gks(@bench)[0].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= gks(@bench)[0].web_name %></div>
           </div>
+          <div class="bench-position">GK</div>
         </div>
         <div class="bench-player" id="player<%= outfielders(@bench)[0].fplid %>" data-id="<%= outfielders(@bench)[0].id %>">
           <div class="player-content">
@@ -59,6 +61,7 @@
             <div class="shirt"><%= image_tag("shirts/#{outfielders(@bench)[0].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= outfielders(@bench)[0].web_name %></div>
           </div>
+          <div class="bench-position"><%= outfielders(@bench)[0].position %></div>
         </div>
         <div class="bench-player" id="player<%= outfielders(@bench)[1].fplid %>" data-id="<%=outfielders(@bench)[1].id %>">
           <div class="player-content">
@@ -66,6 +69,7 @@
             <div class="shirt"><%= image_tag("shirts/#{outfielders(@bench)[1].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= outfielders(@bench)[1].web_name %></div>
           </div>
+          <div class="bench-position"><%= outfielders(@bench)[1].position %></div>
         </div>
         <div class="bench-player" id="player<%= outfielders(@bench)[2].fplid %>" data-id="<%= outfielders(@bench)[2].id %>">
           <div class="player-content">
@@ -73,6 +77,7 @@
             <div class="shirt"><%= image_tag("shirts/#{outfielders(@bench)[2].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= outfielders(@bench)[2].web_name %></div>
           </div>
+          <div class="bench-position"><%= outfielders(@bench)[2].position %></div>
         </div>
       </div>
     </div>
@@ -88,49 +93,32 @@
     <% end %>
 
     <h4> Goalkeepers </h4>
-    <% @team.footballers.gks.each do |player| %>
-      <p> <%= player.first_name %> <%= player.web_name %> </p>
-      <!-- <p>
-        Price: <%= fplprice(player.price) %>
-        Club: <%= player.club.name %>
-        Clean Sheets: <%= player.clean_sheets %>
-        Saves: <%= player.saves %>
-      </p> -->
-    <% end %>
-
+    <ul>
+      <% @team.footballers.gks.each do |player| %>
+        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
+      <% end %>
+    </ul>
+    <hr>
     <h4> Defenders </h4>
-    <% @team.footballers.defs.each do |player| %>
-      <p> <%= player.first_name %> <%= player.web_name %> </p>
-      <!-- <p>
-        Price: <%= fplprice(player.price) %>
-        Club: <%= player.club.name %>
-        Clean Sheets: <%= player.clean_sheets %>
-        Goals: <%= player.goals %>
-        Assists: <%= player.assists %>
-      </p> -->
-    <% end %>
-
+    <ul>
+      <% @team.footballers.defs.each do |player| %>
+        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
+      <% end %>
+    </ul>
+    <hr>
     <h4> Midfielders </h4>
-    <% @team.footballers.mids.each do |player| %>
-      <p> <%= player.first_name %> <%= player.web_name %> </p>
-      <!-- <p>
-        Price: <%= fplprice(player.price) %>
-        Club: <%= player.club.name %>
-        Goals: <%= player.goals %>
-        Assists: <%= player.assists %>
-      </p> -->
-    <% end %>
-
+    <ul>
+      <% @team.footballers.mids.each do |player| %>
+        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
+      <% end %>
+    </ul>
+    <hr>
     <h4> Forwards </h4>
-    <% @team.footballers.fwds.each do |player| %>
-      <p> <%= player.first_name %> <%= player.web_name %> </p>
-      <!-- <p>
-        Price: <%= fplprice(player.price) %>
-        Club: <%= player.club.name %>
-        Goals: <%= player.goals %>
-        Assists: <%= player.assists %>
-      </p> -->
-    <% end %>
+    <ul>
+      <% @team.footballers.fwds.each do |player| %>
+        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
+      <% end %>
+    </ul>
   </div>
 </div>
 

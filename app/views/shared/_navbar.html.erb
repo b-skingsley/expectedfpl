@@ -9,7 +9,7 @@
   <div class="d-flex justify-content-between">
 
     <% if user_signed_in? %>
-      <div class="d-flex mr-4 align-items-center">
+      <div class="d-flex mr-4 align-items-center" id="logged-in">
         <%= link_to "Logged in as #{current_user.email}", user_path(current_user) %>
       </div>
     <% end %>
