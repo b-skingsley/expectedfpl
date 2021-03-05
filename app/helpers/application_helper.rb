@@ -57,7 +57,7 @@ module ApplicationHelper
     end
     return outfielders
   end
-  
+
   def form_formatter(form)
     form > 5.0 ? '🔥' : ''
   end
@@ -75,5 +75,9 @@ module ApplicationHelper
     else
       return '😩'
     end
+  end
+
+  def next_fixture(footballer)
+    club = footballer.club
   end
 end
