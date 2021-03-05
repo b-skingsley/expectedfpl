@@ -72,17 +72,28 @@
   }
 
   .player-content {
-    border: 1px solid black;
-    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    background-color: rgba(225, 225, 225, 0.5);
+    box-shadow: 3px, 3px, 3px, rgba(30, 30, 30, 0.2);
+    flex-direction: column;
+    justify-content: space-between;
     height: 100px;
     width: 100px;
     position: relative;
-    .player-name {
-      position: absolute;
+
+    .shirt {
+      height: 75%;
+    }
+
+    .shirt > img {
+      height: 100%;
       text-align: center;
-      bottom: 0;
+    }
+    .player-name {
+      text-align: center;
+      height: 25%;
       width: 100%;
-      background-color: $off-white;
     }
   }
 
@@ -91,6 +102,7 @@
     top: 2px;
     left: 2px;
     background-color: $off-white;
+    border: 0.3px solid grey;
     border-radius: 4px;
     padding: 2px;
   }

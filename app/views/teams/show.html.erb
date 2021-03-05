@@ -6,6 +6,7 @@
           <div class="starting-player" id="player<%= gks(@starters)[0].fplid %>">
             <div class="player-content">
               <i class="fas fa-exchange-alt" id="switch"></i>
+              <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
             </div>
           </div>
@@ -15,6 +16,7 @@
             <div class="starting-player" id="player<%= defender.fplid %>">
               <div class="player-content">
                 <i class="fas fa-exchange-alt" id="switch"></i>
+                <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
               </div>
             </div>
@@ -25,6 +27,7 @@
             <div class="starting-player" id="player<%= mid.fplid %>">
               <div class="player-content">
                 <i class="fas fa-exchange-alt" id="switch"></i>
+                <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
               </div>
             </div>
@@ -35,6 +38,7 @@
             <div class="starting-player" id="player<%= fwd.fplid %>">
               <div class="player-content">
                 <i class="fas fa-exchange-alt" id="switch"></i>
+                <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
               </div>
             </div>
@@ -45,24 +49,28 @@
         <div class="bench-player gk" id="player<%= gks(@bench)[0].fplid %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt" id="switch"></i>
+            <div class="shirt"><%= image_tag("shirts/#{gks(@bench)[0].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= gks(@bench)[0].web_name %></div>
           </div>
         </div>
         <div class="bench-player" id="player<%= @firstsub.fplid %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt" id="switch"></i>
+            <div class="shirt"><%= image_tag("shirts/#{@firstsub.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @firstsub.web_name %></div>
           </div>
         </div>
-        <div class="bench-player" id="player<%= @firstsub.fplid %>">
+        <div class="bench-player" id="player<%= @secondsub.fplid %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt" id="switch"></i>
+            <div class="shirt"><%= image_tag("shirts/#{@secondsub.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @secondsub.web_name %></div>
           </div>
         </div>
-        <div class="bench-player" id="player<%= @firstsub.fplid %>">
+        <div class="bench-player" id="player<%= @thirdsub.fplid %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt" id="switch"></i>
+            <div class="shirt"><%= image_tag("shirts/#{@thirdsub.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @thirdsub.web_name %></div>
           </div>
         </div>
