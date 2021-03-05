@@ -83,4 +83,8 @@ module ApplicationHelper
     return deadline.strftime("%a %b-%-dth @ %H:%M")
   end
 
+  def next_fixture(footballer)
+    club = footballer.club
+  end
+
 end
