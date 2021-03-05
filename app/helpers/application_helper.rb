@@ -48,6 +48,16 @@ module ApplicationHelper
     return gks
   end
 
+  def outfielders(players)
+    outfielders = []
+    players.each do |player|
+      unless player.footballer.position == "GK"
+        outfielders << player.footballer
+      end
+    end
+    return outfielders
+  end
+  
   def form_formatter(form)
     form > 5.0 ? '🔥' : ''
   end

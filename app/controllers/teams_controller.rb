@@ -3,9 +3,6 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @starters = @team.players.where(starter: true)
     @bench = @team.players.where(starter: false)
-    @firstsub = @bench[1].footballer
-    @secondsub = @bench[2].footballer
-    @thirdsub = @bench[3].footballer
   end
 
   def new
@@ -31,6 +28,19 @@ class TeamsController < ApplicationController
     @team.update(team_params)
 
     redirect_to team_path(@team)
+  end
+
+  def switch
+    @team = Team.find(params[:id])
+    @player1 = Player.find_by(footballer_id: params[:team][:player1], team: @team)
+    @player2 = Player.find_by(footballer_id: params[:team][:player2], team: @team)
+    @player1.starter = !@player1.starter
+    @player2.starter = !@player2.starter
+    if @player1.save && @player2.save
+      redirect_to team_path(@team)
+    else
+      render :show
+    end
   end
 
   private
