@@ -44,7 +44,11 @@ class UpdateFootballersJob < ApplicationJob
           bonus: footballer['bonus'],
           bps: footballer['bps'],
           club: club,
-          fplid: footballer['id']
+          fplid: footballer['id'],
+          chance_of_playing_next_round: footballer['chance_of_playing_next_round'],
+          chance_of_playing_this_round: footballer['chance_of_playing_this_round'],
+          news: footballer['news'],
+          form: footballer['form']
           )
       # Else player DOES exist in DB, and therefore we update values
       else
@@ -68,6 +72,10 @@ class UpdateFootballersJob < ApplicationJob
           bonus: footballer['bonus'],
           bps: footballer['bps'],
           club: club,
+          chance_of_playing_next_round: footballer['chance_of_playing_next_round'],
+          chance_of_playing_this_round: footballer['chance_of_playing_this_round'],
+          news: footballer['news'],
+          form: footballer['form']
           )
       end
     end
