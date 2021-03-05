@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_205428) do
+ActiveRecord::Schema.define(version: 2021_03_05_135145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(version: 2021_03_04_205428) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "fplid", null: false
+    t.integer "chance_of_playing_next_round"
+    t.integer "chance_of_playing_this_round"
+    t.text "news"
+    t.string "form"
     t.index ["club_id"], name: "index_footballers_on_club_id"
   end
 
