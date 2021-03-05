@@ -1,6 +1,11 @@
 class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
+    @starters = @team.players.where(starter: true)
+    @bench = @team.players.where(starter: false)
+    @firstsub = @bench[1].footballer
+    @secondsub = @bench[2].footballer
+    @thirdsub = @bench[3].footballer
   end
 
   def new

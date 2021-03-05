@@ -42,3 +42,21 @@ document.addEventListener('turbolinks:render', () => {
   rangeValue();
 
 });
+
+const switches = document.getElementById("switch")
+
+const benchHtml = (player) => {
+  '<div class="bench-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+}
+
+const starterHtml = (player) => {
+  '<div class="starting-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
+}
+
+// const player1 = document.getElementById(`player${player.fplid}`)
+
+const movePlayer = (player1, player2) => {
+  playerTwoHtml = player2.outerHTML
+}
+
+
