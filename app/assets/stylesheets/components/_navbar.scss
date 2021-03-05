@@ -1,7 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   align-items: center;
-  background: $darker-blue;
+  background: $off-white;
   height: 100px;
 }
 
@@ -20,12 +20,12 @@
   h2 {
     font-size: 40px;
   }
-  color: white;
+  color: rgb(172, 173, 173);
   vertical-align: center;
 }
 
 .nav-link {
-  color: white !important;
+  color: $dark-blue !important;
   i {
     font-size: 32px;
   }
