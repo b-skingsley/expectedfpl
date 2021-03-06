@@ -3,8 +3,8 @@ class FixturesController < ApplicationController
   # before_action :set_fixture, only: [:show]
 
   def index
-    if params[:search].present? && params[:search][:query].present?
-      @fixtures = Fixture.global_search(params[:search][:query])
+    if params[:commit].present? && params[:query].present?
+      @fixtures = Fixture.global_search(params[:query])
     else
       @fixtures = Fixture.all
     end
@@ -14,7 +14,7 @@ class FixturesController < ApplicationController
       @fixtures = @fixtures.results
     elsif params[:status] == "current"
       @fixtures = @fixtures.gameweek
-    elsif params[:status] == "future"
+    elsif params[:status] == "future" 
       @fixtures = @fixtures.future_fixtures
     else
       @fixtures = @fixtures.gameweek

@@ -1,2 +1,12 @@
-
+<div class="container">
+  <%= form_tag fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "form-inline", method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "flex-item",
+        placeholder: "Refine fixtures by player..."
+      %>
+    <input class="flex-item" id="algolia-result" type="submit" value="">
+    <div id="refine-by-player" class="flex-item"><%= submit_tag "Search" %></div>
+  <% end %>
+</div>
   <%# input_html: {value: params.dig(:search, :query)} %>

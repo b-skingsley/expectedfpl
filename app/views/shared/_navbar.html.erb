@@ -36,7 +36,7 @@
               <% else %>
                 <%= link_to "Create Team", new_team_path, class: "dropdown-item" %>
               <% end %>
-              <%= link_to "Fixtures", fixtures_path, class: "dropdown-item" %>
+              <%= link_to "Fixtures", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "dropdown-item" %>
               <%= link_to "Player Stats", footballers_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
