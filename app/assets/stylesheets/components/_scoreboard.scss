@@ -53,5 +53,9 @@
 
 #algolia-result {
     border: none;
+    padding: 3px;
+    background-color: rgba(133, 167, 214, 0.0);
+    &:hover {
+        background-color: $med-blue;
+    }
 }
-

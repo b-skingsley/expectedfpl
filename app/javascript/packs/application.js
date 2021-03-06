@@ -82,9 +82,10 @@ const algoliaFunctionality = () => {
   const RefineFixtures = document.getElementById("refine-by-player")
   const playerSearch = document.getElementById("query")
 
-  const refineFixtureByPlayer = () => {
+  const refineFixtureByPlayer = (event) => {
+    event.preventDefault();
     playerSearch.value = playerResults.value;
-    RefineFixtures.click();
+    // RefineFixtures.click();
   }
   
   if (playerSearch) {
