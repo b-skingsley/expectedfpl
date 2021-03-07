@@ -42,26 +42,49 @@ const switchfunctionality = () => {
   const switches = document.querySelectorAll(".switch");
   const switch1 = document.getElementById("switch1");
   const switch2 = document.getElementById("switch2");
-  const form = document.querySelector(".edit_team")
+  const form = document.querySelector(".edit_team");
   let counter = 0;
+  let bench = 0;
+  let starters = 0;
 
   // add if statement for if you're unselecting a player switch
 
   if (switches) {
     switches.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        const parent = event.currentTarget.parentElement;
-        if (counter == 0) {
+      if (counter == 0) {
+        button.addEventListener('click', (event) => {
+          const parent = event.currentTarget.parentElement;
           parent.classList.toggle("active");
+          event.currentTarget.classlist.toggle("selected");
           counter += 1;
           switch1.value = parent.parentElement.dataset.id;
-        } else if (counter == 1) {
-          parent.classList.toggle("active");
-          switch2.value = parent.parentElement.dataset.id;
-          form.submit();
-        }
-      });
+          if (parent.classList.contains("starting-player")) {
+            if (parent.classList.contains("gk")) {
+              const gkSwitch = document.querySelector(".bench-gk");
+              gkSwitch.classList.toggle("active-button");
+              gkSwitch.parentElement.classList.toggle("active2");
+            } else {
+              const benchSwitches = document.querySelectorAll(".bench-s");
+              benchSwitches.forEach((benchSwitch) => {
+                benchSwitch.classList.toggle("active-button");
+                benchSwitch.parentElement.classList.toggle("active2");
+              })
+            }
+          } else if (parent.classList.contains("bench-player")) {
+
+          } else if (counter == 1) {
+            parent.classList.toggle("active");
+            switch2.value = parent.parentElement.dataset.id;
+            form.submit();
+          }
+        });
+      }
+
     });
+  }
+  if (counter == 1) {
+    const activeButton = querySelector(".active-button")
+
   }
 }
 
@@ -87,7 +110,7 @@ const algoliaFunctionality = () => {
     playerSearch.value = playerResults.value;
     // RefineFixtures.click();
   }
-  
+
   if (playerSearch) {
     playerSearch.addEventListener('keyup', () => {
       playerResults.innerHTML = "";
