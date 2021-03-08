@@ -79,6 +79,12 @@
     text-decoration: none;
     background-color: #366396;
   }
+
+  #deadline {
+    p {
+      color: $off-white;
+    }
+  }
 }
 
 // margin of 80 px
