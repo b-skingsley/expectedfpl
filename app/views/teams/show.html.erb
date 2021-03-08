@@ -1,13 +1,15 @@
 <div class="container" id="overlay-container">
   <div class="left-section">
-    <div class="team-view" style="background-image: linear-gradient(rgba(250,250,250,0.3),rgba(250,250,250,0.3)), url('<%= image_path "team-background.jpg" %>')">
+    <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
       <div class="main-team">
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
             <div class="player-content">
               <i class="fas fa-exchange-alt switch gk-s"></i>
+              <i class="fas fa-info player-info"></i>
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
+              <div class="next-fixture">SOU (A)</div>
             </div>
           </div>
         </div>
@@ -16,8 +18,10 @@
             <div class="starting-player def" id="player<%= defender.fplid %>" data-id="<%= defender.id %>">
               <div class="player-content">
                 <i class="fas fa-exchange-alt switch s-def"></i>
+                <i class="fas fa-info player-info"></i>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
+                <div class="next-fixture">SOU (A)</div>
               </div>
             </div>
           <% end %>
@@ -27,8 +31,10 @@
             <div class="starting-player mid" id="player<%= mid.fplid %>" data-id="<%= mid.id %>">
               <div class="player-content">
                 <i class="fas fa-exchange-alt switch s-mid"></i>
+                <i class="fas fa-info player-info"></i>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
+                <div class="next-fixture">SOU (A)</div>
               </div>
             </div>
           <% end %>
@@ -38,8 +44,10 @@
             <div class="starting-player fwd" id="player<%= fwd.fplid %>" data-id="<%= fwd.id %>">
               <div class="player-content">
                 <i class="fas fa-exchange-alt switch s-fwd"></i>
+                <i class="fas fa-info player-info"></i>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
+                <div class="next-fixture">SOU (A)</div>
               </div>
             </div>
           <% end %>
@@ -50,32 +58,40 @@
         <div class="bench-player gk" id="player<%= gks(@bench)[0].fplid %>" data-id="<%= gks(@bench)[0].id %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-gk"></i>
+            <i class="fas fa-info player-info"></i>
             <div class="shirt"><%= image_tag("shirts/#{gks(@bench)[0].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= gks(@bench)[0].web_name %></div>
+            <div class="next-fixture">SOU (A)</div>
           </div>
           <div class="bench-position">GK</div>
         </div>
         <div class="bench-player <%= outfielders(@bench)[0].position.downcase %>" id="player<%= outfielders(@bench)[0].fplid %>" data-id="<%= outfielders(@bench)[0].id %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-s"></i>
+            <i class="fas fa-info player-info"></i>
             <div class="shirt"><%= image_tag("shirts/#{outfielders(@bench)[0].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= outfielders(@bench)[0].web_name %></div>
+            <div class="next-fixture">SOU (A)</div>
           </div>
           <div class="bench-position"><%= outfielders(@bench)[0].position %></div>
         </div>
         <div class="bench-player <%= outfielders(@bench)[1].position.downcase %>" id="player<%= outfielders(@bench)[1].fplid %>" data-id="<%=outfielders(@bench)[1].id %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-s"></i>
+            <i class="fas fa-info player-info"></i>
             <div class="shirt"><%= image_tag("shirts/#{outfielders(@bench)[1].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= outfielders(@bench)[1].web_name %></div>
+            <div class="next-fixture">SOU (A)</div>
           </div>
           <div class="bench-position"><%= outfielders(@bench)[1].position %></div>
         </div>
         <div class="bench-player <%= outfielders(@bench)[2].position.downcase %>" id="player<%= outfielders(@bench)[2].fplid %>" data-id="<%= outfielders(@bench)[2].id %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-s"></i>
+            <i class="fas fa-info player-info"></i>
             <div class="shirt"><%= image_tag("shirts/#{outfielders(@bench)[2].club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= outfielders(@bench)[2].web_name %></div>
+            <div class="next-fixture">SOU (A)</div>
           </div>
           <div class="bench-position"><%= outfielders(@bench)[2].position %></div>
         </div>
