@@ -69,8 +69,14 @@ end
 #     p wma_hash(bps_per_game(fpl_id), maws = 3)
 # end
 
+
+# Minutes played per player
 bootstrap_static_url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
 raw = URI.open(bootstrap_static_url).read
 player_data = JSON.parse(raw)["elements"]
-minutes_played = player_data.select { |player| player["minutes"] }
 
+player_hash = Hash.new
+
+player_data.each do |player|
+    player_hash[player["id"]] = player["minutes"]
+end
