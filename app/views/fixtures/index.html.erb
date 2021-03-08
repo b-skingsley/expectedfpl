@@ -16,7 +16,7 @@
  
   <div id="scrollable" class="container stats mt-0">
     <div class="d-flex p-1 table-header shadow-sm"></div>
-    <% @fixtures.each do |fixture| %>
+    <% @fixtures.reverse.each do |fixture| %>
       <div id="scoreboard-row" class="d-flex align-items-center justify-content-between p-3">
         <%= image_tag("shirts/#{@clubs.find(fixture.home_team_id).short_name.downcase}.png", size: "65x45")  %>
         <div id="scoreboard-team-div" class="flex-item text-left flex-grow ml-3">
@@ -46,7 +46,7 @@
         <div id="scoreboard-team-div" class="flex-item text-right flex-grow mr-3">
           <%= @clubs.find(fixture.away_team_id).name %>
           <div class="flex-item d-flex justify-content-end">
-            <% Club.find(fixture.away_team_id)[:form].split("").each do |result| %>
+            <% @clubs.find(fixture.away_team_id)[:form].split("").each do |result| %>
               <% case result %>
               <% when "W" %>
                 <div class="flex-item">🟢</div>
