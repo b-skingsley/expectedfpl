@@ -28,52 +28,17 @@ const algoliasearch = require('algoliasearch');
 // Internal imports, e.g:
 import { rangeValue } from '../components/range_value';
 import { disableFilterFields } from '../components/disable_filter_fields';
+import { switchFunctionality } from '../components/switch_functionality';
 
 document.addEventListener('turbolinks:load', () => {
   // dynamically updates display of the max-price-filter-value on footballers index
   rangeValue();
   // toggles disabled attributes of filter inputs depending on if a search value is present
   disableFilterFields();
-  switchfunctionality();
+  switchFunctionality();
   algoliaFunctionality();
 });
 
-const switchfunctionality = () => {
-  const switches = document.querySelectorAll(".switch");
-  const switch1 = document.getElementById("switch1");
-  const switch2 = document.getElementById("switch2");
-  const form = document.querySelector(".edit_team")
-  let counter = 0;
-
-  // add if statement for if you're unselecting a player switch
-
-  if (switches) {
-    switches.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        const parent = event.currentTarget.parentElement;
-        if (counter == 0) {
-          parent.classList.toggle("active");
-          counter += 1;
-          switch1.value = parent.parentElement.dataset.id;
-        } else if (counter == 1) {
-          parent.classList.toggle("active");
-          switch2.value = parent.parentElement.dataset.id;
-          form.submit();
-        }
-      });
-    });
-  }
-}
-
-// const benchHtml = (player) => {
-//   '<div class="bench-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
-// }
-
-// const starterHtml = (player) => {
-//   '<div class="starting-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
-// }
-
-// const player1 = document.getElementById(`player${player.fplid}`)
 
 const algoliaFunctionality = () => {
   const client = algoliasearch('GESYNVBKIC', '4f4cbe53efd0df512c25a4ec2a75e42c');
@@ -87,7 +52,7 @@ const algoliaFunctionality = () => {
     playerSearch.value = playerResults.value;
     // RefineFixtures.click();
   }
-  
+
   if (playerSearch) {
     playerSearch.addEventListener('keyup', () => {
       playerResults.innerHTML = "";
