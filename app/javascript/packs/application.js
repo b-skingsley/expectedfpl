@@ -28,13 +28,19 @@ const algoliasearch = require('algoliasearch');
 // Internal imports, e.g:
 import { rangeValue } from '../components/range_value';
 import { disableFilterFields } from '../components/disable_filter_fields';
+import { runCountdown } from '../components/run_countdown';
+import { toggleInfoWindows } from '../components/toggle_info_windows';
 import { switchFunctionality } from '../components/switch_functionality';
 
 document.addEventListener('turbolinks:load', () => {
+  // runs deadline countdown clock
+  runCountdown();
   // dynamically updates display of the max-price-filter-value on footballers index
   rangeValue();
   // toggles disabled attributes of filter inputs depending on if a search value is present
   disableFilterFields();
+
+  toggleInfoWindows();
   switchFunctionality();
   algoliaFunctionality();
 });

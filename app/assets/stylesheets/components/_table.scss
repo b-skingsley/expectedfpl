@@ -6,6 +6,27 @@
 .table-row {
   min-height: 32px;
   border-bottom: 0.5px solid grey;
+
+  &:hover {
+    background-color: rgba(30, 30, 30, 0.3);
+  }
+}
+
+.cell-info {
+  position: absolute;
+  right: -20px;
+  z-index: 100;
+  padding: 16px;
+  border: 1px solid grey;
+  background-color: rgba(240, 240, 240, 0.8);
+}
+
+.web-name {
+  position: relative;
+}
+
+.chances {
+  position: relative;
 }
 
 .table-body {

@@ -25,10 +25,7 @@
         </p>
       </div>
       <div class="col">
-        <p>Form</p>
-      </div>
-      <div class="col">
-        <p>Fit?</p>
+        <p>Appearance Chances</p>
       </div>
       <div class="col">
         <p>Price
@@ -50,14 +47,13 @@
     </div>
     <% end %>
     <% @footballers.each do |footballer| %>
-    <div class="row justify-content-between table-row align-content-center">
-      <div class="col"><%= footballer.web_name %></div>
-      <div class="col"><%= footballer.position %></div>
-      <div class="col"><%= footballer.club.name %></div>
-      <div class="col"><%= form_formatter(footballer.form.to_f) %></div>
-      <div class="col"><%= chances_formatter(footballer.chance_of_playing_next_round) %></div>
-      <div class="col"><%= fplprice(footballer.price) %></div>
-      <div class="col"><%= footballer.total_points %></div>
+    <div class="row justify-content-between table-row align-items-center footballer">
+      <div class="col web-name" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-form="<%= footballer.form.to_f %>"><p><%= footballer.web_name %> <%= form_formatter(footballer.form.to_f) %></p></div>
+      <div class="col position" data-position="<%= footballer.position  %>"><p><%= footballer.position %></p></div>
+      <div class="col club" data-club="<%= footballer.club.name  %>"><p><%= footballer.club.name %></p></div>
+      <div class="col chances" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>"><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
+      <div class="col price" data-price="<%= fplprice(footballer.price) %>"><p><%= fplprice(footballer.price) %></p></div>
+      <div class="col points" data-points="<%= footballer.total_points %>"><p><%= footballer.total_points %></p></div>
     </div>
     <% end %>
   </div>

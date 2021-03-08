@@ -10,21 +10,15 @@
 }
 
 #deadline {
-  border: 0.3px solid grey;
-  border-radius: 3px;
-  background: rgba(40, 40, 40, 0.1);
-  padding: 4px 16px 4px 16px;
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 14px;
+  color: #39D000;
+  height: 100px;
+  width: 200px;
   margin-right: 32px;
-
-  #deadline-time p {
-    color: orange !important;
-  }
-
-  p {
-    margin-bottom: 0;
-  }
+  background-image: asset-url('fourth_official.png');
+  background-size: 100% 100%;
 }
-
 
 
 .navbar-lewagon .navbar-collapse {
