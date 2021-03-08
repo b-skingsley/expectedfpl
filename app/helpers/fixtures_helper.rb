@@ -38,7 +38,7 @@ module FixturesHelper
       gameweek = fixture["event"]
       kickoff = fixture["kickoff_time"]
   
-      fixture_details << { "gameweek" => gameweek, "home_team_id" => home, "away_team_id" => away, "home_team" => "#{clubs_with_id[home]}", "home_score" => home_score, "away_team" => "#{clubs_with_id[away]}", "away_score" => away_score, "kickoff_time" => kickoff }
+      fixture_details << { "gameweek" => gameweek, "home_team_id" => home, "away_team_id" => away, "home_team" => Club.find_by(fplid: home).name, "home_score" => home_score, "away_team" => Club.find_by(fplid: away).name , "away_score" => away_score, "kickoff_time" => kickoff }
     end
     fixture_details
   end
