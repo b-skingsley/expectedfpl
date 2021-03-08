@@ -28,75 +28,17 @@ const algoliasearch = require('algoliasearch');
 // Internal imports, e.g:
 import { rangeValue } from '../components/range_value';
 import { disableFilterFields } from '../components/disable_filter_fields';
+import { switchFunctionality } from '../components/switch_functionality';
 
 document.addEventListener('turbolinks:load', () => {
   // dynamically updates display of the max-price-filter-value on footballers index
   rangeValue();
   // toggles disabled attributes of filter inputs depending on if a search value is present
   disableFilterFields();
-  switchfunctionality();
+  switchFunctionality();
   algoliaFunctionality();
 });
 
-const switchfunctionality = () => {
-  const switches = document.querySelectorAll(".switch");
-  const switch1 = document.getElementById("switch1");
-  const switch2 = document.getElementById("switch2");
-  const form = document.querySelector(".edit_team");
-  let counter = 0;
-  let bench = 0;
-  let starters = 0;
-
-  // add if statement for if you're unselecting a player switch
-
-  if (switches) {
-    switches.forEach((button) => {
-      if (counter == 0) {
-        button.addEventListener('click', (event) => {
-          const parent = event.currentTarget.parentElement;
-          parent.classList.toggle("active");
-          event.currentTarget.classlist.toggle("selected");
-          counter += 1;
-          switch1.value = parent.parentElement.dataset.id;
-          if (parent.classList.contains("starting-player")) {
-            if (parent.classList.contains("gk")) {
-              const gkSwitch = document.querySelector(".bench-gk");
-              gkSwitch.classList.toggle("active-button");
-              gkSwitch.parentElement.classList.toggle("active2");
-            } else {
-              const benchSwitches = document.querySelectorAll(".bench-s");
-              benchSwitches.forEach((benchSwitch) => {
-                benchSwitch.classList.toggle("active-button");
-                benchSwitch.parentElement.classList.toggle("active2");
-              })
-            }
-          } else if (parent.classList.contains("bench-player")) {
-
-          } else if (counter == 1) {
-            parent.classList.toggle("active");
-            switch2.value = parent.parentElement.dataset.id;
-            form.submit();
-          }
-        });
-      }
-
-    });
-  }
-  if (counter == 1) {
-    const activeButton = querySelector(".active-button")
-
-  }
-}
-
-// const benchHtml = (player) => {
-//   '<div class="bench-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
-// }
-
-// const starterHtml = (player) => {
-//   '<div class="starting-player"><div class="player-content"><i class="fas fa-exchange-alt" id="switch"></i><div class="player-name"><%= player.web_name %></div></div></div>'
-// }
-
-// const player1 = document.getElementById(`player${player.fplid}`)
 
 const algoliaFunctionality = () => {
   const client = algoliasearch('GESYNVBKIC', '4f4cbe53efd0df512c25a4ec2a75e42c');
