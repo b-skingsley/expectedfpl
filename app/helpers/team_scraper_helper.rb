@@ -1,6 +1,5 @@
 require "nokogiri"
 require "open-uri"
-require 'capybara/rails'
 
 module TeamScraperHelper
   def teamscrape

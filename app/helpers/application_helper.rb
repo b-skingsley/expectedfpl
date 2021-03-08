@@ -83,8 +83,14 @@ module ApplicationHelper
     return deadline.strftime("%a %b-%-dth @ %H:%M")
   end
 
+  def next_gameweek
+    url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+    request = URI.open(url).read
+    request_hash = JSON.parse(request)
+
+  end
+
   def next_fixture(footballer)
     club = footballer.club
   end
-
 end
