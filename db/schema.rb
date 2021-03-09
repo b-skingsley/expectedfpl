@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_233952) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "starter", default: false
-    t.integer "bench_pos", default: nil
+    t.integer "bench_pos"
     t.index ["footballer_id"], name: "index_players_on_footballer_id"
     t.index ["team_id"], name: "index_players_on_team_id"
   end
