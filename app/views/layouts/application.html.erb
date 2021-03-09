@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Expectedfpl</title>
+    <title>expectedFPL - FPL made quick, easy and data driven</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag %>
 
     <%= yield(:chartkick) %>
+
+    <meta name="description" content="Climb up your Fantasy Premier League rankings with ExpectedFPL. We do all the hard work and drown out all the noise and analytics so you pick your team fast and efficiently.">
+    <meta property="og:title" content="expectedFPL - FPL made quick, easy and data driven">
+    <meta property="og:image" content="facebook-card.jpg">
+    <meta property="og:description" content="Climb up your Fantasy Premier League rankings with ExpectedFPL. We do all the hard work and drown out all the noise and analytics so you pick your team fast and efficiently.">
+    <meta property="og:site_name" content="expectedFPL"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
