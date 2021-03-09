@@ -2,7 +2,11 @@
     height: calc(100vw * (4/16));
 }
 
-#graph_container {
-  width: 80vw;
+.graph-container {
+  width: 1000px;
   height: calc(100vw * (9/16));
+}
+
+.bps-chart {
+  ;
 }
