@@ -1,0 +1,9 @@
+<%= @player.footballer.web_name %>
+
+
+
+<% @collection.each do |footballer| %>
+  <%= footballer.web_name %>
+  <%= link_to "Transfer in", player_path(in: footballer.id, out: @player.footballer.id), method: :patch %>
+<% end %>
+

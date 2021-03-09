@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     end
   end
 
+  #Route for transferring player
+  resources :players, only: [:edit, :update]
+
   #Routes for footballers
   resources :footballers, only: [:index, :show]
 

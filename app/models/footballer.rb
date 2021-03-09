@@ -2,6 +2,7 @@ class Footballer < ApplicationRecord
   belongs_to :club
   has_many :players
   has_many :odds
+  has_many :transfers
 
   default_scope { order(total_points: :desc) }
 
