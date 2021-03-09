@@ -1,7 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   align-items: center;
-  background: $off-white;
+  background-image: linear-gradient(135deg, rgba(40, 40, 40, 0.7),
+                                    rgba(120, 120, 120, 0.5)),
+                                    asset-url('pitch_background_nav');
+  // background-image: asset-url('pitch_background_nav');
+  background-size: cover;
   height: 100px;
 }
 

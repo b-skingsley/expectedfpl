@@ -28,6 +28,13 @@ const switchFunctionality = () => {
         const defs = document.querySelectorAll(".s-def");
         const mids = document.querySelectorAll(".s-mid");
         const fwds = document.querySelectorAll(".s-fwd");
+        const benchSwitches = document.querySelectorAll(".bench-s");
+        benchSwitches.forEach((benchSwitch) => {
+          benchSwitch.classList.toggle("active-button");
+          benchSwitch.parentElement.classList.toggle("active2");
+        });
+        event.currentTarget.classList.remove("active-button");
+        parent.classList.remove("active2");
         if (secondParent.classList.contains("gk")) {
           const gkSwitch = document.querySelector(".gk-s");
           gkSwitch.classList.toggle("active-button");

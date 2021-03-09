@@ -32,6 +32,7 @@ import { rangeValue } from '../components/range_value';
 import { disableFilterFields } from '../components/disable_filter_fields';
 import { runCountdown } from '../components/run_countdown';
 import { toggleInfoWindows } from '../components/toggle_info_windows';
+import { sortFootballers } from '../components/sort_footballers';
 import { switchFunctionality } from '../components/switch_functionality';
 
 document.addEventListener('turbolinks:load', () => {
@@ -41,8 +42,8 @@ document.addEventListener('turbolinks:load', () => {
   rangeValue();
   // toggles disabled attributes of filter inputs depending on if a search value is present
   disableFilterFields();
-
   toggleInfoWindows();
+  sortFootballers();
   switchFunctionality();
   algoliaFunctionality();
 });
