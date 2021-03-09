@@ -1,0 +1,73 @@
+<% content_for :chartkick do %>
+  <%= javascript_pack_tag 'chartkick' %>
+<% end %>
+
+<% photo = @footballer.photo.gsub(".jpg", "") %>
+<% color = Club.find(@footballer.club_id).short_name %>
+
+
+<div class="container">
+    <div class="container d-flex player-header justify-content-between px-0 <%= color %> ">
+        <div class="container">
+          <image src="https://resources.premierleague.com/premierleague/photos/players/110x140/p<%= photo %>.png" alt="">
+        </div>
+        <div id="graph-container" class="container bg-light h-50 align-self-end">
+          <%= line_chart wma_hash(bps_per_game(@footballer.fplid), maws = 3) %>
+
+        </div>
+    </div>
+    
+    <div class="container bg-white d-flex justify-content-between player-header p-0">
+      <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item ">Value TO DO</li>
+          <li class="list-group-item">Points Per Game TO DO</li>
+          <li class="list-group-item">Other Stats TO DO</li>
+        </ul>
+      </div>
+      <div class="w-70">
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Upcoming fixtures</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">29/3</th>
+              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+              <td>Arsenal</td>
+              <td>v</td>
+              <td>Arsenal</td>
+              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+            </tr>
+            <tr>
+              <th scope="row">29/3</th>
+              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+              <td>Arsenal</td>
+              <td>v</td>
+              <td>Arsenal</td>
+              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+            </tr>
+            <tr>
+              <th scope="row">29/3</th>
+              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+              <td>Arsenal</td>
+              <td>v</td>
+              <td>Arsenal</td>
+              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>View player's full fixture list</td>
+              <td></td>
+              <td><i class="fas fa-arrow-right"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>   
+    </div>
+</div>

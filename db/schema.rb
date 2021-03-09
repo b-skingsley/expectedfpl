@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_144542) do
     t.integer "chance_of_playing_this_round"
     t.text "news"
     t.string "form"
+    t.string "photo"
     t.index ["club_id"], name: "index_footballers_on_club_id"
   end
 
