@@ -23,6 +23,10 @@ class TeamsController < ApplicationController
     end
   end
 
+  def transfer
+    @team = Team.find(params[:id])
+  end
+
   def edit
     @team = Team.find(params[:id])
   end
