@@ -5,18 +5,18 @@
     <%= text_field_tag :query,
       params[:query],
       class: "form-control form-control-sm mb-2",
-      placeholder: "Filter by Name..."
+      placeholder: "Search by Name..."
     %>
   </div>
   <div class="col">
     <%= select_tag :filter_by_position, options_for_select(%w[GK DEF MID FWD], params[:filter_by_position]),
-      include_blank: 'Filter by Position...',
+      include_blank: 'All Positions',
       class: "form-control form-control-sm mb-2"
     %>
   </div>
   <div class="col">
     <%= select_tag :filter_by_club, options_for_select(clubs, params[:filter_by_club]),
-      include_blank: 'Filter by Club...',
+      include_blank: 'All Clubs',
       class: "form-control form-control-sm mb-2"
     %>
   </div>

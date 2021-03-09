@@ -10,34 +10,36 @@
   .left-section {
     flex: 0 0 65%;
     padding-right: 10px;
+    border-right: 1px solid black;
     overflow: auto;
     .team-view {
       margin-top: 10px;
+      margin-bottom: 10px;
       // border: 1px solid  black;
       min-height: 600px;
       background-size: cover;
     }
     .active {
-      background-color: rgba(255, 255, 138, 0.5);
+      background-color: rgba(255, 255, 138, 0.9);
     }
     .active2 {
-      background-color: rgba(255, 172, 75, 0.5);
+      background-color: rgba(255, 172, 75, 0.9);
     }
   }
 
   .right-section {
     flex: 1;
     padding-left: 15px;
-    border-left: 1px solid black;
+    max-height: 600px;
     h4 {
-      font-size: 20px;
+      font-size: 18px;
     }
     p {
       font-size: 10px;
     }
     li {
       list-style: none;
-      font-size: 15px;
+      font-size: 13px;
     }
     ul {
       padding-left: 5px;
@@ -66,18 +68,11 @@
       justify-content: space-around;
       flex: 1;
       position: relative;
-      .bench-name {
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        h4 {
-          font-style: bolder;
-          font-size: 23px;
-        }
-      }
+      background-size: cover;
+      background-position: center;
       .bench-player {
         // border: 1px solid black;
-        padding-top: 25px;
+        padding-top: 10px;
         text-align: center;
         flex: 1;
         display: flex;
@@ -100,7 +95,7 @@
   .player-content {
     border-radius: 4px;
     display: flex;
-    background-color: rgba(225, 225, 225, 0.7);
+    background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 3px, 3px, 3px, rgba(30, 30, 30, 0.2);
     flex-direction: column;
     justify-content: space-between;
@@ -113,22 +108,22 @@
     }
 
     .shirt > img {
-      height: 94%;
-      padding-top: 6%;
-      width: 60%;
+      height: 95%;
+      padding-top: 5%;
+      width: 65%;
       text-align: center;
     }
     .player-name {
       text-align: center;
       height: 23%;
       width: 100%;
-      font-size: 14px;
+      font-size: 16px;
     }
     .next-fixture {
       height: 22%;
       text-align: center;
       width: 100%;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 100;
     }
   }

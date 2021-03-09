@@ -1,32 +1,70 @@
 .table-header {
   background: rgba(133, 167, 214, 0.7);
   font-weight: bolder;
+
+  p {
+    line-height: 18px;
+    margin: 8px 0 8px 0;
+  }
 }
+
+.filters {
+  background: rgba(133, 167, 214, 0.9);
+}
+
 
 .table-row {
   min-height: 32px;
   border-bottom: 0.5px solid grey;
 
   &:hover {
+    cursor: pointer;
+  }
+
+  .col {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 8px 0 8px 0;
+    }
+  }
+
+  &:hover {
     background-color: rgba(30, 30, 30, 0.3);
   }
 }
 
-.cell-info {
-  position: absolute;
-  right: -20px;
-  z-index: 100;
-  padding: 16px;
-  border: 1px solid grey;
-  background-color: rgba(240, 240, 240, 0.8);
+.news {
+  font-weight: bolder;
+  background-color: rgba(251, 179, 0, 0.7);
 }
 
-.web-name {
-  position: relative;
+.sort-icon {
+  font-size: 28px;
+  line-height: 20px;
+  margin-bottom: 0;
+  color: grey;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.chances {
-  position: relative;
+.hidden {
+  display: none;
+}
+
+.active {
+  font-size: 28px;
+  line-height: 20px;
+  color: #40E08C;
+  text-shadow: 0 1px 4px rgba(30, 30, 30, 0.5);
+  margin-bottom: none;
+
+  &:hover {
+    cursor: auto;
+  }
 }
 
 .table-body {
@@ -36,7 +74,9 @@
 .filter-feedback {
   font-weight: lighter;
   font-size: 14px;
-  color: green;
+  color: #40E08C;
+  text-shadow: 0 1px 4px rgba(30, 30, 30, 0.5);
+  margin-top: 16px;
 }
 
 .form-inline {
