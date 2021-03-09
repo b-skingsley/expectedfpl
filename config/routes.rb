@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   #Routes for the team
-  resources :teams, only: [:show, :new, :create, :edit, :update] do
+  resources :teams, only: [:show, :new, :create] do
     resources :leagues, only: [:index]
     member do
       get 'finalize', as: :finalize
