@@ -1,5 +1,3 @@
-const countdownOutput = document.getElementById('deadline-countdown');
-
 const convertTime = (ms) => {
   let d, h, m, s;
   s = Math.floor(ms / 1000);
@@ -19,7 +17,8 @@ const convertTime = (ms) => {
   }
 };
 
-const calculateTime = () => {
+const runCountdown = () => {
+  const countdownOutput = document.getElementById('deadline-countdown');
   let deadline = countdownOutput.dataset.gameweek;
   deadline = new Date(deadline)
   const timeNow = new Date();
@@ -29,11 +28,6 @@ const calculateTime = () => {
   }
   const countdown = convertTime(deadline - timeNow);
   countdownOutput.innerText = countdown;
-};
-
-const runCountdown = () => {
-  calculateTime();
-  setInterval(calculateTime, 60000);
 };
 
 export { runCountdown };
