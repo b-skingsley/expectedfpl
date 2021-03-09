@@ -103,7 +103,8 @@ deserialized['elements'].each do |footballer|
     chance_of_playing_this_round: footballer['chance_of_playing_this_round'],
     news: footballer['news'],
     form: footballer['form'],
-    photo: footballer['photo']
+    photo: footballer['photo'],
+    minutes: footballer['minutes']
     )
   footballer_count += 1
 end
