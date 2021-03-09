@@ -64,37 +64,24 @@ module ApplicationHelper
 
   def chances_formatter(chance)
     case chance
-    when 100 then return '✅'
+    when 100 then return '👍🏼'
     when 0 then return '❌'
     else
       return '😬'
     end
   end
 
-  def next_gameweek()
+  def next_gameweek
     url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
     response = URI.open(url).read
     deserialized = JSON.parse(response)
 
-    deserialized['events'].each do | gameweek |
+    deserialized['events'].each_with_index do | gameweek, index |
       if gameweek['is_next']
-        return [gameweek['name'], gameweek['deadline_time']]
+        return [gameweek['deadline_time'], deserialized['events'][index + 1]['deadline_time']]
       end
     end
     return nil
-  end
-
-  def next_deadline()
-    next_gw = Fixture.gameweek.first.gameweek
-    deadline = 90.minutes.before(Fixture.where(gameweek: next_gw).first.kickoff)
-    return "#{deadline.strftime('%Y')}, #{deadline.strftime('%-m').to_i - 1}, #{deadline.strftime('%-d')}, #{deadline.strftime('%H')}, #{deadline.strftime('%M')}"
-  end
-
-  def next_gameweek
-    url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
-    request = URI.open(url).read
-    request_hash = JSON.parse(request)
-
   end
 
   def next_fixture(footballer)
