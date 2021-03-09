@@ -1,8 +1,3 @@
-const pointsDown = document.getElementById('sort-points-down');
-const pointsUp = document.getElementById('sort-points-up');
-const priceDown = document.getElementById('sort-price-down');
-const priceUp = document.getElementById('sort-price-up');
-
 // When sortBy is 0, will sort by points, when any other number will sort by price
 // When dir is 0, will sort desc, when any other number will sort asc
 const sort = (sortBy, dir) => {
@@ -43,7 +38,13 @@ const sort = (sortBy, dir) => {
 };
 
 const sortFootballers = () => {
+  const pointsDown = document.getElementById('sort-points-down');
+  const pointsUp = document.getElementById('sort-points-up');
+  const priceDown = document.getElementById('sort-price-down');
+  const priceUp = document.getElementById('sort-price-up');
+
   let footballers = document.querySelectorAll('.footballer');
+
   document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} footballer/s displayed</em>`
   if (footballers.length < 100) {
     document.querySelectorAll('.sort-icon').forEach((icon) => {
