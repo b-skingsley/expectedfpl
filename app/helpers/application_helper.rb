@@ -84,7 +84,31 @@ module ApplicationHelper
     return nil
   end
 
+  def next_gameweek_no
+    url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+    response = URI.open(url).read
+    deserialized = JSON.parse(response)
+    deserialized['events'].each do | gameweek |
+      if gameweek['is_next']
+        return gameweek['id']
+      end
+    end
+    return nil
+  end
+
   def next_fixture(footballer)
     club = footballer.club
+    next_gw = next_gameweek_no
+    fixtures = Fixture.where(gameweek: next_gw)
+    next_fixtures = ""
+    fixtures.each do |fixture|
+      if fixture.home_team == club
+        next_fixtures << "#{fixture.away_team.short_name} (H) "
+      end
+      if fixture.away_team == club
+        next_fixtures << "#{fixture.home_team.short_name} (A) "
+      end
+    end
+    return next_fixtures
   end
 end

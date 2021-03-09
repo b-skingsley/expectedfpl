@@ -124,20 +124,20 @@ team = Team.create!(
 # ------------- Player Seeding -----------------
 
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Martínez", position: "GK").first)
-Player.create!(team: team, footballer: Footballer.where(web_name: "Pope", position: "GK").first)
+Player.create!(team: team, bench_pos: 0, footballer: Footballer.where(web_name: "Pope", position: "GK").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Digne", position: "DEF").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Cancelo", position: "DEF").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Stones", position: "DEF").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Coufal", position: "DEF").first)
-Player.create!(team: team, footballer: Footballer.where(web_name: "Dallas", position: "DEF").first)
+Player.create!(team: team, bench_pos: 1, footballer: Footballer.where(web_name: "Dallas", position: "DEF").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Bale", position: "MID").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Salah", position: "MID").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Fernandes", position: "MID").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Gündogan", position: "MID").first)
-Player.create!(team: team, footballer: Footballer.where(web_name: "Barnes", position: "MID").first)
+Player.create!(team: team, bench_pos: 2, footballer: Footballer.where(web_name: "Barnes", position: "MID").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Bamford", position: "FWD").first)
 Player.create!(team: team, starter: true, footballer: Footballer.where(web_name: "Calvert-Lewin", position: "FWD").first)
-Player.create!(team: team, footballer: Footballer.where(web_name: "Watkins", position: "FWD").first)
+Player.create!(team: team, bench_pos: 3, footballer: Footballer.where(web_name: "Watkins", position: "FWD").first)
 
 puts "#{Player.count} players seeded\n__________________\n"
 
