@@ -1,124 +1,145 @@
 // Clubs colors:
-$ars: #FE0002;
-$avl: #480025;
-$bha: #0054A6;
-$bur: #6A003A;
-$che: #0A4595;
-$cry: #EB302E;
-$eve: #00369C;
-$ful: #F5F5F5;
-$lee: #F5F5F5;
-$lei: #00369C;
-$liv: #E31B23;
-$mci: #6CAEE0;
-$mun: #D81920;
-$new: #383838;
-$she: #ED1C24;
-$stn: #D71920;
-$tot: #F5F5F5;
-$wba: #F5F5F5;
-$whu: #7D2C3B;
-$wov: #F9A01B;
+$ars: #FE0002bd;
+$avl: #480025bd;
+$bha: #0054A6bd;
+$bur: #6A003Abd;
+$che: #0A4595bd;
+$cry: #EB302Ebd;
+$eve: #00369Cbd;
+$ful: #F5F5F5bd;
+$lee: #F5F5F5bd;
+$lei: #00369Cbd;
+$liv: #E31B23bd;
+$mci: #6CAEE0bd;
+$mun: #d8191fbd;
+$new: #383838bd;
+$she: #ED1C24bd;
+$stn: #D71920bd;
+$tot: #F5F5F5bd;
+$wba: #F5F5F5bd;
+$whu: #7D2C3Bbd;
+$wov: #F9A01Bbd;
 
 .ARS {
     background-color: $ars;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($ars, #000000);
+  
 }
 
 .AVL {
     background-color: $avl;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($avl, #000000);
 }
 
 .BHA {
     background-color: $bha;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($bha, #000000);
 }
 .BUR {
     background-color: $bur;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($bur, #000000);
 }
 .CHE {
     background-color: $che;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($che, #000000);
 }
 .CRY {
     background-color: $cry;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($cry, #000000);
 }
 .EVE {
     background-color: $eve;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($eve, #000000);
 }
 .FUL {
     background-color: $ful;
     color: black;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($ful, #000000);
 }
 .LEE {
     background-color: $lee;
     color: black;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($lee, #000000);
 }
 .LEI {
     background-color: $lei;
     color: black;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($lei, #000000);
 }
 .LIV {
     background-color: $liv;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($liv, #000000);
 }
 .MCI {
     background-color: $mci;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($mci, #000000);
 }
 .MUN {
     background-color: $mun;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($mun, #000000);
 }
 .NEW {
     background-color: $new;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($new, #000000);
 }
 .SHE {
     background-color: $she;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($she, #000000);
 }
-.STN {
+.SOU {
     background-color: $stn;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($stn, #000000);
 }
 .TOT {
     background-color: $tot;
     color: black;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($tot, #000000);
 }
 .WBA {
     background-color: $wba;
     color: black;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($wba, #000000);
 }
 .WHU {
     background-color: $whu;
     color: white;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($whu, #000000);
 }
-.WOV {
+.WOL {
     background-color: $wov;
     color: black;
-    opacity: 0.8;
+    opacity: 1;
+    background: linear-gradient($wov, #000000);
 }

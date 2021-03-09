@@ -102,7 +102,8 @@ deserialized['elements'].each do |footballer|
     chance_of_playing_next_round: footballer['chance_of_playing_next_round'],
     chance_of_playing_this_round: footballer['chance_of_playing_this_round'],
     news: footballer['news'],
-    form: footballer['form']
+    form: footballer['form'],
+    photo: footballer['photo']
     )
   footballer_count += 1
 end
@@ -156,3 +157,4 @@ end
 puts "#{fixture_count} fixtures seeded\n__________________\n"
 
 puts "DB Seeding Complete"
+

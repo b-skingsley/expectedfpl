@@ -1,0 +1,20 @@
+<% photo = @footballer.photo.gsub(".jpg", "") %>
+<% color = Club.find(@footballer.club_id).short_name %>
+
+
+<div class="container d-flex player-header justify-content-between px-0 <%= color %> ">
+    <div class="container">
+      <image src="https://resources.premierleague.com/premierleague/photos/players/110x140/p<%= photo %>.png" alt="">
+    </div>
+    <div id="graph-container" class="container bg-light h-50 align-self-end"></div>
+    </div>
+</div>
+<div class="container bg-white">
+  <div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item ">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+  </div>   
+</div>
