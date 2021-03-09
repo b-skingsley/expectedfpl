@@ -111,4 +111,21 @@ module ApplicationHelper
     end
     return next_fixtures
   end
+
+  def next_fixtures(footballer, num)
+    club = footballer.club
+    next_gw = next_gameweek_no
+
+    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + num)))
+    fixtures_details = []
+    fixtures.each do |fixture|
+      if fixture.home_team == club
+        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)"}
+      end
+      if fixture.away_team == club
+        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(A)"}
+      end
+    end
+    return fixtures_details
+  end
 end

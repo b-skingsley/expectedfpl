@@ -55,30 +55,14 @@
             </tr>
           </thead>
           <tbody>
+          <% next_fixtures(@footballer, 3).each do |f| %>
             <tr>
-              <th scope="row">29/3</th>
-              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
-              <td><%= next_fixture(@footballer).short_name %></td>
-              <td>v</td>
-              <td>Arsenal</td>
-              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
+              <th scope="row"><%= f[:kickoff] %></th>
+              <td><%= image_tag("shirts/#{f[:shirt]}.png", size: "32x22")  %></td>
+              <td><%= f[:opponent] %></td>
+              <td><% f[:home_or_away] %></td>
             </tr>
-            <tr>
-              <th scope="row">29/3</th>
-              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
-              <td>Arsenal</td>
-              <td>v</td>
-              <td>Arsenal</td>
-              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
-            </tr>
-            <tr>
-              <th scope="row">29/3</th>
-              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
-              <td>Arsenal</td>
-              <td>v</td>
-              <td>Arsenal</td>
-              <td><%= image_tag("shirts/ars.png", size: "32x22")  %></td>
-            </tr>
+        <% end %>
             <tfoot>
               <tr>
               <td style="text-align:right" colspan="6">View player's full fixture list<i class="fas fa-arrow-right"></i></td>
