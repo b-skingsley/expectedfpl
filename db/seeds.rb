@@ -5,6 +5,10 @@ puts "Destroying all existing Players...\n____________________"
 Player.destroy_all
 puts "All existing Players Destroyed\n____________________\n"
 
+puts "Destroying all existing Transfers...\n____________________"
+Transfer.destroy_all
+puts "All existing Transfers Destroyed\n____________________\n"
+
 puts "Destroying all existing Footballers...\n____________________"
 Footballer.destroy_all
 puts "All existing Footballers Destroyed\n____________________\n"

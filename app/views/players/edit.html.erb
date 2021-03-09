@@ -1,9 +1,7 @@
 <%= @player.footballer.web_name %>
 
-
-
 <% @collection.each do |footballer| %>
   <%= footballer.web_name %>
-  <%= link_to "Transfer in", player_path(in: footballer.id, out: @player.footballer.id), method: :patch %>
+  <%= link_to "Transfer in", player_path(in: footballer.id, out: @player.footballer.id), method: :patch, data: { confirm: "Would you like to transfer in #{footballer.web_name} for #{@player.footballer.web_name}" } %>
 <% end %>
 
