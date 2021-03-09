@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'chartkick'
 gem "algoliasearch-rails"
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
