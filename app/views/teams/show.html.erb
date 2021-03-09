@@ -98,43 +98,9 @@
     </div>
   </div>
   <div class="right-section">
-  <h3> <%= @team.name %> </h3>
-    <% unless @team.summary_overall_points %>
-      <h4> Overall Points: <%= @team.summary_overall_points %> </h4>
-    <% end %>
 
-    <% unless @team.summary_overall_rank %>
-      <h4> Overall Rank: <%= @team.summary_overall_rank %> </h4>
-    <% end %>
-
-    <h4> Goalkeepers </h4>
-    <ul>
-      <% @team.footballers.gks.each do |player| %>
-        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
-      <% end %>
-    </ul>
-    <hr>
-    <h4> Defenders </h4>
-    <ul>
-      <% @team.footballers.defs.each do |player| %>
-        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
-      <% end %>
-    </ul>
-    <hr>
-    <h4> Midfielders </h4>
-    <ul>
-      <% @team.footballers.mids.each do |player| %>
-        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
-      <% end %>
-    </ul>
-    <hr>
-    <h4> Forwards </h4>
-    <ul>
-      <% @team.footballers.fwds.each do |player| %>
-        <li><%= "#{player.first_name} #{player.web_name} #{form_formatter(player.form.to_f)} - Price: #{fplprice(player.price)} | Club: #{player.club.name}"%></li>
-      <% end %>
-    </ul>
   </div>
+
 </div>
 
 <div class="player-switch-form">
