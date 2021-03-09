@@ -23,6 +23,10 @@ const calculateTime = () => {
   let deadline = countdownOutput.dataset.gameweek;
   deadline = new Date(deadline)
   const timeNow = new Date();
+  if (deadline - timeNow < 0) {
+    deadline = countdownOutput.dataset.gameweek2;
+    deadline = new Date(deadline)
+  }
   const countdown = convertTime(deadline - timeNow);
   countdownOutput.innerText = countdown;
 };
