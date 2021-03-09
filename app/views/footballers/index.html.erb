@@ -71,13 +71,13 @@
     </div>
     <% end %>
     <% @footballers.each do |footballer| %>
-    <div class="row justify-content-between table-row align-items-center footballer">
-      <div class="col web-name" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>"><p><%= footballer.web_name %></p></div>
-      <div class="col position" data-position="<%= footballer.position  %>"><p><%= footballer.position %></p></div>
-      <div class="col club" data-club="<%= footballer.club.name  %>"><p><%= footballer.club.name %></p></div>
-      <div class="col chances" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>"><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
-      <div class="col price" data-price="<%= fplprice(footballer.price) %>"><p><%= fplprice(footballer.price) %></p></div>
-      <div class="col points" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>"><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
+    <div class="row justify-content-between table-row row-hover-highlight align-items-center footballer" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-position="<%= footballer.position %>" data-club="<%= footballer.club.name %>" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>" data-price="<%= fplprice(footballer.price) %>" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>">
+      <div class="col" ><p><%= footballer.web_name %></p></div>
+      <div class="col" ><p><%= footballer.position %></p></div>
+      <div class="col" ><p><%= footballer.club.name %></p></div>
+      <div class="col" ><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
+      <div class="col" ><p><%= fplprice(footballer.price) %></p></div>
+      <div class="col" ><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
     </div>
     <% end %>
   </div>
