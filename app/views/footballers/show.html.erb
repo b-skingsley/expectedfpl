@@ -67,7 +67,8 @@
       <div class="w-50">
         
         <div id="graph-container" class="bg-light p-4">
-            <%= line_chart wma_hash(bps_per_game(@footballer.fplid), maws = 3), id: "bps-chart", width: "70vh", height: "150px", xtitle: "Game", ytitle: "BPS", precision: 3 %>
+            <%= line_chart wma_hash(bps(@footballer.fplid), maws = 3), id: "bps-chart", width: "400px", height: "150px", xtitle: "Bonus Points", precision: 3 %>
+            <%= line_chart popularity(@footballer.fplid),id: "popularity-chart", width: "400px", height: "150px", xtitle: "Net Transfers", precision: 3 %>
         </div>
         
         <table class="table table-dark" style="width: 100%">
