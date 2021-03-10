@@ -44,6 +44,28 @@ div#pitch-bg {
     top: 30px;
 }
 
+.sessions.new {
+
+  #call-to-action {
+      display: inline-block;
+      color: $off-white;
+      font-size: 18px;
+      padding: 4px 12px;
+      border: 1px solid $off-white;
+      background-color: $darker-blue;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+  #call-to-action:hover {
+    text-decoration: none;
+    background-color: #366396;
+  }
+  .container {
+    padding-bottom: 10px;
+  }
+}
+
 a {
   color: $darker-blue;
 
