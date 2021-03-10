@@ -37,6 +37,7 @@
     display: flex;
     overflow: auto;
     flex-direction: column;
+    position: relative;
     .main-team {
       flex: 4;
       // border: 1px solid black;
@@ -101,6 +102,12 @@
       width: 65%;
       text-align: center;
     }
+    .gloves {
+      position: absolute;
+      left: 59px;
+      top: 35px;
+    }
+
     .player-name {
       text-align: center;
       height: 23%;
@@ -123,7 +130,7 @@
     background-color: $off-white;
     border: 0.3px solid grey;
     border-radius: 4px;
-    padding: 2px;
+    padding-top: 2px;
     cursor: pointer;
     font-size: 14px;
     width: 20px;
@@ -144,7 +151,49 @@
     padding-top: 3px;
   }
 
+  .transfer-out {
+    position: absolute;
+    top: 24px;
+    left: 2px;
+    background-color: $off-white;
+    border: 0.3px solid grey;
+    border-radius: 4px;
+    padding-top: 1px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    color: black;
+  }
+
   .hidden {
     display: none !important;
+  }
+
+  .league-link {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+  }
+
+  .finalize-link {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+
+  #call-to-action {
+    display: inline-block;
+    color: $off-white;
+    font-size: 18px;
+    padding: 8px 12px;
+    border: 1px solid $off-white;
+    background-color: $darker-blue;
+    border-radius: 5px;
+  }
+
+  #call-to-action:hover {
+    text-decoration: none;
+    background-color: #366396;
   }
 }

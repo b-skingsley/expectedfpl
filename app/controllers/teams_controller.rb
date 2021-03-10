@@ -16,26 +16,29 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.user = current_user
+    @data = helpers.teamscrape(params[:team][:fpl_team_id])
+    @team.budget = @data[:budget]
+    @team.summary_overall_points = @data[:points]
+    @team.summary_overall_rank = @data[:rank]
+    @footballers = @data[:players]
     if @team.save
+      @footballers.each do |footballer|
+        if footballer[1] < 12
+          Player.create!(team: @team, footballer: footballer[0], starter: true)
+        elsif footballer[1] == 12
+          Player.create!(team: @team, footballer: footballer[0], starter: false, bench_pos: 0)
+        elsif footballer[1] == 13
+          Player.create!(team: @team, footballer: footballer[0], starter: false, bench_pos: 1)
+        elsif footballer[1] == 14
+          Player.create!(team: @team, footballer: footballer[0], starter: false, bench_pos: 2)
+        else
+          Player.create!(team: @team, footballer: footballer[0], starter: false, bench_pos: 3)
+        end
+      end
       redirect_to team_path(@team), notice: 'Team successfully created'
     else
       render :new
     end
-  end
-
-  def transfer
-    @team = Team.find(params[:id])
-  end
-
-  def edit
-    @team = Team.find(params[:id])
-  end
-
-  def update
-    @team = Team.find(params[:id])
-    @team.update(team_params)
-
-    redirect_to team_path(@team)
   end
 
   def switch
@@ -68,6 +71,16 @@ class TeamsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def retrieve
+    @team = Team.find(params[:id])
+    @our_leagues = helpers.leagues(@team.fpl_team_id)
+    @our_leagues.each do |league|
+      League.create!(name: league[0], fpl_league_id: league[1])
+      TeamEntry.create!(team: @team, league: League.find_by(fpl_league_id: league[1]))
+    end
+    redirect_to team_leagues_path(@team), notice: 'Leagues successfully created'
   end
 
   private

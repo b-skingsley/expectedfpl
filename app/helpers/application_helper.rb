@@ -100,6 +100,17 @@ module ApplicationHelper
     return nil
   end
 
+  def current_gameweek_no
+    url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+    response = URI.open(url).read
+    deserialized = JSON.parse(response)
+    deserialized['events'].each do | gameweek |
+      if gameweek['is_current']
+        return gameweek['id']
+      end
+    end
+  end
+
   def next_fixture(footballer)
     club = footballer.club
     next_gw = next_gameweek_no
