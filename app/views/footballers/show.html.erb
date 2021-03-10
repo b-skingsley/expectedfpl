@@ -10,13 +10,25 @@
 
 <div class="container">
 
-    <div class="container d-flex player-header px-0 align-items-end justify-content-between <%= color %> ">
+    <div class="container d-flex player-header px-0 align-items-end <%= color %> ">
         <div class="container">
             <image src="https://resources.premierleague.com/premierleague/photos/players/110x140/p<%= photo %>.png" alt="">
         </div>
-        <div class="text-light w-50 text-right p-2">
-            <%= @footballer.full_name %>
+        <div style="text-align: right;">
+            <div id="icons-container">
+              <div id="player-show-icons" class="p-2">Flex item</div>
+              <div id="player-show-icons" class="p-2">Flex item</div>
+              <div id="player-show-icons" class="p-2">Flex item</div>
+              <div id="player-show-icons" class="p-2">Flex item</div>
+              <div id="player-show-icons" class="p-2">Flex item</div>
+              <div id="player-show-icons" class="p-2">Flex item</div>
+            </div>
+        
+            <div class="text-light text-right p-3">
+                <h5><strong><%= @footballer.full_name %></strong></h5>
+            </div>
         </div>
+
     </div>
     
     
@@ -24,12 +36,23 @@
 
     <div class="container bg-white d-flex">
         <div class="container w-20 mx-0 my-2">
+            <div class="py-3">
+                
+                <div class="d-flex align-items-end">
+                    <div class="align-self-end">Chance of playing next game: </div>
+                    <div class="align-self-end px-3 align-text-bottom"> <%= @footballer.chance_of_playing_this_round %> % </div>
+                </div>
+                <progress id="file" max="100" value="<%= @footballer.chance_of_playing_this_round %>"></progress>
+            </div>
             <div class="card">
               <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= @footballer.position %></li>
                 <li class="list-group-item "><h3>£<%= @footballer.price %></h3></%li>
                 <li class="list-group-item"><%= @footballer.minutes %> minutes played</li>
-                <li class="list-group-item"><strong><%= @footballer.bps / @footballer.minutes %></strong>BPS per minute</li>
-                <li class="list-group-item"><%= @footballer.position %></li>
+                <li class="list-group-item">
+                    <strong><%= @footballer.minutes.zero? ? "0" : @footballer.bps / @footballer.minutes %></strong>BPS per minute
+
+                </li>
                 <li class="list-group-item">
                     <% if %w(GK DEF).include?(@footballer.position) %>
                         <p><%= @footballer.clean_sheets %> clean sheets</p>
@@ -38,20 +61,20 @@
                     <% end %>
                 </li>
 
-                <li class="list-group-item"><%= @footballer.position %></li>
               </ul>
             </div>
         </div>
       <div class="w-50">
         
         <div id="graph-container" class="bg-light p-4">
-            <%= line_chart wma_hash(bps_per_game(@footballer.fplid), maws = 3), id: "bps-chart", width: "80vh", height: "150px", xtitle: "Game", ytitle: "BPS", precision: 3 %>
+            <%= line_chart wma_hash(bps(@footballer.fplid), maws = 3), id: "bps-chart", width: "400px", height: "150px", xtitle: "Bonus Points", precision: 3 %>
+            <%= line_chart popularity(@footballer.fplid),id: "popularity-chart", width: "400px", height: "150px", xtitle: "Net Transfers", precision: 3 %>
         </div>
         
         <table class="table table-dark" style="width: 100%">
           <thead>
             <tr>
-              <th colspan="6">Upcoming fixtures</th>
+              <th colspan="4">Upcoming fixtures</th>
             </tr>
           </thead>
           <tbody>
@@ -62,10 +85,10 @@
               <td><%= f[:opponent] %></td>
               <td><% f[:home_or_away] %></td>
             </tr>
-        <% end %>
+          <% end %>
             <tfoot>
               <tr>
-              <td style="text-align:right" colspan="6">View player's full fixture list<i class="fas fa-arrow-right"></i></td>
+              <td style="text-align:right" colspan="4">View player's full fixture list<i class="fas fa-arrow-right"></i></td>
             </tfoot>
           </tbody>
         </table>

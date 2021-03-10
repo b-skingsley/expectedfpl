@@ -71,6 +71,10 @@ module ApplicationHelper
     end
   end
 
+  def progress_bar(num)
+    `<progress id="file" max="100" value="#{num}"> 70% </progress>`
+  end
+
   def next_gameweek
     url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
     response = URI.open(url).read

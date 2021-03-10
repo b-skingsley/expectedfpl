@@ -44,12 +44,48 @@ module FootballerHelper
     points_by_game
   end
 
+  def player_historical_data(fplid)
+    url = 'https://fantasy.premierleague.com/api/element-summary/' + "#{fplid.to_s}/"
+    request = URI.open(url).read
+    data = JSON.parse(request)
+    data["history"].flatten
+  end
 
-  # Method for calculating moving average
+  def historical_value(fplid)
+    values = player_historical_data(fplid).map { |hash| hash.select { |attribute| attribute["value"] } }
+    arr = []
+    values.each_with_index { |hash, index| arr << { (index + 1) => hash["value"] } }
+    arr
+  end
+
+  def popularity(fplid)
+    ongoing_values = player_historical_data(fplid).map { |hash| hash.select { |attribute| attribute["transfers_balance"] } }
+    arr = []
+    current = 0
+    # array.reduce(0) { |sum, num| sum + num }
+    ongoing_values.each_with_index do |hash, index|
+      current += hash["transfers_balance"]
+      arr << { (index + 1) => current }
+    end
+    arr.reduce Hash.new, :merge
+  end
+ 
+
+  def bps(fplid)
+    values = player_historical_data(fplid).map { |hash| hash.select { |attribute| attribute["bps"] } }
+    arr = []
+    values.each_with_index do |hash, index|
+      arr << { (index + 1) => hash["bps"] }
+    end
+    arr
+  end
+
+    # Method for calculating moving average
   def wma_hash(hash, maws = MAWS)
+    hash = hash.reduce Hash.new, :merge
     sum = maws * (maws + 1) / 2
 
-    values = hash.to_a # recent averages are the most important ones
+    values = hash.to_a.reverse # recent averages are the most important ones
     values_size = values.size
 
     values.each_with_index do |kv, pos|
@@ -64,20 +100,5 @@ module FootballerHelper
       return hash if pos + maws == values_size
     end
   end
+end
 
-  # Example use:
-  # (0..Footballer.count).each do |fpl_id|
-  #     p wma_hash(bps_per_game(fpl_id), maws = 3)
-  # end
-
-  # Minutes played per player
-  bootstrap_static_url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
-  raw = URI.open(bootstrap_static_url).read
-  player_data = JSON.parse(raw)["elements"]
-
-  player_hash = Hash.new
-
-  player_data.each do |player|
-      player_hash[player["id"]] = player["minutes"]
-  end
-end 
