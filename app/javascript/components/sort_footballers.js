@@ -45,7 +45,13 @@ const sortFootballers = () => {
 
   let footballers = document.querySelectorAll('.footballer');
 
-  document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} footballer/s displayed</em>`
+  if (document.getElementById('transfer-out')) {
+    const txOutPosition = document.getElementById('transfer-out').dataset.position
+    document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} ${txOutPosition}/s displayed</em>`
+  } else {
+    document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} footballer/s displayed</em>`
+  }
+
   if (footballers.length < 100) {
     document.querySelectorAll('.sort-icon').forEach((icon) => {
       icon.classList.remove('hidden');
