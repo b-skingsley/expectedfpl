@@ -73,6 +73,16 @@ class TeamsController < ApplicationController
     end
   end
 
+  def retrieve
+    @team = Team.find(params[:id])
+    @our_leagues = helpers.leagues(@team.fpl_team_id)
+    @our_leagues.each do |league|
+      League.create!(name: league[0], fpl_league_id: league[1])
+      TeamEntry.create!(team: @team, league: League.find_by(fpl_league_id: league[1]))
+    end
+    redirect_to team_leagues_path(@team), notice: 'Leagues successfully created'
+  end
+
   private
 
   def team_params

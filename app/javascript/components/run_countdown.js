@@ -19,15 +19,17 @@ const convertTime = (ms) => {
 
 const runCountdown = () => {
   const countdownOutput = document.getElementById('deadline-countdown');
-  let deadline = countdownOutput.dataset.gameweek;
-  deadline = new Date(deadline)
-  const timeNow = new Date();
-  if (deadline - timeNow < 0) {
-    deadline = countdownOutput.dataset.gameweek2;
+  if (countdownOutput) {
+    let deadline = countdownOutput.dataset.gameweek;
     deadline = new Date(deadline)
+    const timeNow = new Date();
+    if (deadline - timeNow < 0) {
+      deadline = countdownOutput.dataset.gameweek2;
+      deadline = new Date(deadline)
+    }
+    const countdown = convertTime(deadline - timeNow);
+    countdownOutput.innerText = countdown;
   }
-  const countdown = convertTime(deadline - timeNow);
-  countdownOutput.innerText = countdown;
 };
 
 export { runCountdown };

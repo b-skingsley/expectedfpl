@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       get 'finalize', as: :finalize
       patch 'switch', as: :switch
+      patch 'retrieve', as: :retrieve
     end
   end
 

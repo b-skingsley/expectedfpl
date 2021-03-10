@@ -1,14 +1,19 @@
 <div class="container" id="overlay-container">
   <div class="left-section">
     <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
+      <div class="league-link"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
+      <div class="finalize-link"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
       <div class="main-team">
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
             <div class="player-content">
               <i class="fas fa-exchange-alt switch gk-s"></i>
               <i class="fas fa-info player-info"></i>
+              <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0])) do %>
+                <i class="fas fa-times transfer-out"></i>
+              <% end %>
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
-              <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div>
+              <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
               <div class="next-fixture"><%= next_fixture(gks(@starters)[0]) %></div>
             </div>
@@ -20,6 +25,9 @@
               <div class="player-content">
                 <i class="fas fa-exchange-alt switch s-def"></i>
                 <i class="fas fa-info player-info"></i>
+                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender)) do %>
+                  <i class="fas fa-times transfer-out"></i>
+                <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
                 <div class="next-fixture"><%= next_fixture(defender) %></div>
@@ -33,6 +41,9 @@
               <div class="player-content">
                 <i class="fas fa-exchange-alt switch s-mid"></i>
                 <i class="fas fa-info player-info"></i>
+                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid)) do %>
+                  <i class="fas fa-times transfer-out"></i>
+                <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
                 <div class="next-fixture"><%= next_fixture(mid) %></div>
@@ -46,6 +57,9 @@
               <div class="player-content">
                 <i class="fas fa-exchange-alt switch s-fwd"></i>
                 <i class="fas fa-info player-info"></i>
+                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd)) do %>
+                  <i class="fas fa-times transfer-out"></i>
+                <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
                 <div class="next-fixture"><%= next_fixture(fwd) %></div>
@@ -59,16 +73,23 @@
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-gk"></i>
             <i class="fas fa-info player-info"></i>
+            <%= link_to edit_player_path(@gk) do %>
+              <i class="fas fa-times transfer-out"></i>
+            <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
-            <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div>
+            <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
             <div class="player-name"><%= @gk.footballer.web_name %></div>
             <div class="next-fixture"><%= next_fixture(@gk.footballer) %></div>
           </div>
+          <div>GK</div>
         </div>
         <div class="bench-player <%= @firstsub.footballer.position.downcase %>" id="player<%= @firstsub.footballer.fplid %>" data-id="<%= @firstsub.footballer.id %>,<%= @firstsub.bench_pos %>">
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
+            <%= link_to edit_player_path(@firstsub) do %>
+              <i class="fas fa-times transfer-out"></i>
+            <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @firstsub.footballer.web_name %></div>
             <div class="next-fixture"><%= next_fixture(@firstsub.footballer) %></div>
@@ -79,6 +100,9 @@
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
+             <%= link_to edit_player_path(@secondsub) do %>
+               <i class="fas fa-times transfer-out"></i>
+             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @secondsub.footballer.web_name %></div>
             <div class="next-fixture"><%= next_fixture(@secondsub.footballer) %></div>
@@ -89,6 +113,9 @@
           <div class="player-content">
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
+            <%= link_to edit_player_path(@thirdsub) do %>
+              <i class="fas fa-times transfer-out"></i>
+            <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @thirdsub.footballer.web_name %></div>
             <div class="next-fixture"><%= next_fixture(@thirdsub.footballer) %></div>
