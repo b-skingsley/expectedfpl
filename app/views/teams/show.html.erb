@@ -16,7 +16,7 @@
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
               <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
-              <div class="next-fixture"><%= next_fixture(gks(@starters)[0]) %></div>
+              <div class="next-fixture">v <%= next_fixture(gks(@starters)[0]) %></div>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
-                <div class="next-fixture"><%= next_fixture(defender) %></div>
+                <div class="next-fixture">v <%= next_fixture(defender) %></div>
               </div>
             </div>
           <% end %>
@@ -47,7 +47,7 @@
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
-                <div class="next-fixture"><%= next_fixture(mid) %></div>
+                <div class="next-fixture">v <%= next_fixture(mid) %></div>
               </div>
             </div>
           <% end %>
@@ -63,7 +63,7 @@
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
-                <div class="next-fixture"><%= next_fixture(fwd) %></div>
+                <div class="next-fixture">v <%= next_fixture(fwd) %></div>
               </div>
             </div>
           <% end %>
@@ -80,7 +80,7 @@
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
             <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
             <div class="player-name"><%= @gk.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@gk.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@gk.footballer) %></div>
           </div>
           <div>GK</div>
         </div>
@@ -93,7 +93,7 @@
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @firstsub.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@firstsub.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@firstsub.footballer) %></div>
           </div>
           <div class="bench-position"><%= @firstsub.bench_pos %></div>
         </div>
@@ -106,7 +106,7 @@
              <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @secondsub.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@secondsub.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@secondsub.footballer) %></div>
           </div>
           <div class="bench-position"><%= @secondsub.bench_pos %></div>
         </div>
@@ -119,7 +119,7 @@
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @thirdsub.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@thirdsub.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@thirdsub.footballer) %></div>
           </div>
           <div class="bench-position"><%= @thirdsub.bench_pos %></div>
         </div>
@@ -196,7 +196,6 @@
     </div>
     <% end %>
   </div>
-
 </div>
 
 <div class="player-switch-form">
