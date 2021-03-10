@@ -83,6 +83,17 @@ class TeamsController < ApplicationController
     redirect_to team_leagues_path(@team), notice: 'Leagues successfully created'
   end
 
+  def finalize
+    @team = Team.find(params[:id])
+    @starters = @team.players.where(starter: true)
+    @bench = @team.players.where(starter: false)
+    @gk = @bench.find_by(bench_pos: 0)
+    @firstsub = @bench.find_by(bench_pos: 1)
+    @secondsub = @bench.find_by(bench_pos: 2)
+    @thirdsub = @bench.find_by(bench_pos: 3)
+    @transfers = Transfer.where(team: @team, gw: helpers.next_gameweek_no)
+  end
+
   private
 
   def team_params

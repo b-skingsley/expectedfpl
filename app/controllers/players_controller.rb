@@ -9,7 +9,8 @@ class PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
     @team = @player.team
-    @transfer = Transfer.new(team: @team, player_in: Footballer.find(params[:in]), player_out: @player.footballer)
+    @gw = helpers.next_gameweek_no
+    @transfer = Transfer.new(team: @team, player_in: Footballer.find(params[:in]), player_out: @player.footballer, gw: @gw)
     @transfer.save
     if @player.update(footballer: Footballer.find(params[:in]))
       redirect_to team_path(@team)
