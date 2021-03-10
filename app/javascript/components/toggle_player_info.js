@@ -28,6 +28,17 @@ const teamViewInfo = () => {
           event.currentTarget.classList.add('row-expanded');
           event.currentTarget.innerHTML = expandedInner;
           event.currentTarget.querySelector('.expanded-row-header').innerHTML = `<h4>${event.currentTarget.dataset.fullname}</h4>`;
+          event.currentTarget.querySelector('.expanded-row-body').innerHTML = '<button type="button" id="footballer-details" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">See player</button>'
+          const footballerButton = document.getElementById('footballer-details');
+          const footballerId = event.currentTarget.dataset.id;
+          footballerButton.addEventListener('click', (buttonEvent) => {
+            const modalArea = document.querySelector('.modal-body');
+            fetch(`/footballers/${footballerId}/modal`)
+              .then(response => response.text())
+              .then(html => {
+                modalArea.insertAdjacentHTML('beforeend', html);
+              });
+          });
           if (event.currentTarget.news) {
             event.currentTarget.querySelector('.expanded-row-body').innerHTML = `<p class="news">${event.currentTarget.dataset.news}</p>`;
           }

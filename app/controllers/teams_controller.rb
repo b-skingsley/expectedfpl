@@ -94,6 +94,12 @@ class TeamsController < ApplicationController
     @transfers = Transfer.where(team: @team, gw: helpers.next_gameweek_no)
   end
 
+  def footballer
+    @footballer = Footballer.find(params[:footballer_id])
+    render partial: "teams/modal"
+  end
+  
+
   private
 
   def team_params

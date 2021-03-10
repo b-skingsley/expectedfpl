@@ -1,0 +1,98 @@
+<% photo = @footballer.photo.gsub(".jpg", "") %>
+<% color = Club.find(@footballer.club_id).short_name %>
+
+
+<div class="container">
+
+  <div class="container d-flex player-header px-0 align-items-end <%= color %> ">
+    <div class="container">
+        <image src="https://resources.premierleague.com/premierleague/photos/players/110x140/p<%= photo %>.png" alt="">
+    </div>
+    <div class="w-75" style="text-align: right;">
+        <div id="icons-container">
+          <% unless attributes_list(@footballer).empty? %>
+            <% attributes_list(@footballer).each do |attribute| %>
+              <div id="player-show-icons" class="p-2"><i class="<%= attribute %>"></i></div>
+            <% end %>
+          <% end %>
+        </div>
+    
+        <div class="text-light text-right p-3">
+            <h5><strong><%= @footballer.full_name %></strong></h5>
+        </div>
+    </div>
+  </div>
+  
+  
+  <div class="news-reel px-3">
+    <span id="typed" data-news="<%= @footballer.news.present? ? @footballer.news : 'No player news to show...' %>" data-fixture="<%= next_fixture(@footballer) %>"></span>
+  </div>
+  <div class="d-flex bg-light">
+    <div class="p-3">
+      <div class="d-flex align-items-end">
+        <div class="align-self-end">
+          <p>Chance of playing next game:</p>
+        </div>
+        <div class="align-self-end px-3 align-text-bottom"> 
+         <p><%= @footballer.chance_of_playing_this_round %> %</p> 
+        </div>
+      </div>
+      <div>
+        <progress id="file" max="100" value="<%= @footballer.chance_of_playing_this_round %>"></progress>
+      </div>
+      <div class="card mt-2">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item py-1"><strong>Player Stats:</strong></li>
+          <li class="list-group-item border-0">
+            <% if @footballer.position == "MID" %>
+              <p>Midfielder</p>
+            <% elsif @footballer.position == "DEF" %>
+              <p>Defender</p>
+            <% elsif @footballer.position == "GK" %>
+              <p>Goalkeeper</p>
+            <% else @footballer.position == "FWD" %>
+              <p>Forward</p>
+            <% end %>
+          </li>
+          <li class="list-group-item border-0"><h3>£<%= @footballer.price %></h3></li>
+          <li class="list-group-item border-0"><strong><%= @footballer.minutes %></strong> minutes played ⌚</li>
+          <li class="list-group-item border-0"><%= @footballer.minutes.zero? ? "No appearances this season" : "Averages #{((@footballer.bps / @footballer.minutes.to_f) * 90).round(2)}"%> bps per game</li>
+          <li class="list-group-item border-0">
+              <% if %w(GK DEF).include?(@footballer.position) %>
+                  <p><%= @footballer.clean_sheets %> clean sheets</p>
+              <% else %>
+                  <p><h3>⚽ <strong><%= @footballer.goals %></strong></h3>...goals this season</p>
+              <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex-grow-1 pt-4 justify-content-center align-items-end">
+      <table class="table table-dark" style="width: 98%">
+        <thead>
+          <tr>
+            <th colspan="4">Next 3 fixtures for <%= @footballer.full_name %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% next_fixtures(@footballer, 3).each do |f| %>
+          <tr>
+            <th scope="row"><%= f[:kickoff] %></th>
+            <td><%= image_tag("shirts/#{f[:shirt]}.png", size: "32x22")  %></td>
+            <td><%= f[:opponent] %></td>
+            <td><% f[:home_or_away] %></td>
+          </tr>
+        <% end %>
+          <tfoot>
+            <tr>
+            <td style="text-align:right" colspan="4">View player's full fixture list<i class="fas fa-arrow-right pl-3"></i></td>
+          </tfoot>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% content_for :chartkick do %>
+  <%= javascript_pack_tag 'chartkick' %>
+<% end %>

@@ -13,6 +13,13 @@
     padding-left: 10px;
   }
 
+  .modal .container {
+    display: block;
+    max-height: none;
+    padding: 0;
+    width: 100%;
+  }
+
   .left-section {
     flex: 0 0 65%;
     padding-right: 10px;

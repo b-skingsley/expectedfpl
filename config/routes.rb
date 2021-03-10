@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :players, only: [:edit, :update]
 
   #Routes for footballers
-  resources :footballers, only: [:index, :show]
+  resources :footballers, only: [:index, :show] do 
+    get 'modal', to: "teams#footballer", as: :modal
+  end
 
   #Routes for fixtures
   resources :fixtures, only: [:index, :show]

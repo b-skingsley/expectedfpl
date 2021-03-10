@@ -1,4 +1,3 @@
-<%= render 'modal' %>
 <div class="container" id="overlay-container">
   <div class="left-section">
     <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
@@ -147,7 +146,7 @@
       </div>
     </div>
     <% @team.footballers.gks.each do |keeper| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
+    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
       <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
       <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
       <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
@@ -160,7 +159,7 @@
       </div>
     </div>
     <% @team.footballers.defs.each do |defender| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
+    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
       <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
       <div class="col-2" ><p><%= defender.club.short_name %></p></div>
       <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
@@ -173,7 +172,7 @@
       </div>
     </div>
     <% @team.footballers.mids.each do |midfielder| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
+    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
       <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
       <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
       <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
@@ -186,7 +185,7 @@
       </div>
     </div>
     <% @team.footballers.fwds.each do |forward| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
+    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
       <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
       <div class="col-2" ><p><%= forward.club.short_name %></p></div>
       <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
@@ -205,4 +204,20 @@
       <%= f.button :submit, class: 'btn btn-outline-light hidden' %>
     </div>
   <% end %>
+</div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
 </div>
