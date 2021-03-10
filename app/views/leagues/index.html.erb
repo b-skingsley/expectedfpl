@@ -2,7 +2,7 @@
   <%#= link_to "Retrieve Leagues", retrieve_team_path(@team), id: "call-to-action" %>
   <%= form_for(@team, url: retrieve_team_path(@team)) do |f| %>
     <div class="form-actions" id="">
-      <%= f.submit "Retrive Leagues", class: 'btn btn-outline-light' %>
+      <%= f.submit "Retrieve Leagues", class: 'btn btn-outline-light retrieval', id: 'call-to-action' %>
     </div>
   <% end %>
 </div>

@@ -16,12 +16,6 @@
       </div>
     <% end %>
 
-    <% if user_signed_in? %>
-      <div class="d-flex mr-4 align-items-center" id="logged-in">
-        <%= link_to "#{current_user.email}", user_path(current_user) %>
-      </div>
-    <% end %>
-
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
