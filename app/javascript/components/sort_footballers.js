@@ -12,8 +12,8 @@ const sort = (sortBy, dir) => {
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      let x = (sortBy === 0 ? parseFloat(footballers[i].querySelector('.points').dataset.points) : parseFloat(footballers[i].querySelector('.price').dataset.price))
-      let y = (sortBy === 0 ? parseFloat(footballers[i + 1].querySelector('.points').dataset.points) : parseFloat(footballers[i + 1].querySelector('.price').dataset.price))
+      let x = (sortBy === 0 ? parseFloat(footballers[i].dataset.points) : parseFloat(footballers[i].dataset.price))
+      let y = (sortBy === 0 ? parseFloat(footballers[i + 1].dataset.points) : parseFloat(footballers[i + 1].dataset.price))
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
       if (dir === 0) {
