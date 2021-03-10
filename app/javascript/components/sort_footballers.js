@@ -12,8 +12,8 @@ const sort = (sortBy, dir) => {
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      let x = (sortBy === 0 ? parseFloat(footballers[i].querySelector('.points').dataset.points) : parseFloat(footballers[i].querySelector('.price').dataset.price))
-      let y = (sortBy === 0 ? parseFloat(footballers[i + 1].querySelector('.points').dataset.points) : parseFloat(footballers[i + 1].querySelector('.price').dataset.price))
+      let x = (sortBy === 0 ? parseFloat(footballers[i].dataset.points) : parseFloat(footballers[i].dataset.price))
+      let y = (sortBy === 0 ? parseFloat(footballers[i + 1].dataset.points) : parseFloat(footballers[i + 1].dataset.price))
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
       if (dir === 0) {
@@ -45,7 +45,13 @@ const sortFootballers = () => {
 
   let footballers = document.querySelectorAll('.footballer');
 
-  document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} footballer/s displayed</em>`
+  if (document.getElementById('transfer-out')) {
+    const txOutPosition = document.getElementById('transfer-out').dataset.position
+    document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} ${txOutPosition}/s displayed</em>`
+  } else {
+    document.getElementById('footballer-count').innerHTML = `<em>${footballers.length} footballer/s displayed</em>`
+  }
+
   if (footballers.length < 100) {
     document.querySelectorAll('.sort-icon').forEach((icon) => {
       icon.classList.remove('hidden');

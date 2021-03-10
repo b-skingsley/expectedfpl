@@ -1,8 +1,95 @@
-<%= @player.footballer.web_name %>
+<div class="container background-transparent">
+  <h2 class="pt-4">Transfer Out - <%= @player.footballer.first_name %> <%= @player.footballer.last_name %></h2>
+  <%= link_to "Back to Team", team_path(@team) %>
+  <div class="row m-3 justify-content-between">
+    <div>
+      <%= render "footballer_filter_form" %>
+    </div>
+  </div>
+  <div class="container">
+    <p id="footballer-count"></p>
+    <div class="row justify-content-between filters align-items-center">
+      <div class="col-3"></div>
+      <div class="col-1"></div>
+      <div class="col-2"></div>
+      <div class="col-2"></div>
+      <div class="col-2">
+        <p id="sort-price-up" class="sort-icon text-center hidden"><i class="fas fa-sort-up"></i></p>
+      </div>
+      <div class="col-2">
+        <p id="sort-points-up" class="sort-icon text-center hidden"><i class="fas fa-sort-up"></i></p>
+      </div>
+    </div>
+    <div class="row justify-content-between table-header align-items-center">
+      <div class="col-3">
+        <p>Name</p>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="col-2">
+        <p>Club</p>
+      </div>
+      <div class="col-2">
+        <p>Appearance Chances</p>
+      </div>
+      <div class="col-2">
+        <p>Price</p>
+      </div>
+      <div class="col-2">
+        <p>Total Points</p>
+      </div>
+    </div>
+    <div class="row justify-content-between filters align-items-center">
+      <div class="col-3"></div>
+      <div class="col-1">
+      </div>
+      <div class="col-2">
+        <% if params[:filter_by_club].present? %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_club] %></p>
+        <% end %>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-2">
+        <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %></p>
+        <% end %>
+        <p id="sort-price-down" class="sort-icon text-center hidden"><i class="fas fa-sort-down"></i></p>
+      </div>
+      <div class="col-2">
+        <p id="sort-points-down" class="sort-icon active text-center"><i class="fas fa-sort-down"></i></p>
+      </div>
+    </div>
 
-<% @collection.each do |footballer| %>
-  <%= footballer.web_name %>
-  <%= link_to "Transfer in", player_path(in: footballer.id, out: @player.footballer.id), method: :patch, data: { confirm: "Would you like to transfer in #{footballer.web_name} for #{@player.footballer.web_name}" } %>
-<% end %>
-
-<%= link_to "Back", team_path(@team) %>
+    <!-- This is the player being transferred out -->
+    <div id="transfer-out" class="row justify-content-between table-row align-items-center" data-position="<%= @player.footballer.position %>">
+      <div class="col-3" ><p><%= @player.footballer.web_name %></p></div>
+      <div class="col-1" ><i class="fas fa-user-minus"></i></div>
+      <div class="col-2" ><p><%= @player.footballer.club.short_name %></p></div>
+      <div class="col-2" ><p><%= chances_formatter(@player.footballer.chance_of_playing_next_round) %></p></div>
+      <div class="col-2" ><p><%= fplprice(@player.footballer.price) %></p></div>
+      <div class="col-2" ><p><%= @player.footballer.total_points %> <%= form_formatter(@player.footballer.form.to_f) %></p></div>
+    </div>
+  </div>
+  <!-- These are the footballers in same position as transferred out player, not already in the team -->
+  <div class="container table-body" style="overflow:scroll; max-height:50vh;">
+    <% unless @collection.present? %>
+    <div class="text-center">
+      <div class="m-4"><h3>⚽️😐 No Players Matching Your Filter Criteria 😐⚽️</h3></div>
+      <div><%= link_to "Reset Filters", footballers_path, class: "btn btn-secondary btn-sm", data: { turbolinks: false } %></div>
+    </div>
+    <% end %>
+    <% @collection.each do |footballer| %>
+    <div class="row justify-content-between table-row row-hover-highlight align-items-center footballer" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-position="<%= footballer.position %>" data-club="<%= footballer.club.name %>" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>" data-price="<%= fplprice(footballer.price) %>" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>">
+      <div class="col-3" ><p><%= footballer.web_name %></p></div>
+      <div class="col-1" ><%= link_to player_path(in: footballer.id, out: @player.footballer.id), method: :patch, data: { confirm: "Would you like to transfer in #{footballer.web_name} for #{@player.footballer.web_name}?" } do %>
+          <i class="fas fa-user-plus"></i>
+        <% end %>
+      </div>
+      <div class="col-2" ><p><%= footballer.club.short_name %></p></div>
+      <div class="col-2" ><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
+      <div class="col-2" ><p><%= fplprice(footballer.price) %></p></div>
+      <div class="col-2" ><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
+    </div>
+    <% end %>
+  </div>
+</div>

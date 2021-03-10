@@ -71,8 +71,16 @@ const allFootballersInfo = () => {
     footballer.addEventListener('click', (_event) => {
       if (footballer.querySelector('.player-info')) {
         footballer.querySelector('.player-info').remove();
+        if (document.getElementById('transfer-out')) {
+          footballer.classList.remove('transfer-selected');
+          footballer.classList.add('row-hover-highlight')
+        }
       } else {
-        footballer.insertAdjacentHTML('beforeend', `<div class="w-100"></div><div class="col-12 player-info text-center"><p>${fullName}    |    Averaged ${form} points per-game, over last 5 games    |    <span class="news">${news}</span></p></div>`);
+          if (document.getElementById('transfer-out')) {
+            footballer.classList.add('transfer-selected');
+            footballer.classList.remove('row-hover-highlight')
+          }
+        footballer.insertAdjacentHTML('beforeend', `<div class="w-100"></div><div class="col-12 player-info text-center p-3"><p>${fullName}    |    Averaged ${form} points per-game, over last 5 games    |    <span class="news">${news}</span></p></div>`);
       }
     })
   });

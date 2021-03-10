@@ -64,7 +64,8 @@ module ApplicationHelper
 
   def chances_formatter(chance)
     case chance
-    when 100 || nil then return '👍🏼'
+    when 100 then return '👍🏼'
+    when nil then return '👍🏼'
     when 0 then return '❌'
     else
       return '😬'

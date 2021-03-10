@@ -2,7 +2,7 @@
   <div>
     <% unless action_name == 'home' %>
       <%= link_to root_path do %>
-        <%= image_tag "logo-nav.png", alt: 'expected fpl logo', id: 'nav-logo' %>
+        <%= image_tag "logo.png", alt: 'expected fpl logo', id: 'nav-logo' %>
       <% end %>
     <% end %>
   </div>
@@ -13,12 +13,6 @@
       <div id="deadline">
         <div id="deadline-countdown" class="text-center pt-3 pr-2" data-gameweek="<%= gameweek_info[0] %>" data-gameweek2="<%= gameweek_info[1] %>"></div>
         <div class="text-center pt-2 pr-2">UNTIL NEXT DEADLINE</div>
-      </div>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <div class="d-flex mr-4 align-items-center" id="logged-in">
-        <%= link_to "#{current_user.email}", user_path(current_user) %>
       </div>
     <% end %>
 
@@ -40,7 +34,7 @@
                 <%= link_to "Create Team", new_team_path, class: "dropdown-item" %>
               <% end %>
               <%= link_to "Fixtures", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "dropdown-item" %>
-              <%= link_to "Player Stats", footballers_path, class: "dropdown-item" %>
+              <%= link_to "Player Directory", footballers_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
