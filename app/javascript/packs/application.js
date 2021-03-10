@@ -34,6 +34,7 @@ import { runCountdown } from '../components/run_countdown';
 import { togglePlayerInfo } from '../components/toggle_player_info';
 import { sortFootballers } from '../components/sort_footballers';
 import { switchFunctionality } from '../components/switch_functionality';
+import { typedNews } from '../components/news_typer';
 
 // window.setTimeout(() => console.log('hi'), 500);
 
@@ -48,6 +49,10 @@ document.addEventListener('turbolinks:load', () => {
     rangeValue();
     sortFootballers();
     disableFilterFields(); // THIS NEEDS SORTING STILL!!!
+  }
+
+  if (document.getElementById('typed')) {
+    typedNews();
   }
 
   switchFunctionality();
