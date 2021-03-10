@@ -1,0 +1,32 @@
+<% clubs = @clubs.map { |club| club.name } %>
+
+<%= form_tag edit_player_path(@player), class: "form-inline", method: :get do %>
+  <div class="col">
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control form-control-sm mb-2",
+      placeholder: "Search by Name..."
+    %>
+  </div>
+  <div class="col">
+    <%= select_tag :filter_by_club, options_for_select(clubs, params[:filter_by_club]),
+      include_blank: 'All Clubs',
+      class: "form-control form-control-sm mb-2"
+    %>
+  </div>
+  <div class="col">
+    <%= label_tag :filter_by_max_price, 'Max Price', class: 'm-0' %>
+    <p id="max-price-value" class="m-0 text-center"></p>
+    <%= range_field_tag :filter_by_max_price,
+      params[:filter_by_max_price].present? ? params[:filter_by_max_price] : @max_p,
+      min: @min_p,
+      max: @max_p,
+      step: 0.1,
+      class: "form-control form-control-sm mb-2"
+    %>
+  </div>
+  <div class="row m-3 justify-content-between">
+    <%= submit_tag "Go", class: "btn btn-success btn-sm mx-2" %>
+    <%= link_to "Reset", edit_player_path(@player), class: "btn btn-secondary btn-sm mx-2", data: { turbolinks: false } %>
+  </div>
+<% end %>

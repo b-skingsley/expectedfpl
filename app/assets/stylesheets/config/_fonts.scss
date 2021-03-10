@@ -1,10 +1,14 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Roboto:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Quicksand:wght@300;400;700&display=swap');
+@import url("https://use.typekit.net/vce4swe.css");
+
 
 // Define fonts for body and headers
-$body-font: "Roboto Condensed", "sans-serif";
-$headers-font: "Roboto", "sans-serif";
+// $body-font: 'Quicksand', sans-serif;
+// $headers-font: 'Staatliches', cursive;
+$body-font: 'Quicksand', sans-serif;
+$headers-font:  'gill-sans-nova-inline', sans-serif;
+$digital-font: 'lores-12', sans-serif;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

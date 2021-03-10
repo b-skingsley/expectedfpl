@@ -10,10 +10,9 @@
               <i class="fas fa-exchange-alt switch gk-s"></i>
               <i class="fas fa-info player-info"></i>
               <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0])) do %>
-                <i class="fas fa-times transfer-out"></i>
+                <i class="fas fa-user-minus"></i>
               <% end %>
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
-              <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
               <div class="next-fixture"><%= next_fixture(gks(@starters)[0]) %></div>
             </div>
@@ -26,7 +25,7 @@
                 <i class="fas fa-exchange-alt switch s-def"></i>
                 <i class="fas fa-info player-info"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender)) do %>
-                  <i class="fas fa-times transfer-out"></i>
+                  <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
@@ -42,7 +41,7 @@
                 <i class="fas fa-exchange-alt switch s-mid"></i>
                 <i class="fas fa-info player-info"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid)) do %>
-                  <i class="fas fa-times transfer-out"></i>
+                  <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
@@ -58,7 +57,7 @@
                 <i class="fas fa-exchange-alt switch s-fwd"></i>
                 <i class="fas fa-info player-info"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd)) do %>
-                  <i class="fas fa-times transfer-out"></i>
+                  <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
@@ -74,10 +73,9 @@
             <i class="fas fa-exchange-alt switch bench-gk"></i>
             <i class="fas fa-info player-info"></i>
             <%= link_to edit_player_path(@gk) do %>
-              <i class="fas fa-times transfer-out"></i>
+              <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
-            <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
             <div class="player-name"><%= @gk.footballer.web_name %></div>
             <div class="next-fixture"><%= next_fixture(@gk.footballer) %></div>
           </div>
@@ -88,7 +86,7 @@
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
             <%= link_to edit_player_path(@firstsub) do %>
-              <i class="fas fa-times transfer-out"></i>
+              <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @firstsub.footballer.web_name %></div>
@@ -101,7 +99,7 @@
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
              <%= link_to edit_player_path(@secondsub) do %>
-               <i class="fas fa-times transfer-out"></i>
+               <i class="fas fa-user-minus"></i>
              <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @secondsub.footballer.web_name %></div>
@@ -114,7 +112,7 @@
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
             <%= link_to edit_player_path(@thirdsub) do %>
-              <i class="fas fa-times transfer-out"></i>
+              <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @thirdsub.footballer.web_name %></div>
