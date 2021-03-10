@@ -1,0 +1,14 @@
+<div class="retrieve">
+  <%#= link_to "Retrieve Leagues", retrieve_team_path(@team), id: "call-to-action" %>
+  <%= form_for(@team, url: retrieve_team_path(@team)) do |f| %>
+    <div class="form-actions" id="">
+      <%= f.submit "Retrive Leagues", class: 'btn btn-outline-light' %>
+    </div>
+  <% end %>
+</div>
+
+<ul class="leagues-list">
+  <% @leagues.each do |league| %>
+    <li><%= link_to league.name, league_path(league) %></li>
+  <% end %>
+</ul>

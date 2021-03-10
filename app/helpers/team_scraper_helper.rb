@@ -21,4 +21,17 @@ module TeamScraperHelper
     data[:rank] = overall_rank
     return data
   end
+
+  def leagues(fplid)
+    url2 = "https://fantasy.premierleague.com/api/entry/#{fplid}/"
+    response2 = URI.open(url2).read
+    deserialized2 = JSON.parse(response2)
+    leagues = []
+    deserialized2['leagues']['classic'].each do |league|
+      if league['league_type'] == "x"
+        leagues << [league['name'], league['id']]
+      end
+    end
+    return leagues
+  end
 end
