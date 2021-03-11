@@ -1,13 +1,34 @@
 <div class="container background-transparent">
   <h2 class="pt-4">Player Directory</h2>
-  <div class="row m-3 justify-content-between">
+  <div class="row m-3 justify-content-between align-items-center">
     <div>
       <%= render "footballer_filter_form" %>
     </div>
   </div>
   <div class="container">
     <p id="footballer-count"></p>
-    <div class="row justify-content-between filters align-items-center">
+    <div class="row justify-content-between filters-icon-row align-items-center">
+      <div class="col"></div>
+      <div class="col">
+        <% if params[:filter_by_position].present? %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_position] %></p>
+        <% end %>
+      </div>
+      <div class="col">
+        <% if params[:filter_by_club].present? %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_club] %></p>
+        <% end %>
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %></p>
+        <% end %>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div class="row justify-content-between sort-icon-row align-items-center">
       <div class="col"></div>
       <div class="col"></div>
       <div class="col"></div>
@@ -39,27 +60,16 @@
         <p>Total Points</p>
       </div>
     </div>
-    <div class="row justify-content-between filters align-items-center">
+    <div class="row justify-content-between sort-icon-row align-items-center">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
       <div class="col"></div>
       <div class="col">
-        <% if params[:filter_by_position].present? %>
-          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_position] %></p>
-        <% end %>
-      </div>
-      <div class="col">
-        <% if params[:filter_by_club].present? %>
-          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_club] %></p>
-        <% end %>
-      </div>
-      <div class="col"></div>
-      <div class="col">
-        <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
-          <p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %></p>
-        <% end %>
         <p id="sort-price-down" class="sort-icon text-center hidden"><i class="fas fa-sort-down"></i></p>
       </div>
       <div class="col">
-        <p id="sort-points-down" class="sort-icon active text-center"><i class="fas fa-sort-down"></i></p>
+        <p id="sort-points-down" class="sort-icon activated text-center"><i class="fas fa-sort-down"></i></p>
       </div>
     </div>
   </div>
@@ -71,13 +81,25 @@
     </div>
     <% end %>
     <% @footballers.each do |footballer| %>
-    <div class="row justify-content-between table-row row-hover-highlight align-items-center footballer" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-position="<%= footballer.position %>" data-club="<%= footballer.club.name %>" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>" data-price="<%= fplprice(footballer.price) %>" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>">
-      <div class="col" ><p><%= footballer.web_name %></p></div>
-      <div class="col" ><p><%= footballer.position %></p></div>
-      <div class="col" ><p><%= footballer.club.name %></p></div>
-      <div class="col" ><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
-      <div class="col" ><p><%= fplprice(footballer.price) %></p></div>
-      <div class="col" ><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
+    <div class="footballer">
+      <div class="row justify-content-between table-row row-hover-highlight align-items-center" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-position="<%= footballer.position %>" data-club="<%= footballer.club.name %>" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>" data-price="<%= fplprice(footballer.price) %>" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>">
+        <div class="col" ><p><%= footballer.web_name %></p></div>
+        <div class="col" ><p><%= footballer.position %></p></div>
+        <div class="col" ><p><%= footballer.club.name %></p></div>
+        <div class="col" ><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
+        <div class="col" ><p><%= fplprice(footballer.price) %></p></div>
+        <div class="col" ><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="text-center pt-3 footballer-info hidden">
+          <p><%= footballer.full_name %>  |    Averaged <%= footballer.form %> points per-game, over last 5 games<span class="news"><%= footballer.news %></span></p>
+        </div>
+        <div class="w-100 d-flex justify-content-center">
+          <%= link_to footballer_path(footballer) do %>
+           <button type="button" class="see-footballer hidden mb-2">See player</button>
+          <% end %>
+        </div>
+      </div>
     </div>
     <% end %>
   </div>

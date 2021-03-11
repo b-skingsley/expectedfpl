@@ -6,16 +6,18 @@ class PlayersController < ApplicationController
     @collection = Footballer.where(position: @player.footballer.position).where.not(id: @team.players.pluck(:footballer_id))
     @clubs = Club.where(id: @collection.pluck(:club_id))
 
+    # price (float) instance variables for use in the view
+    # first a query to reorder the applicable players by price to ascertain max/mins depending on position
+    players_by_price = @collection.reorder('price DESC')
+
+    @max_p = (players_by_price.first.price) / 10.0
+    @min_p = (players_by_price.last.price) / 10.0
+
     # Available Budget -----
-    @team = Team.find(params[:team])
-    @player = Player.find(params[:id])
     @total_budget = @team.budget + @team.team_value
     @team_value = helpers.price_sum(@team)
     @player_price = @player.footballer.price
     @available_budget = @total_budget - @team_value + @player_price
-    
-    # ----------------------
-
 
     if params[:query].present?
       @collection = @collection.search_by_first_and_last_name(params[:query])
@@ -30,21 +32,7 @@ class PlayersController < ApplicationController
         @collection = @collection.where("price <= ?", max_p)
       end
     end
-    # price (float) instance variables for use in the view
-    case @player.footballer.position
-    when 'GK'
-      @max_p = (Footballer.gks.first.price) / 10.0
-      @min_p = (Footballer.gks.last.price) / 10.0
-    when 'DEF'
-      @max_p = (Footballer.defs.first.price) / 10.0
-      @min_p = (Footballer.defs.last.price) / 10.0
-    when 'MID'
-      @max_p = (Footballer.mids.first.price) / 10.0
-      @min_p = (Footballer.mids.last.price) / 10.0
-    else
-      @max_p = (Footballer.fwds.first.price) / 10.0
-      @min_p = (Footballer.fwds.last.price) / 10.0
-    end
+
   end
 
   def update
@@ -54,9 +42,9 @@ class PlayersController < ApplicationController
     @transfer = Transfer.new(team: @team, player_in: Footballer.find(params[:in]), player_out: @player.footballer, gw: @gw)
     @transfer.save
     if @player.update(footballer: Footballer.find(params[:in]))
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "Transfer Completed"
     else
-      render :edit
+      render :edit, alert: "Could not complete transfer. Please try again."
     end
   end
 end

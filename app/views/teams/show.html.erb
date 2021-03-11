@@ -1,7 +1,12 @@
 <div class="container" id="overlay-container">
+  <% gameweek_info = next_gameweek %>
+  <div id="deadline">
+    <div id="deadline-countdown" class="text-center pt-3 pr-2" data-gameweek="<%= gameweek_info[0] %>" data-gameweek2="<%= gameweek_info[1] %>"></div>
+    <div class="text-center pt-2 pr-2">UNTIL NEXT DEADLINE</div>
+  </div>
   <div class="left-section">
-    <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
-      <div class="league-link"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
+    <div class="team-view" style="background-image: linear-gradient(rgba(90,195,100,0.5),rgba(90,195,100,0.5)), url('<%= image_path "team-background.jpg" %>')">
+      <div class="league-link hidden"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
       <% if fplprice(@total_budget - @team_value) < 0 %>
         <div class="finalize-link disabled" data-toggle="tooltip" data-placement="top" title="Your team is over budget"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
       <% else %>
@@ -11,9 +16,13 @@
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
             <div class="player-content">
+              <% if gks(@starters)[0].news.length > 0 %>
+                <i class="fas fa-exclamation info-toggle" data-playerid="<%= gks(@starters)[0].id %>"></i>
+              <% else %>
+                <i class="fas fa-info info-toggle player-info" data-playerid="<%= gks(@starters)[0].id %>"></i>
+              <% end %>
               <i class="fas fa-exchange-alt switch gk-s"></i>
-              <i class="fas fa-info player-info"></i>
-              <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0]), team: @team) do %>
+              <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0])) do %>
                 <i class="fas fa-user-minus"></i>
               <% end %>
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
@@ -26,9 +35,13 @@
           <% defs(@starters).each do |defender| %>
             <div class="starting-player def" id="player<%= defender.fplid %>" data-id="<%= defender.id %>">
               <div class="player-content">
+                <% if defender.news.length > 0 %>
+                  <i class="fas fa-exclamation info-toggle" data-playerid="<%= defender.id %>"></i>
+                <% else %>
+                  <i class="fas fa-info info-toggle player-info" data-playerid="<%= defender.id %>"></i>
+                <% end %>
                 <i class="fas fa-exchange-alt switch s-def"></i>
-                <i class="fas fa-info player-info"></i>
-                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender), team: @team) do %>
+                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender)) do %>
                   <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
@@ -42,9 +55,13 @@
           <% mids(@starters).each do |mid| %>
             <div class="starting-player mid" id="player<%= mid.fplid %>" data-id="<%= mid.id %>">
               <div class="player-content">
+                <% if mid.news.length > 0 %>
+                  <i class="fas fa-exclamation info-toggle" data-playerid="<%= mid.id %>"></i>
+                <% else %>
+                  <i class="fas fa-info info-toggle player-info" data-playerid="<%= mid.id %>"></i>
+                <% end %>
                 <i class="fas fa-exchange-alt switch s-mid"></i>
-                <i class="fas fa-info player-info"></i>
-                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid), team: @team) do %>
+                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid)) do %>
                   <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
@@ -58,9 +75,13 @@
           <% fwds(@starters).each do |fwd| %>
             <div class="starting-player fwd" id="player<%= fwd.fplid %>" data-id="<%= fwd.id %>">
               <div class="player-content">
+                <% if fwd.news.length > 0 %>
+                  <i class="fas fa-exclamation info-toggle" data-playerid="<%= fwd.id %>"></i>
+                <% else %>
+                  <i class="fas fa-info info-toggle player-info" data-playerid="<%= fwd.id %>"></i>
+                <% end %>
                 <i class="fas fa-exchange-alt switch s-fwd"></i>
-                <i class="fas fa-info player-info"></i>
-                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd), team: @team) do %>
+                <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd)) do %>
                   <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
@@ -71,12 +92,16 @@
           <% end %>
         </div>
       </div>
-      <div class="bench" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(90,195,0,0.5)), url('<%= image_path "bench2.png" %>')">
+      <div class="bench" style="background-image: linear-gradient(rgba(150,150,150,0.5),rgba(150,150,150,0.5)), url('<%= image_path "bench2.png" %>')">
         <div class="bench-player gk" id="player<%= @gk.footballer.fplid %>" data-id="<%= @gk.footballer.id %>,<%= @gk.bench_pos %>">
           <div class="player-content">
+            <% if @gk.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @gk.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @gk.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-gk"></i>
-            <i class="fas fa-info player-info"></i>
-            <%= link_to edit_player_path(@gk, team: @team) do %>
+            <%= link_to edit_player_path(@gk) do %>
               <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
@@ -87,9 +112,14 @@
         </div>
         <div class="bench-player <%= @firstsub.footballer.position.downcase %>" id="player<%= @firstsub.footballer.fplid %>" data-id="<%= @firstsub.footballer.id %>,<%= @firstsub.bench_pos %>">
           <div class="player-content">
+            <% if @firstsub.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @firstsub.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @firstsub.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-s"></i>
-            <i class="fas fa-info player-info"></i>
-            <%= link_to edit_player_path(@firstsub, team: @team) do %>
+            <i class="fas fa-info player-info" data-playerid="<%= @firstsub.footballer.id %>"></i>
+            <%= link_to edit_player_path(@firstsub) do %>
               <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
@@ -100,9 +130,13 @@
         </div>
         <div class="bench-player <%= @secondsub.footballer.position.downcase %>" id="player<%= @secondsub.footballer.fplid %>" data-id="<%=@secondsub.footballer.id %>,<%= @secondsub.bench_pos %>">
           <div class="player-content">
+            <% if @secondsub.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @secondsub.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @secondsub.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-s"></i>
-            <i class="fas fa-info player-info"></i>
-             <%= link_to edit_player_path(@secondsub, team: @team) do %>
+             <%= link_to edit_player_path(@secondsub) do %>
                <i class="fas fa-user-minus"></i>
              <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
@@ -113,9 +147,13 @@
         </div>
         <div class="bench-player <%= @thirdsub.footballer.position.downcase %>" id="player<%= @thirdsub.footballer.fplid %>" data-id="<%= @thirdsub.footballer.id %>,<%= @thirdsub.bench_pos %>">
           <div class="player-content">
+            <% if @thirdsub.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @thirdsub.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @thirdsub.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-s"></i>
-            <i class="fas fa-info player-info"></i>
-            <%= link_to edit_player_path(@thirdsub, team: @team) do %>
+            <%= link_to edit_player_path(@thirdsub) do %>
               <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
@@ -149,17 +187,20 @@
     </div>
     <div id="team-table">
       <div class="row justify-content-between team-table-header align-items-center">
-        <div class="col-4 first-row">
+        <div class="col-3 first-row">
           <p>Name</p>
         </div>
-        <div class="col-2">
+        <div class="col-1">
           <p>Club</p>
         </div>
-        <div class="col-3">
+        <div class="col-1">
           <p>Price</p>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <p>Total Points</p>
+        </div>
+        <div class="col-4">
+          <p>Fixtures</p>
         </div>
       </div>
       <div class="row justify-content-between position-header align-items-center">
@@ -168,11 +209,23 @@
         </div>
       </div>
       <% @team.footballers.gks.each do |keeper| %>
-      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
-        <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
-        <div class="col-3" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
+      <div id="<%= keeper.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
+        <div class="col-3 first-row" ><p><%= keeper.web_name %></p></div>
+        <div class="col-1" ><p><%= keeper.club.short_name %></p></div>
+        <div class="col-1" ><p><%= fplprice(keeper.price) %></p></div>
+        <div class="col-2" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
+        <div class="col-4 fixtures" >
+          <% next_five(keeper).each do |fixture| %>
+            <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+              <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+            </div>
+          <% end %>
+        </div>
+        <div class="hidden expanded-content text-center">
+          <h4><%= "#{keeper.first_name} #{keeper.last_name}" %></h4>
+          <p class="news"><%= keeper.news if keeper.news.length > 0 %></p>
+          <button type="button" id="footballer-details-<%= keeper.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+        </div>
       </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
@@ -181,11 +234,23 @@
         </div>
       </div>
       <% @team.footballers.defs.each do |defender| %>
-      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
-        <div class="col-2" ><p><%= defender.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
-        <div class="col-3" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
+      <div id="<%= defender.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
+        <div class="col-3 first-row" ><p><%= defender.web_name %></p></div>
+        <div class="col-1" ><p><%= defender.club.short_name %></p></div>
+        <div class="col-1" ><p><%= fplprice(defender.price) %></p></div>
+        <div class="col-2" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
+        <div class="col-4 fixtures" >
+          <% next_five(defender).each do |fixture| %>
+            <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+              <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+            </div>
+          <% end %>
+        </div>
+        <div class="hidden expanded-content text-center">
+          <h4><%= "#{defender.first_name} #{defender.last_name}" %></h4>
+          <p class="news"><%= defender.news if defender.news.length > 0 %></p>
+          <button type="button" id="footballer-details-<%= defender.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+        </div>
       </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
@@ -194,12 +259,24 @@
         </div>
       </div>
       <% @team.footballers.mids.each do |midfielder| %>
-      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
-        <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
-        <div class="col-3" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
-      </div>
+        <div id="<%= midfielder.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
+          <div class="col-3 first-row" ><p><%= midfielder.web_name %></p></div>
+          <div class="col-1" ><p><%= midfielder.club.short_name %></p></div>
+          <div class="col-1" ><p><%= fplprice(midfielder.price) %></p></div>
+          <div class="col-2" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
+          <div class="col-4 fixtures" >
+            <% next_five(midfielder).each do |fixture| %>
+              <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+                <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+              </div>
+            <% end %>
+          </div>
+          <div class="hidden expanded-content text-center">
+            <h4><%= "#{midfielder.first_name} #{midfielder.last_name}" %></h4>
+            <p class="news"><%= midfielder.news if midfielder.news.length > 0 %></p>
+            <button type="button" id="footballer-details-<%= midfielder.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+          </div>
+        </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
         <div class="col-12 text-center">
@@ -207,18 +284,23 @@
         </div>
       </div>
       <% @team.footballers.fwds.each do |forward| %>
-      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
-        <div class="col-2" ><p><%= forward.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
-        <div class="col-3" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
-      </div>
-      <% end %>
-    </div>
-    <div class="fixtures">
-      <% next_five(@gk.footballer).each do |fixture| %>
-        <div class="fixture difficulty-<%= fixture[:difficulty] %>">
-          <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+      <div id="<%= forward.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
+          <div class="col-3 first-row" ><p><%= forward.web_name %></p></div>
+          <div class="col-1" ><p><%= forward.club.short_name %></p></div>
+          <div class="col-1" ><p><%= fplprice(forward.price) %></p></div>
+          <div class="col-2" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
+          <div class="col-4 fixtures" >
+            <% next_five(forward).each do |fixture| %>
+              <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+                <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+              </div>
+            <% end %>
+          </div>
+          <div class="hidden expanded-content text-center">
+            <h4><%= "#{forward.first_name} #{forward.last_name}" %></h4>
+            <p class="news"><%= forward.news if forward.news.length > 0 %></p>
+            <button type="button" id="footballer-details-<%= forward.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+          </div>
         </div>
       <% end %>
     </div>
@@ -240,7 +322,6 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

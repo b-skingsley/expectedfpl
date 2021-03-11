@@ -3,10 +3,12 @@
       <%= text_field_tag :query,
         params[:query],
         class: "flex-item",
-        placeholder: "Refine fixtures by player..."
+        placeholder: "Refine fixtures by player...",
+        style: "width: 200px;"
       %>
-    <input class="flex-item" id="algolia-result" type="submit" value="">
+    <input class="flex-item border" id="algolia-result" type="submit" value="" style="width: 300px;">
     <div id="refine-by-player" class="flex-item"><%= submit_tag "Search" %></div>
-  <% end %>
+    <%= link_to "Undo", fixtures_path, class: "pl-2" %>
+  <% end %> 
 </div>
   <%# input_html: {value: params.dig(:search, :query)} %>

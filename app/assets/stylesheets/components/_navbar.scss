@@ -1,31 +1,42 @@
 .navbar-lewagon {
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, rgba(59, 7, 68, 0.6),
-                                        rgba(50, 50, 50, 0.9));
-  background-size: cover;
-  height: 100px;
+  background: transparent;
+  height: 120px;
 }
 
 #nav-logo {
   height: 100px;
+  padding-bottom: 4px;
 }
-
-#deadline {
-  font-family: $digital-font;
-  font-size: 14px;
-  color: #39D000;
-  height: 100px;
-  width: 200px;
-  margin-right: 32px;
-  background-image: asset-url('fourth_official.png');
-  background-size: 100% 100%;
-}
-
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
+
+.nav-item.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#nav-call-to-action {
+      display: inline-block;
+      color: $off-white;
+      font-size: 18px;
+      padding: 4px 10px;
+      border: 1px solid $off-white;
+      background-color: $darker-blue;
+      border-radius: 5px;
+      margin-right: 20px;
+      height: 80%;
+    }
+
+#nav-call-to-action:hover {
+    text-decoration: none;
+    background-color: #366396;
+  }
+
 
 .navbar-lewagon .navbar-brand {
   img {
@@ -39,7 +50,9 @@
 }
 
 .nav-link {
-  color: $dark-blue !important;
+  .fas.fa-bars {
+    color: $dark-blue !important;
+  }
   i {
     font-size: 32px;
   }

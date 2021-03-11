@@ -57,30 +57,30 @@ const sortFootballers = () => {
       icon.classList.remove('hidden');
     });
     pointsDown.addEventListener('click', (_event) => {
-      if (!pointsDown.classList.contains('active')) {
-        document.querySelector('.active').classList.remove('active');
-        pointsDown.classList.add('active');
+      if (!pointsDown.classList.contains('activated')) {
+        document.querySelector('.activated').classList.remove('activated');
+        pointsDown.classList.add('activated');
         sort(0, 0);
       }
     });
     pointsUp.addEventListener('click', (_event) => {
-      if (!pointsUp.classList.contains('active')) {
-        document.querySelector('.active').classList.remove('active');
-        pointsUp.classList.add('active');
+      if (!pointsUp.classList.contains('activated')) {
+        document.querySelector('.activated').classList.remove('activated');
+        pointsUp.classList.add('activated');
         sort(0, 1);
       }
     });
     priceDown.addEventListener('click', (_event) => {
-      if (!priceDown.classList.contains('active')) {
-        document.querySelector('.active').classList.remove('active');
-        priceDown.classList.add('active');
+      if (!priceDown.classList.contains('activated')) {
+        document.querySelector('.activated').classList.remove('activated');
+        priceDown.classList.add('activated');
         sort(1, 0);
       }
     });
     priceUp.addEventListener('click', (_event) => {
-      if (!priceUp.classList.contains('active')) {
-        document.querySelector('.active').classList.remove('active');
-        priceUp.classList.add('active');
+      if (!priceUp.classList.contains('activated')) {
+        document.querySelector('.activated').classList.remove('activated');
+        priceUp.classList.add('activated');
         sort(1, 1);
       }
     });

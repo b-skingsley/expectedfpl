@@ -115,17 +115,17 @@ module ApplicationHelper
   def next_fixture(footballer)
     club = footballer.club
     next_gw = next_gameweek_no
-    fixtures = Fixture.where(gameweek: next_gw)
-    next_fixtures = ""
+    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 1))).order(:kickoff)
+    next_fixtures = []
     fixtures.each do |fixture|
       if fixture.home_team == club
-        next_fixtures << "#{fixture.away_team.short_name} (H) "
+        next_fixtures << "#{fixture.away_team.short_name} (H)"
       end
       if fixture.away_team == club
-        next_fixtures << "#{fixture.home_team.short_name} (A) "
+        next_fixtures << "#{fixture.home_team.short_name} (A)"
       end
     end
-    return next_fixtures
+    return next_fixtures.first
   end
 
   def next_fixtures(footballer, num)
@@ -139,16 +139,16 @@ module ApplicationHelper
         fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)"}
       end
       if fixture.away_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(A)"}
+        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)"}
       end
     end
-    return fixtures_details
+    return fixtures_details.first(num)
   end
 
   def next_five(footballer)
     club = footballer.club
     next_gw = next_gameweek_no
-    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 5))).order(:kickoff)
+    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 6))).order(:kickoff)
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club
@@ -158,28 +158,28 @@ module ApplicationHelper
         fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty}
       end
     end
-    return fixtures_details
+    return fixtures_details.first(5)
   end
 
   def attributes_list(footballer)
     arr = []
     if footballer.goals > 5
-      arr << "fas fa-futbol"
+      arr << {"Goalscorer" => "fas fa-futbol"}
     end
     if footballer.assists > 5
-      arr << "far fa-handshake"
+      arr << {"Prolific Assister" => "far fa-handshake"}
     end
     if footballer.yellow_cards + footballer.red_cards > 6
-      arr << "fas fa-copy"
+      arr << {"Dirty Player" => "fas fa-copy"}
     end
     if footballer.minutes / (next_gameweek_no - 1) > 65
-      arr << "fas fa-hourglass-half"
+      arr << {"Consistent Starter" => "fas fa-hourglass-half"}
     end
     if footballer.saves > 50
-      arr << "fas fa-hand-paper"
+      arr << {"Prolific Saver" => "fas fa-hand-paper"}
     end
     if footballer.price > 50
-      arr << "fas fa-pound-sign"
+      arr << {"Pricey" => "fas fa-pound-sign"}
     end
     arr
   end

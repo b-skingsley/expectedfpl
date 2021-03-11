@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   end
 
   #Route for transferring player
-  resources :players, only: [:edit, :update]
+  resources :players, only: [:edit, :update] do
+    get 'modal', to: "players#footballer", as: :modal
+  end
 
   #Routes for footballers
   resources :footballers, only: [:index, :show] do 
