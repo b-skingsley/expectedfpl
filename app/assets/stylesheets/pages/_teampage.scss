@@ -269,14 +269,35 @@
   }
   .fixtures {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    .small-font {
+      p {
+        font-size: 9px !important;
+      }
+    }
     .fixture {
-      border: 0.5px solid grey;
+      border-right: 0.5px solid grey;
       text-align: center;
+      height: 100%;
+      width: 20%;
+      &:last-of-type {
+        border: none;
+      }
       p {
         margin: auto;
         font-size: 10px;
+        line-height: 1.2;
         padding: 1px;
+      }
+      .small-font {
+        p {
+          font-size: 8px !important;
+        }
       }
     }
     .difficulty-1 {
@@ -295,4 +316,8 @@
       background-color: rgba(240, 30, 30, 0.5);
     }
   }
+}
+
+.hidden {
+  display: none;
 }

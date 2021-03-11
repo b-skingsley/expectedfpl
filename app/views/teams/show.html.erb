@@ -149,17 +149,20 @@
     </div>
     <div id="team-table">
       <div class="row justify-content-between team-table-header align-items-center">
-        <div class="col-4 first-row">
+        <div class="col-3 first-row">
           <p>Name</p>
         </div>
-        <div class="col-2">
+        <div class="col-1">
           <p>Club</p>
         </div>
-        <div class="col-3">
+        <div class="col-1">
           <p>Price</p>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <p>Total Points</p>
+        </div>
+        <div class="col-4">
+          <p>Fixtures</p>
         </div>
       </div>
       <div class="row justify-content-between position-header align-items-center">
@@ -169,10 +172,17 @@
       </div>
       <% @team.footballers.gks.each do |keeper| %>
       <div id="<%= keeper.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
-        <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
-        <div class="col-3" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
+        <div class="col-3 first-row" ><p><%= keeper.web_name %></p></div>
+        <div class="col-1" ><p><%= keeper.club.short_name %></p></div>
+        <div class="col-1" ><p><%= fplprice(keeper.price) %></p></div>
+        <div class="col-2" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
+        <div class="col-4 fixtures" >
+          <% next_five(keeper).each do |fixture| %>
+            <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+              <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+            </div>
+          <% end %>
+        </div>
       </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
@@ -182,10 +192,17 @@
       </div>
       <% @team.footballers.defs.each do |defender| %>
       <div id="<%= defender.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
-        <div class="col-2" ><p><%= defender.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
-        <div class="col-3" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
+        <div class="col-3 first-row" ><p><%= defender.web_name %></p></div>
+        <div class="col-1" ><p><%= defender.club.short_name %></p></div>
+        <div class="col-1" ><p><%= fplprice(defender.price) %></p></div>
+        <div class="col-2" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
+        <div class="col-4 fixtures" >
+          <% next_five(defender).each do |fixture| %>
+            <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+              <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+            </div>
+          <% end %>
+        </div>
       </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
@@ -194,12 +211,19 @@
         </div>
       </div>
       <% @team.footballers.mids.each do |midfielder| %>
-      <div id="<%= midfielder.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
-        <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
-        <div class="col-3" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
-      </div>
+        <div id="<%= midfielder.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
+          <div class="col-3 first-row" ><p><%= midfielder.web_name %></p></div>
+          <div class="col-1" ><p><%= midfielder.club.short_name %></p></div>
+          <div class="col-1" ><p><%= fplprice(midfielder.price) %></p></div>
+          <div class="col-2" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
+          <div class="col-4 fixtures" >
+            <% next_five(midfielder).each do |fixture| %>
+              <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+                <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
         <div class="col-12 text-center">
@@ -208,17 +232,17 @@
       </div>
       <% @team.footballers.fwds.each do |forward| %>
       <div id="<%= forward.id %>" class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
-        <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
-        <div class="col-2" ><p><%= forward.club.short_name %></p></div>
-        <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
-        <div class="col-3" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
-      </div>
-      <% end %>
-    </div>
-    <div class="fixtures">
-      <% next_five(@gk.footballer).each do |fixture| %>
-        <div class="fixture difficulty-<%= fixture[:difficulty] %>">
-          <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+          <div class="col-3 first-row" ><p><%= forward.web_name %></p></div>
+          <div class="col-1" ><p><%= forward.club.short_name %></p></div>
+          <div class="col-1" ><p><%= fplprice(forward.price) %></p></div>
+          <div class="col-2" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
+          <div class="col-4 fixtures" >
+            <% next_five(forward).each do |fixture| %>
+              <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+                <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+              </div>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -240,7 +264,6 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
