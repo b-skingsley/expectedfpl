@@ -1,27 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, rgba(50, 50, 50, 0.9),
-                                        rgba(200, 200, 200, 0.6));
-  background-size: cover;
-  height: 100px;
+  background: transparent;
+  height: 120px;
 }
 
 #nav-logo {
   height: 100px;
+  padding-bottom: 4px;
 }
-
-#deadline {
-  font-family: $digital-font;
-  font-size: 14px;
-  color: #39D000;
-  height: 100px;
-  width: 200px;
-  margin-right: 32px;
-  background-image: asset-url('fourth_official.png');
-  background-size: 100% 100%;
-}
-
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
