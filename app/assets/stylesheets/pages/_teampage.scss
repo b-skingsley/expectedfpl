@@ -78,6 +78,9 @@
       position: relative;
       background-size: cover;
       background-position: center;
+      .gk {
+        border-right: black 1px solid;
+      }
       .bench-player {
         // border: 1px solid black;
         padding-top: 10px;

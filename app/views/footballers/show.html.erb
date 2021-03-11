@@ -82,16 +82,16 @@
       <table class="table table-dark">
         <thead>
           <tr>
-            <th colspan="4">Next 3 fixtures for <%= @footballer.full_name %></th>
+            <th colspan="4">Next 5 fixtures for <%= @footballer.full_name %></th>
           </tr>
         </thead>
         <tbody>
-        <% next_fixtures(@footballer, 3).each do |f| %>
+        <% next_fixtures(@footballer, 5).each do |f| %>
           <tr>
-            <th scope="row"><%= f[:kickoff] %></th>
+            <th scope="row"><%= f[:kickoff].strftime("%a %d/%m - %H:%M") %></th>
             <td><%= image_tag("shirts/#{f[:shirt]}.png", size: "32x22")  %></td>
-            <td><%= f[:opponent] %></td>
-            <td><% f[:home_or_away] %></td>
+            <td><%= f[:opponent_long] %></td>
+            <td><%= f[:home_or_away] %></td>
           </tr>
         <% end %>
           <tfoot>
