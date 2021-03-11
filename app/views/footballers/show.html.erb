@@ -18,19 +18,19 @@
     <div class="w-75" style="text-align: right;">
         <div id="icons-container">
           <% unless attributes_list(@footballer).empty? %>
-            <% attributes_list(@footballer).each do |attribute| %> 
-              <div id="player-show-icons" class="finalize-link disabled p-2" data-toggle="tooltip" data-placement="top" title="<%= attribute.keys %>"><i class="<%= attribute.values.join("") %>"></i></div>
+            <% attributes_list(@footballer).each do |attribute| %>
+              <div id="player-show-icons" class="finalize-link disabled p-2"><i class="<%= attribute.values.join("") %>" data-toggle="tooltip" data-placement="top" title="<%= attribute.keys[0] %>"></i></div>
             <% end %>
           <% end %>
         </div>
-    
+
         <div class="text-light text-right p-3">
             <h5><strong><%= @footballer.full_name %></strong></h5>
         </div>
     </div>
   </div>
-  
-  
+
+
   <div class="news-reel px-3">
     <span id="typed" data-news="<%= @footballer.news.present? ? @footballer.news : 'No player news to show...' %>" data-fixture="<%= next_fixture(@footballer) %>"></span>
   </div>
@@ -40,8 +40,8 @@
         <div class="align-self-end">
           <p>Chance of playing next game:</p>
         </div>
-        <div class="align-self-end px-3 align-text-bottom"> 
-         <p><%= @footballer.chance_of_playing_this_round %> %</p> 
+        <div class="align-self-end px-3 align-text-bottom">
+         <p><%= @footballer.chance_of_playing_this_round %> %</p>
         </div>
       </div>
       <div>
@@ -78,7 +78,7 @@
       <div id="graph-container" class="bg-light p-4">
         <%= line_chart wma_hash(bps_per_game(@footballer.fplid), maws = 3), id: "bps-chart", width: "700px", height: "150px", xtitle: "Game", ytitle: "BPS", precision: 3 %>
       </div>
-    
+
       <table class="table table-dark">
         <thead>
           <tr>
