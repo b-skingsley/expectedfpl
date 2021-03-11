@@ -7,6 +7,8 @@ class TeamsController < ApplicationController
     @firstsub = @bench.find_by(bench_pos: 1)
     @secondsub = @bench.find_by(bench_pos: 2)
     @thirdsub = @bench.find_by(bench_pos: 3)
+    @team_value = helpers.price_sum(@team)
+    @total_budget = @team.budget + @team.team_value
   end
 
   def new
@@ -18,6 +20,7 @@ class TeamsController < ApplicationController
     @team.user = current_user
     @data = helpers.teamscrape(params[:team][:fpl_team_id])
     @team.budget = @data[:budget]
+    @team.team_value = @data[:team_value]
     @team.summary_overall_points = @data[:points]
     @team.summary_overall_rank = @data[:rank]
     @footballers = @data[:players]
@@ -98,7 +101,7 @@ class TeamsController < ApplicationController
     @footballer = Footballer.find(params[:footballer_id])
     render partial: "teams/modal"
   end
-  
+
 
   private
 

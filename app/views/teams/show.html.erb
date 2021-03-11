@@ -2,7 +2,11 @@
   <div class="left-section">
     <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
       <div class="league-link"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
-      <div class="finalize-link"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
+      <% if fplprice(@total_budget - @team_value) < 0 %>
+        <div class="finalize-link disabled" data-toggle="tooltip" data-placement="top" title="Your team is over budget"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
+      <% else %>
+        <div class="finalize-link"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
+      <% end %>
       <div class="main-team">
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
@@ -123,75 +127,94 @@
       </div>
     </div>
   </div>
-
-  <div id="team-table">
-    <h3> <%= @team.name %> </h3>
-    <div class="row justify-content-between team-table-header align-items-center">
-      <div class="col-4 first-row">
-        <p>Name</p>
-      </div>
-      <div class="col-2">
-        <p>Club</p>
-      </div>
-      <div class="col-3">
-        <p>Price</p>
-      </div>
-      <div class="col-3">
-        <p>Total Points</p>
-      </div>
-    </div>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Goalkeepers</p>
+  <div class="right-section">
+    <div class="team-content">
+      <div class="team-title"><h3> <%= @team.name %> </h3></div>
+      <div class="team-info">
+        <div class="budget-info">
+          <p>Total Budget - <%= fplprice(@total_budget) %></p>
+          <p>Team Value - <%= fplprice(@team_value) %></p>
+          <% if fplprice(@total_budget - @team_value) >= 0 %>
+            <p>Money Remaining - <%= fplprice(@total_budget - @team_value) %></p>
+          <% else %>
+            <p class="negative-balance">Money Remaining <%= fplprice(@total_budget - @team_value) %></p>
+          <% end %>
+        </div>
+        <div class="team-stats">
+          <p>Overall Rank - <%= number_with_delimiter(@team.summary_overall_rank, :delimiter => ',') %></p>
+          <p>Overall Points - <%= number_with_delimiter(@team.summary_overall_points, :delimiter => ',') %></p>
+          <p>Transfers made - <%= Transfer.where(team: @team, gw: next_gameweek_no).count %></p>
+        </div>
       </div>
     </div>
-    <% @team.footballers.gks.each do |keeper| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
-      <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
-      <div class="col-3" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
-    </div>
-    <% end %>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Defenders</p>
+    <div id="team-table">
+      <div class="row justify-content-between team-table-header align-items-center">
+        <div class="col-4 first-row">
+          <p>Name</p>
+        </div>
+        <div class="col-2">
+          <p>Club</p>
+        </div>
+        <div class="col-3">
+          <p>Price</p>
+        </div>
+        <div class="col-3">
+          <p>Total Points</p>
+        </div>
       </div>
-    </div>
-    <% @team.footballers.defs.each do |defender| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
-      <div class="col-2" ><p><%= defender.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
-      <div class="col-3" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
-    </div>
-    <% end %>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Midfielders</p>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Goalkeepers</p>
+        </div>
       </div>
-    </div>
-    <% @team.footballers.mids.each do |midfielder| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
-      <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
-      <div class="col-3" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
-    </div>
-    <% end %>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Forwards</p>
+      <% @team.footballers.gks.each do |keeper| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
+        <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
+        <div class="col-3" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
       </div>
+      <% end %>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Defenders</p>
+        </div>
+      </div>
+      <% @team.footballers.defs.each do |defender| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
+        <div class="col-2" ><p><%= defender.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
+        <div class="col-3" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
+      </div>
+      <% end %>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Midfielders</p>
+        </div>
+      </div>
+      <% @team.footballers.mids.each do |midfielder| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
+        <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
+        <div class="col-3" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
+      </div>
+      <% end %>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Forwards</p>
+        </div>
+      </div>
+      <% @team.footballers.fwds.each do |forward| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
+        <div class="col-2" ><p><%= forward.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
+        <div class="col-3" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
+      </div>
+      <% end %>
     </div>
-    <% @team.footballers.fwds.each do |forward| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
-      <div class="col-2" ><p><%= forward.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
-      <div class="col-3" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
-    </div>
-    <% end %>
   </div>
 </div>
 
