@@ -145,6 +145,22 @@ module ApplicationHelper
     return fixtures_details
   end
 
+  def next_five(footballer)
+    club = footballer.club
+    next_gw = next_gameweek_no
+    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 5))).order(:kickoff)
+    fixtures_details = []
+    fixtures.each do |fixture|
+      if fixture.home_team == club
+        fixtures_details << {opponent: fixture.away_team.short_name, home_or_away: "(H)", difficulty: fixture.home_team_difficulty}
+      end
+      if fixture.away_team == club
+        fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty}
+      end
+    end
+    return fixtures_details
+  end
+
   def attributes_list(footballer)
     arr = []
     if footballer.goals > 5

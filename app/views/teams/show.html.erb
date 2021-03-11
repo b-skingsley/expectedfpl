@@ -215,6 +215,13 @@
       </div>
       <% end %>
     </div>
+    <div class="fixtures">
+      <% next_five(@gk.footballer).each do |fixture| %>
+        <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+          <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

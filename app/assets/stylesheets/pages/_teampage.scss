@@ -21,7 +21,7 @@
   }
 
   .left-section {
-    flex: 0 0 65%;
+    flex: 0 0 60%;
     padding-right: 10px;
     border-right: 1px solid black;
     overflow: auto;
@@ -263,6 +263,34 @@
         flex-direction: column;
         padding: 3px;
       }
+    }
+  }
+  .fixtures {
+    display: flex;
+    justify-content: space-around;
+    .fixture {
+      border: 0.5px solid grey;
+      text-align: center;
+      p {
+        margin: auto;
+        font-size: 10px;
+        padding: 1px;
+      }
+    }
+    .difficulty-1 {
+      background-color: rgba(42, 131, 0, 0.5);
+    }
+    .difficulty-2 {
+      background-color: rgba(42, 183, 0, 0.5);
+    }
+    .difficulty-3 {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    .difficulty-4 {
+      background-color: rgba(255, 55, 90, 0.5);
+    }
+    .difficulty-5 {
+      background-color: rgba(240, 30, 30, 0.5);
     }
   }
 }
