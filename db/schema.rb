@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 2021_03_11_005353) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "fplid"
+    t.integer "number_of_games_at_home"
+    t.integer "season_total_goals_scored_at_home"
+    t.integer "season_total_goals_conceded_at_home"
+    t.integer "number_of_games_away"
+    t.integer "season_total_goals_scored_away"
+    t.integer "season_total_goals_conceded_away"
   end
 
   create_table "fixtures", force: :cascade do |t|
@@ -33,6 +39,10 @@ ActiveRecord::Schema.define(version: 2021_03_11_005353) do
     t.bigint "away_team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "ht_possible_goals"
+    t.float "at_possible_goals"
+    t.float "ht_clean_sheet_probability"
+    t.float "at_clean_sheet_probability"
     t.integer "home_team_difficulty"
     t.integer "away_team_difficulty"
     t.index ["away_team_id"], name: "index_fixtures_on_away_team_id"
