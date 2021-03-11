@@ -115,17 +115,17 @@ module ApplicationHelper
   def next_fixture(footballer)
     club = footballer.club
     next_gw = next_gameweek_no
-    fixtures = Fixture.where(gameweek: next_gw)
-    next_fixtures = ""
+    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 1))).order(:kickoff)
+    next_fixtures = []
     fixtures.each do |fixture|
       if fixture.home_team == club
-        next_fixtures << "#{fixture.away_team.short_name} (H) "
+        next_fixtures << "#{fixture.away_team.short_name} (H)"
       end
       if fixture.away_team == club
-        next_fixtures << "#{fixture.home_team.short_name} (A) "
+        next_fixtures << "#{fixture.home_team.short_name} (A)"
       end
     end
-    return next_fixtures
+    return next_fixtures.first
   end
 
   def next_fixtures(footballer, num)
