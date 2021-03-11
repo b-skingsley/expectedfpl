@@ -13,7 +13,11 @@ const teamViewInfo = () => {
         correspondTablePlayer.innerHTML = standardInner;
         correspondTablePlayer.classList.add('row-hover-highlight');
         footballers.forEach((footballer) => {
-        footballer.classList.remove('row-contracted');
+          footballer.classList.remove('row-contracted');
+        });
+        const fixtures = document.querySelectorAll('.fixture')
+        fixtures.forEach((fixture) => {
+          fixture.classList.remove('small-font');
         });
       // Branch if the user clicks on a row not expanded, but another row IS expanded
       } else if (table.querySelector('.row-expanded') && correspondTablePlayer.classList.contains('row-contracted')) {
@@ -41,21 +45,25 @@ const teamViewInfo = () => {
           }
           correspondTablePlayer.classList.remove('row-hover-highlight');
             // Branch if user clicks on a row and no rows are already expanded
-          } else {
-              footballers.forEach((footballer) => {
-                footballer.classList.add('row-contracted');
-              });
-              correspondTablePlayer.classList.remove('row-contracted');
-              standardInner = correspondTablePlayer.innerHTML;
-              correspondTablePlayer.classList.add('row-expanded');
-              correspondTablePlayer.innerHTML = expandedInner;
-              correspondTablePlayer.querySelector('.expanded-row-header').innerHTML = `<h4>${correspondTablePlayer.dataset.fullname}</h4`;
-              if (correspondTablePlayer.news) {
-                correspondTablePlayer.querySelector('.expanded-row-body').innerHTML = `<p class="news">${correspondTablePlayer.dataset.news}</p>`;
-              }
-              correspondTablePlayer.classList.remove('row-hover-highlight');
-          }
-      });
+      } else {
+        footballers.forEach((footballer) => {
+          footballer.classList.add('row-contracted');
+        });
+        const fixtures = document.querySelectorAll('.fixture')
+        fixtures.forEach((fixture) => {
+          fixture.classList.add('small-font');
+        });
+        correspondTablePlayer.classList.remove('row-contracted');
+        standardInner = correspondTablePlayer.innerHTML;
+        correspondTablePlayer.classList.add('row-expanded');
+        correspondTablePlayer.innerHTML = expandedInner;
+        correspondTablePlayer.querySelector('.expanded-row-header').innerHTML = `<h4>${correspondTablePlayer.dataset.fullname}</h4`;
+        if (correspondTablePlayer.news) {
+          correspondTablePlayer.querySelector('.expanded-row-body').innerHTML = `<p class="news">${correspondTablePlayer.dataset.news}</p>`;
+        }
+        correspondTablePlayer.classList.remove('row-hover-highlight');
+      }
+    });
   });
 
   footballers.forEach((footballer) => {
@@ -147,8 +155,8 @@ const allFootballersInfo = () => {
         footballer.querySelector('.player-info').classList.toggle('hidden');
         footballer.querySelector('.player-info').classList.add('footballer-info');
         footballer.querySelector('.player-info').classList.remove('player-info');
-  
-        
+
+
         footballer.querySelector('.see-footballer').classList.toggle('hidden');
         if (document.getElementById('transfer-out')) {
           footballer.classList.remove('transfer-selected');
@@ -166,7 +174,7 @@ const allFootballersInfo = () => {
           footballerInfo.classList.add('player-info');
           footballerInfo.classList.remove('hidden');
           footballerButton.addEventListener('click', (event) => {
-            event.stopPropagation(); 
+            event.stopPropagation();
           });
 
       }
