@@ -256,12 +256,14 @@
     margin-bottom: 10px;
     border-radius: 5px;
     border: 0.5px solid grey;
-    h3 {
-      text-align: center;
-      background-color: rgba(133, 167, 214, 0.7);
-      border-bottom: 0.5px solid grey;
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
+    .team-title {
+      h3 {
+        text-align: center;
+        background-color: rgba(133, 167, 214, 0.7);
+        border-bottom: 0.5px solid grey;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+      }
     }
     .team-info {
       background-color: rgba(133, 167, 214, 0.4);
@@ -328,24 +330,104 @@
         }
       }
     }
-    .difficulty-1 {
-      background-color: rgba(42, 131, 0, 0.5);
+  }
+
+  .expanded-content {
+    padding: 8px;
+    height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(240, 240, 240, 0.9);
+
+    .expanded-name {
+      width: 100%;
     }
-    .difficulty-2 {
-      background-color: rgba(42, 183, 0, 0.5);
+    .news-div {
+      height: 18px;
     }
-    .difficulty-3 {
-      background-color: rgba(255, 255, 255, 0.5);
+    .expanded-more-stats {
+      p {
+        font-size: 13px;
+      }
     }
-    .difficulty-4 {
-      background-color: rgba(255, 55, 90, 0.5);
+    .expanded-stats {
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      .expanded-left {
+        flex: 0 0 40%;
+        .call-to-action {
+          width: 100%;
+          padding: 2px 10px;
+          margin-top: 4px;
+        }
+      }
+      .expanded-fixtures {
+        flex-grow: 1;
+      }
     }
-    .difficulty-5 {
-      background-color: rgba(240, 30, 30, 0.5);
+    h4 {
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+  }
+  .difficulty-1 {
+    background-color: rgba(42, 131, 0, 0.5);
+  }
+  .difficulty-2 {
+    background-color: rgba(42, 183, 0, 0.5);
+  }
+  .difficulty-3 {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .difficulty-4 {
+    background-color: rgba(255, 55, 90, 0.5);
+  }
+  .difficulty-5 {
+    background-color: rgba(240, 30, 30, 0.5);
+  }
+}
+
+.expanded-fixtures {
+  display: flex;
+  justify-content: center;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+  .fixture-stats {
+    flex-grow: 1;
+    border-right: 2px solid grey;
+  }
+  .cs-percent {
+    height: 25%;
+    font-weight: bold;
+    font-size: 11px;
+  }
+  p {
+      margin: auto;
+      font-size: 12px;
+      line-height: 1.2;
+      padding: 1px;
+      height: 25%;
+      text-align: center;
+    }
+  .expanded-fixture {
+    border-right: 0.5px solid grey;
+    text-align: center;
+    height: 100%;
+    width: 16%;
+    &:last-of-type {
+      border: none;
     }
   }
 }
 
 .hidden {
   display: none;
+}
+
+.tooltip-inner {
+    white-space: pre-wrap;
 }
