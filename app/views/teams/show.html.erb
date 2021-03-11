@@ -16,9 +16,9 @@
               <% else %>
                 <i class="fas fa-info info-toggle player-info" data-playerid="<%= gks(@starters)[0].id %>"></i>
               <% end %>
-              <i class="fas fa-exchange-alt switch gk-s"></i>
+              <i class="fas fa-exchange-alt switch gk-s" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
               <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0])) do %>
-                <i class="fas fa-user-minus"></i>
+                <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
               <% end %>
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
@@ -35,9 +35,9 @@
                 <% else %>
                   <i class="fas fa-info info-toggle player-info" data-playerid="<%= defender.id %>"></i>
                 <% end %>
-                <i class="fas fa-exchange-alt switch s-def"></i>
+                <i class="fas fa-exchange-alt switch s-def" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender)) do %>
-                  <i class="fas fa-user-minus"></i>
+                  <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
@@ -55,9 +55,9 @@
                 <% else %>
                   <i class="fas fa-info info-toggle player-info" data-playerid="<%= mid.id %>"></i>
                 <% end %>
-                <i class="fas fa-exchange-alt switch s-mid"></i>
+                <i class="fas fa-exchange-alt switch s-mid" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid)) do %>
-                  <i class="fas fa-user-minus"></i>
+                  <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
@@ -75,9 +75,9 @@
                 <% else %>
                   <i class="fas fa-info info-toggle player-info" data-playerid="<%= fwd.id %>"></i>
                 <% end %>
-                <i class="fas fa-exchange-alt switch s-fwd"></i>
+                <i class="fas fa-exchange-alt switch s-fwd" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd)) do %>
-                  <i class="fas fa-user-minus"></i>
+                  <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
@@ -95,9 +95,9 @@
             <% else %>
               <i class="fas fa-info info-toggle player-info" data-playerid="<%= @gk.footballer.id %>"></i>
             <% end %>
-            <i class="fas fa-exchange-alt switch bench-gk"></i>
+            <i class="fas fa-exchange-alt switch bench-gk" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
             <%= link_to edit_player_path(@gk) do %>
-              <i class="fas fa-user-minus"></i>
+              <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @gk.footballer.web_name %></div>
@@ -112,10 +112,10 @@
             <% else %>
               <i class="fas fa-info info-toggle player-info" data-playerid="<%= @firstsub.footballer.id %>"></i>
             <% end %>
-            <i class="fas fa-exchange-alt switch bench-s"></i>
+            <i class="fas fa-exchange-alt switch bench-s" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
             <i class="fas fa-info player-info" data-playerid="<%= @firstsub.footballer.id %>"></i>
             <%= link_to edit_player_path(@firstsub) do %>
-              <i class="fas fa-user-minus"></i>
+              <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @firstsub.footballer.web_name %></div>
@@ -130,9 +130,9 @@
             <% else %>
               <i class="fas fa-info info-toggle player-info" data-playerid="<%= @secondsub.footballer.id %>"></i>
             <% end %>
-            <i class="fas fa-exchange-alt switch bench-s"></i>
+            <i class="fas fa-exchange-alt switch bench-s" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
              <%= link_to edit_player_path(@secondsub) do %>
-               <i class="fas fa-user-minus"></i>
+               <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
              <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @secondsub.footballer.web_name %></div>
@@ -147,9 +147,9 @@
             <% else %>
               <i class="fas fa-info info-toggle player-info" data-playerid="<%= @thirdsub.footballer.id %>"></i>
             <% end %>
-            <i class="fas fa-exchange-alt switch bench-s"></i>
+            <i class="fas fa-exchange-alt switch bench-s" data-toggle="tooltip" data-placement="top" title="Sub/Switch player in team"></i>
             <%= link_to edit_player_path(@thirdsub) do %>
-              <i class="fas fa-user-minus"></i>
+              <i class="fas fa-user-minus" data-toggle="tooltip" data-placement="top" title="Transfer player out"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @thirdsub.footballer.web_name %></div>
@@ -194,7 +194,7 @@
         <div class="col-2">
           <p>Total Points</p>
         </div>
-        <div class="col-4">
+        <div class="col-4" data-toggle="tooltip" data-placement="top" title="Fixtures are color coded by difficulty - Dark Green easiest opposition to Dark red hardest">
           <p>Fixtures</p>
         </div>
       </div>
