@@ -1,6 +1,13 @@
 class FootballersController < ApplicationController
   def index
     @footballers = Footballer.all
+    players_by_price = @footballers.reorder('price DESC')
+
+    # price (float) instance variables for use in the view
+
+    @max_p = (players_by_price.first.price) / 10.0
+    @min_p = (players_by_price.last.price) / 10.0
+
     @clubs = Club.all
 
     if params[:query].present?
@@ -26,12 +33,6 @@ class FootballersController < ApplicationController
       end
     end
 
-    # price (float) instance variables for use in the view
-
-    players_by_price = @footballers.reorder('price DESC')
-
-    @max_p = (players_by_price.first.price) / 10.0
-    @min_p = (players_by_price.last.price) / 10.0
   end
 
   def show

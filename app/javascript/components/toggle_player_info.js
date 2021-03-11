@@ -13,7 +13,11 @@ const teamViewInfo = () => {
         correspondTablePlayer.innerHTML = standardInner;
         correspondTablePlayer.classList.add('row-hover-highlight');
         footballers.forEach((footballer) => {
-        footballer.classList.remove('row-contracted');
+          footballer.classList.remove('row-contracted');
+        });
+        const fixtures = document.querySelectorAll('.fixture')
+        fixtures.forEach((fixture) => {
+          fixture.classList.remove('small-font');
         });
       // Branch if the user clicks on a row not expanded, but another row IS expanded
       } else if (table.querySelector('.row-expanded') && correspondTablePlayer.classList.contains('row-contracted')) {
@@ -47,6 +51,10 @@ const teamViewInfo = () => {
           } else {
               footballers.forEach((footballer) => {
                 footballer.classList.add('row-contracted');
+              });
+              const fixtures = document.querySelectorAll('.fixture');
+              fixtures.forEach((fixture) => {
+                fixture.classList.add('small-font');
               });
               correspondTablePlayer.classList.remove('row-contracted');
               standardInner = correspondTablePlayer.innerHTML;

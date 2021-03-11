@@ -34,11 +34,14 @@
       background-size: cover;
     }
     .active {
-      box-shadow: 5px 8px 24px rgba(20, 20, 20, 0.6);
+      border: 2px solid rgba(64, 224, 140, 0.3);
+      box-shadow: 3px 3px 32px rgba(64, 224, 140, 0.9);
+      background-color: rgba(230, 230, 230, 0.6);
     }
     .active2 {
-      border: 5px solid rgba(255, 172, 75, 0.9);
-      box-shadow: 5px 8px 24px rgba(20, 20, 20, 0.6);
+      border: 2px solid rgba(255, 172, 75, 0.3);
+      box-shadow: 3px 3px 32px rgba(255, 172, 75, 0.9);
+      background-color: rgba(230, 230, 230, 0.6);
     }
 
   }
@@ -101,8 +104,8 @@
   .player-content {
     border-radius: 4px;
     display: flex;
-    background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 3px, 3px, 3px, rgba(30, 30, 30, 0.2);
+    background-color: rgba(200, 200, 200, 0.6);
+    box-shadow: 3px, 3px, 5px, rgba(30, 30, 30, 0.5);
     flex-direction: column;
     justify-content: space-between;
     height: 100px;
@@ -118,11 +121,6 @@
       padding-top: 5%;
       width: 65%;
       text-align: center;
-    }
-    .gloves {
-      position: absolute;
-      left: 59px;
-      top: 35px;
     }
 
     .player-name {
@@ -142,8 +140,8 @@
 
   .switch {
     position: absolute;
-    top: 2px;
-    left: 2px;
+    top: 1px;
+    left: 1px;
     background-color: $off-white;
     border: 0.3px solid grey;
     border-radius: 4px;
@@ -155,8 +153,8 @@
   }
   .player-info {
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: 28px;
+    right: 35px;
     background-color: $off-white;
     border: 0.3px solid grey;
     border-radius: 4px;
@@ -170,8 +168,8 @@
 
   .fa-user-minus {
     position: absolute;
-    top: 24px;
-    left: 2px;
+    top: 1px;
+    right: 1px;
     background-color: $off-white;
     border: 0.3px solid grey;
     border-radius: 4px;
