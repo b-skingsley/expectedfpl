@@ -42,9 +42,9 @@ class PlayersController < ApplicationController
     @transfer = Transfer.new(team: @team, player_in: Footballer.find(params[:in]), player_out: @player.footballer, gw: @gw)
     @transfer.save
     if @player.update(footballer: Footballer.find(params[:in]))
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "Transfer Completed"
     else
-      render :edit
+      render :edit, alert: "Could not complete transfer. Please try again."
     end
   end
 end

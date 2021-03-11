@@ -183,10 +183,13 @@
 
 #transfer-out {
   background: rgba(204, 77, 45, 0.4);
+  border: 2px solid rgba(204, 77, 45, 0.8);
+  border-radius: 6px;
 
   .fa-user-minus {
     color: rgba(204, 77, 45, 0.8);
     text-shadow: 0 0 8px rgba(30, 30, 30, 0.5);
+    font-size:20px;
   }
 
   &:hover {
@@ -195,8 +198,9 @@
 }
 
 .fa-user-plus {
-  color: rgb(64, 224, 140);
-  text-shadow: 0 0 8px rgba(30, 30, 30, 0.8);
+  color: #049F76;
+  text-shadow: 0 0 5px rgba(30, 30, 30, 0.3);
+  font-size:20px;
 }
 
 

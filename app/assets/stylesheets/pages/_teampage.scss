@@ -34,14 +34,13 @@
       background-size: cover;
     }
     .active {
-      border: 2px solid rgba(64, 224, 140, 0.3);
       box-shadow: 3px 3px 32px rgba(64, 224, 140, 0.9);
-      background-color: rgba(230, 230, 230, 0.6);
+      background-color: rgba(230, 230, 230, 0.7);
+      font-weight: bolder;
     }
     .active2 {
-      border: 2px solid rgba(255, 172, 75, 0.3);
       box-shadow: 3px 3px 32px rgba(255, 172, 75, 0.9);
-      background-color: rgba(230, 230, 230, 0.6);
+      background-color: rgba(230, 230, 230, 0.7);
     }
 
   }
@@ -104,7 +103,7 @@
   .player-content {
     border-radius: 4px;
     display: flex;
-    background-color: rgba(200, 200, 200, 0.8);
+    background-color: rgba(230, 230, 230, 0.6);
     box-shadow: 3px, 3px, 5px, rgba(30, 30, 30, 0.5);
     flex-direction: column;
     justify-content: space-between;
