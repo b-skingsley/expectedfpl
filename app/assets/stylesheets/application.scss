@@ -20,19 +20,24 @@
 
 
 // Background
-div#pitch-bg {
-  /* Set rules to fill background */
-  min-width: 1024px;
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-  /* Set up positioning */
+body {
   background-size: cover;
   background-position: center;
 }
 
+// div#pitch-bg {
+//   /* Set rules to fill background */
+//   min-width: 1024px;
+//   /* Set up proportionate scaling */
+//   width: 100%;
+//   height: auto;
+//   /* Set up positioning */
+//   background-size: cover;
+//   background-position: center;
+// }
+
 .body-content {
-  min-height: calc(100vh - 72px);
+  min-height: calc(100vh - 120px);
 }
 
 .background-transparent {

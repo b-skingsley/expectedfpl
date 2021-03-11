@@ -8,7 +8,7 @@ const convertTime = (ms) => {
   d = Math.floor(h / 24);
   h = h % 24;
 
-  if (d === 0 && hrs === 0) {
+  if (d === 0 && h === 0) {
     return `${m} mins`;
   } else if (d === 0) {
     return `${h} hrs, ${m} mins`;
