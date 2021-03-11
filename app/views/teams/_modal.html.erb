@@ -69,7 +69,7 @@
     </div>
     <div class="flex-grow-1 pt-4 justify-content-center align-items-end">
       <div id="graph-container" class="bg-light p-4">
-        <%= line_chart [[0,0], [0,0], [0,0] [0,0]] %>
+        
       </div>
       <table class="table table-dark" style="width: 98%">
         <thead>
@@ -88,7 +88,7 @@
         <% end %>
           <tfoot>
             <tr>
-            <td style="text-align:right" colspan="4">View player's full fixture list<i class="fas fa-arrow-right pl-3"></i></td>
+            <td style="text-align:right" colspan="4"><%= link_to "View player's full fixture list", fixtures_path(status: "future", search: { query: params[:id] }) %><i class="fas fa-arrow-right pl-3"></i></td>
           </tfoot>
         </tbody>
       </table>

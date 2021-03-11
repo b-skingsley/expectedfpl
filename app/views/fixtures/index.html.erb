@@ -9,9 +9,9 @@
 
   
   <div id="tabs" class="d-flex my-0">
-    <%= link_to "Results", fixtures_path(status: "past", search: { query: params.dig(:search, :query) }), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'past'}" %>
-    <%= link_to "Current Gameweek", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'current'}"%>
-    <%= link_to "Future Fixtures", fixtures_path(status: "future", search: { query: params.dig(:search, :query) }), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'future'}"%>
+    <%= link_to "Results", fixtures_path(status: "past", query: params.dig(:query) ), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'past'}" %>
+    <%= link_to "Current Gameweek", fixtures_path(status: "current", query: params.dig(:query) ), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'current'}"%>
+    <%= link_to "Future Fixtures", fixtures_path(status: "future", query: params.dig(:query) ), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'future'}"%>
   </div>
  
   <div id="scrollable" class="container stats mt-0">
