@@ -55,6 +55,12 @@ document.addEventListener('turbolinks:load', () => {
     typedNews();
   }
 
+  if ($('[data-toggle="tooltip"]')) {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  }
+
   switchFunctionality();
   algoliaFunctionality();
 });

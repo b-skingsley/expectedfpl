@@ -167,4 +167,12 @@ module ApplicationHelper
     end
     arr
   end
+
+  def price_sum(team)
+    value = 0
+    team.players.each do |player|
+      value += player.footballer.price
+    end
+    return value
+  end
 end

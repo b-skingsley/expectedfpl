@@ -28,8 +28,9 @@
     .team-view {
       margin-top: 10px;
       margin-bottom: 10px;
+      padding-top: 20px;
       // border: 1px solid  black;
-      min-height: 600px;
+      min-height: 680px;
       background-size: cover;
     }
     .active {
@@ -38,6 +39,13 @@
     .active2 {
       background-color: rgba(255, 172, 75, 0.7);
     }
+  }
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 10px;
   }
 
   .team-view {
@@ -202,5 +210,59 @@
   #call-to-action:hover {
     text-decoration: none;
     background-color: #366396;
+  }
+  .disabled a {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+  }
+
+  .team-content {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0.5px solid grey;
+    h3 {
+      text-align: center;
+      background-color: rgba(133, 167, 214, 0.7);
+      border-bottom: 0.5px solid grey;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .team-info {
+      background-color: rgba(133, 167, 214, 0.4);
+      flex-grow: 1;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      display: flex;
+      p {
+        font-size: 12px;
+        margin: 0;
+        font-weight: 700;
+      }
+      .budget-info {
+        flex: 0 0 50%;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 3px;
+        .negative-balance {
+          color: red;
+        }
+      }
+      .team-stats{
+        text-align: right;
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 3px;
+      }
+    }
   }
 }
