@@ -34,7 +34,7 @@
       background-size: cover;
     }
     .active {
-      box-shadow: 3px 3px 32px rgba(64, 224, 140, 0.9);
+      box-shadow: 3px 3px 32px rgba(0, 255, 89, 0.9);
       background-color: rgba(230, 230, 230, 0.7);
       font-weight: bolder;
     }
@@ -185,9 +185,10 @@
     top: 28px;
     right: 35px;
     background-color: #F76200;
-    border: 0.3px solid red;
+    border: 0.3px solid yellow;
     border-radius: 4px;
-    font-size: 15px;
+    padding-top: 2px;
+    font-size: 14px;
     cursor: pointer;
     box-shadow: 0 0 16px rgba(255, 85, 0, 0.6);
     width: 20px;

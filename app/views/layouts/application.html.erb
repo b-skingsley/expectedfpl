@@ -24,9 +24,13 @@
 
   <body class="<%= controller_name %> <%= action_name %>" style="background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.5)), url('<%= image_path "pitch_background_2.jpg" %>')">
     <%= render 'shared/navbar' %>
+    <% unless action_name == 'home' || action_name == 'new' || action_name == 'about' %>
+      <%= render 'shared/countdown' %>
+    <% end %>
     <%= render 'shared/flashes' %>
     <div id="pitch-bg" class="body-content">
       <%= yield %>
     </div>
+    <%= render 'shared/footer' %>
   </body>
 </html>

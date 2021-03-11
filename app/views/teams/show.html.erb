@@ -1,9 +1,4 @@
 <div class="container" id="overlay-container">
-  <% gameweek_info = next_gameweek %>
-  <div id="deadline">
-    <div id="deadline-countdown" class="text-center pt-3 pr-2" data-gameweek="<%= gameweek_info[0] %>" data-gameweek2="<%= gameweek_info[1] %>"></div>
-    <div class="text-center pt-2 pr-2">UNTIL NEXT DEADLINE</div>
-  </div>
   <div class="left-section">
     <div class="team-view" style="background-image: linear-gradient(rgba(90,195,100,0.5),rgba(90,195,100,0.5)), url('<%= image_path "team-background.jpg" %>')">
       <div class="league-link hidden"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
