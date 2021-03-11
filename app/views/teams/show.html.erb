@@ -11,8 +11,12 @@
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
             <div class="player-content">
+              <% if gks(@starters)[0].news.length > 0 %>
+                <i class="fas fa-exclamation info-toggle" data-playerid="<%= gks(@starters)[0].id %>"></i>
+              <% else %>
+                <i class="fas fa-info info-toggle player-info" data-playerid="<%= gks(@starters)[0].id %>"></i>
+              <% end %>
               <i class="fas fa-exchange-alt switch gk-s"></i>
-              <i class="fas fa-info player-info" data-playerid="<%= gks(@starters)[0].id %>"></i>
               <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0])) do %>
                 <i class="fas fa-user-minus"></i>
               <% end %>
@@ -26,8 +30,12 @@
           <% defs(@starters).each do |defender| %>
             <div class="starting-player def" id="player<%= defender.fplid %>" data-id="<%= defender.id %>">
               <div class="player-content">
+                <% if defender.news.length > 0 %>
+                  <i class="fas fa-exclamation info-toggle" data-playerid="<%= defender.id %>"></i>
+                <% else %>
+                  <i class="fas fa-info info-toggle player-info" data-playerid="<%= defender.id %>"></i>
+                <% end %>
                 <i class="fas fa-exchange-alt switch s-def"></i>
-                <i class="fas fa-info player-info" data-playerid="<%= defender.id %>"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender)) do %>
                   <i class="fas fa-user-minus"></i>
                 <% end %>
@@ -42,8 +50,12 @@
           <% mids(@starters).each do |mid| %>
             <div class="starting-player mid" id="player<%= mid.fplid %>" data-id="<%= mid.id %>">
               <div class="player-content">
+                <% if mid.news.length > 0 %>
+                  <i class="fas fa-exclamation info-toggle" data-playerid="<%= mid.id %>"></i>
+                <% else %>
+                  <i class="fas fa-info info-toggle player-info" data-playerid="<%= mid.id %>"></i>
+                <% end %>
                 <i class="fas fa-exchange-alt switch s-mid"></i>
-                <i class="fas fa-info player-info" data-playerid="<%= mid.id %>"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid)) do %>
                   <i class="fas fa-user-minus"></i>
                 <% end %>
@@ -58,8 +70,12 @@
           <% fwds(@starters).each do |fwd| %>
             <div class="starting-player fwd" id="player<%= fwd.fplid %>" data-id="<%= fwd.id %>">
               <div class="player-content">
+                <% if fwd.news.length > 0 %>
+                  <i class="fas fa-exclamation info-toggle" data-playerid="<%= fwd.id %>"></i>
+                <% else %>
+                  <i class="fas fa-info info-toggle player-info" data-playerid="<%= fwd.id %>"></i>
+                <% end %>
                 <i class="fas fa-exchange-alt switch s-fwd"></i>
-                <i class="fas fa-info player-info" data-playerid="<%= fwd.id %>"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd)) do %>
                   <i class="fas fa-user-minus"></i>
                 <% end %>
@@ -74,8 +90,12 @@
       <div class="bench" style="background-image: linear-gradient(rgba(150,150,150,0.5),rgba(150,150,150,0.5)), url('<%= image_path "bench2.png" %>')">
         <div class="bench-player gk" id="player<%= @gk.footballer.fplid %>" data-id="<%= @gk.footballer.id %>,<%= @gk.bench_pos %>">
           <div class="player-content">
+            <% if @gk.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @gk.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @gk.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-gk"></i>
-            <i class="fas fa-info player-info" data-playerid="<%= @gk.footballer.id %>"></i>
             <%= link_to edit_player_path(@gk) do %>
               <i class="fas fa-user-minus"></i>
             <% end %>
@@ -87,6 +107,11 @@
         </div>
         <div class="bench-player <%= @firstsub.footballer.position.downcase %>" id="player<%= @firstsub.footballer.fplid %>" data-id="<%= @firstsub.footballer.id %>,<%= @firstsub.bench_pos %>">
           <div class="player-content">
+            <% if @firstsub.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @firstsub.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @firstsub.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info" data-playerid="<%= @firstsub.footballer.id %>"></i>
             <%= link_to edit_player_path(@firstsub) do %>
@@ -100,8 +125,12 @@
         </div>
         <div class="bench-player <%= @secondsub.footballer.position.downcase %>" id="player<%= @secondsub.footballer.fplid %>" data-id="<%=@secondsub.footballer.id %>,<%= @secondsub.bench_pos %>">
           <div class="player-content">
+            <% if @secondsub.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @secondsub.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @secondsub.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-s"></i>
-            <i class="fas fa-info player-info" data-playerid="<%= @secondsub.footballer.id %>"></i>
              <%= link_to edit_player_path(@secondsub) do %>
                <i class="fas fa-user-minus"></i>
              <% end %>
@@ -113,8 +142,12 @@
         </div>
         <div class="bench-player <%= @thirdsub.footballer.position.downcase %>" id="player<%= @thirdsub.footballer.fplid %>" data-id="<%= @thirdsub.footballer.id %>,<%= @thirdsub.bench_pos %>">
           <div class="player-content">
+            <% if @thirdsub.footballer.news.length > 0 %>
+              <i class="fas fa-exclamation info-toggle" data-playerid="<%= @thirdsub.footballer.id %>"></i>
+            <% else %>
+              <i class="fas fa-info info-toggle player-info" data-playerid="<%= @thirdsub.footballer.id %>"></i>
+            <% end %>
             <i class="fas fa-exchange-alt switch bench-s"></i>
-            <i class="fas fa-info player-info" data-playerid="<%= @thirdsub.footballer.id %>"></i>
             <%= link_to edit_player_path(@thirdsub) do %>
               <i class="fas fa-user-minus"></i>
             <% end %>
@@ -183,8 +216,9 @@
             </div>
           <% end %>
         </div>
-        <div class="hidden expanded-content">
-          <h4><%= keeper.web_name %></h4>
+        <div class="hidden expanded-content text-center">
+          <h4><%= "#{keeper.first_name} #{keeper.last_name}" %></h4>
+          <p class="news"><%= keeper.news if keeper.news.length > 0 %></p>
           <button type="button" id="footballer-details-<%= keeper.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
         </div>
       </div>
@@ -207,8 +241,9 @@
             </div>
           <% end %>
         </div>
-        <div class="hidden expanded-content">
-          <h4><%= defender.web_name %></h4>
+        <div class="hidden expanded-content text-center">
+          <h4><%= "#{defender.first_name} #{defender.last_name}" %></h4>
+          <p class="news"><%= defender.news if defender.news.length > 0 %></p>
           <button type="button" id="footballer-details-<%= defender.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
         </div>
       </div>
@@ -231,8 +266,9 @@
               </div>
             <% end %>
           </div>
-          <div class="hidden expanded-content">
-            <h4><%= midfielder.web_name %></h4>
+          <div class="hidden expanded-content text-center">
+            <h4><%= "#{midfielder.first_name} #{midfielder.last_name}" %></h4>
+            <p class="news"><%= midfielder.news if midfielder.news.length > 0 %></p>
             <button type="button" id="footballer-details-<%= midfielder.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
           </div>
         </div>
@@ -255,8 +291,9 @@
               </div>
             <% end %>
           </div>
-          <div class="hidden expanded-content">
-            <h4><%= forward.web_name %></h4>
+          <div class="hidden expanded-content text-center">
+            <h4><%= "#{forward.first_name} #{forward.last_name}" %></h4>
+            <p class="news"><%= forward.news if forward.news.length > 0 %></p>
             <button type="button" id="footballer-details-<%= forward.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
           </div>
         </div>

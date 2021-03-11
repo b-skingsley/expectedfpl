@@ -1,6 +1,6 @@
 const teamViewInfo = () => {
   const footballers = document.querySelectorAll('.footballer');
-  const infoButtons = document.querySelectorAll('.fa-info');
+  const infoButtons = document.querySelectorAll('.info-toggle');
   const table = document.getElementById('team-table');
   let standardInner = '';
   const expandedInner = '<div class="expanded-row-header"></div><div class="expanded-row-body"></div>';
