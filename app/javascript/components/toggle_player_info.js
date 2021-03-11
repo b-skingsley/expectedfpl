@@ -27,10 +27,13 @@ const teamViewInfo = () => {
           table.querySelector('.row-expanded').classList.remove('row-expanded');
           standardInner = correspondTablePlayer.innerHTML;
           correspondTablePlayer.classList.add('row-expanded');
-          correspondTablePlayer.innerHTML = expandedInner;
-          correspondTablePlayer.querySelector('.expanded-row-header').innerHTML = `<h4>${correspondTablePlayer.dataset.fullname}</h4>`;
-          correspondTablePlayer.querySelector('.expanded-row-body').innerHTML = '<button type="button" id="footballer-details" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">See player</button>'
-          const footballerButton = document.getElementById('footballer-details');
+          const children = correspondTablePlayer.childNodes
+          children.forEach((child) => {
+            if (child instanceof HTMLDivElement) {
+              child.classList.toggle('hidden')
+            }
+          })
+          const footballerButton = document.getElementById(`footballer-details-${correspondTablePlayer.dataset.id}`);
           const footballerId = correspondTablePlayer.dataset.id;
           footballerButton.addEventListener('click', (buttonEvent) => {
             const modalArea = document.querySelector('.modal-body');
@@ -45,25 +48,39 @@ const teamViewInfo = () => {
           }
           correspondTablePlayer.classList.remove('row-hover-highlight');
             // Branch if user clicks on a row and no rows are already expanded
-      } else {
-        footballers.forEach((footballer) => {
-          footballer.classList.add('row-contracted');
-        });
-        const fixtures = document.querySelectorAll('.fixture')
-        fixtures.forEach((fixture) => {
-          fixture.classList.add('small-font');
-        });
-        correspondTablePlayer.classList.remove('row-contracted');
-        standardInner = correspondTablePlayer.innerHTML;
-        correspondTablePlayer.classList.add('row-expanded');
-        correspondTablePlayer.innerHTML = expandedInner;
-        correspondTablePlayer.querySelector('.expanded-row-header').innerHTML = `<h4>${correspondTablePlayer.dataset.fullname}</h4`;
-        if (correspondTablePlayer.news) {
-          correspondTablePlayer.querySelector('.expanded-row-body').innerHTML = `<p class="news">${correspondTablePlayer.dataset.news}</p>`;
-        }
-        correspondTablePlayer.classList.remove('row-hover-highlight');
-      }
-    });
+          } else {
+              footballers.forEach((footballer) => {
+                footballer.classList.add('row-contracted');
+              });
+              const fixtures = document.querySelectorAll('.fixture');
+              fixtures.forEach((fixture) => {
+                fixture.classList.add('small-font');
+              });
+              correspondTablePlayer.classList.remove('row-contracted');
+              standardInner = correspondTablePlayer.innerHTML;
+              correspondTablePlayer.classList.add('row-expanded');
+              const children = correspondTablePlayer.childNodes
+              children.forEach((child) => {
+                if (child instanceof HTMLDivElement) {
+                  child.classList.toggle('hidden')
+                }
+              })
+              const footballerButton = document.getElementById(`footballer-details-${correspondTablePlayer.dataset.id}`);
+              const footballerId = correspondTablePlayer.dataset.id;
+              footballerButton.addEventListener('click', (buttonEvent) => {
+                const modalArea = document.querySelector('.modal-body');
+                fetch(`/footballers/${footballerId}/modal`)
+                  .then(response => response.text())
+                  .then(html => {
+                    modalArea.insertAdjacentHTML('beforeend', html);
+                  });
+              });
+              if (correspondTablePlayer.news) {
+                correspondTablePlayer.querySelector('.expanded-row-body').innerHTML = `<p class="news">${correspondTablePlayer.dataset.news}</p>`;
+              }
+              correspondTablePlayer.classList.remove('row-hover-highlight');
+          }
+      });
   });
 
   footballers.forEach((footballer) => {
@@ -91,10 +108,13 @@ const teamViewInfo = () => {
           table.querySelector('.row-expanded').classList.remove('row-expanded');
           standardInner = event.currentTarget.innerHTML;
           event.currentTarget.classList.add('row-expanded');
-          event.currentTarget.innerHTML = expandedInner;
-          event.currentTarget.querySelector('.expanded-row-header').innerHTML = `<h4>${event.currentTarget.dataset.fullname}</h4>`;
-          event.currentTarget.querySelector('.expanded-row-body').innerHTML = '<button type="button" id="footballer-details" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">See player</button>'
-          const footballerButton = document.getElementById('footballer-details');
+          const children = event.currentTarget.childNodes
+          children.forEach((child) => {
+            if (child instanceof HTMLDivElement) {
+              child.classList.toggle('hidden')
+            }
+          })
+          const footballerButton = document.getElementById(`footballer-details-${event.currentTarget.dataset.id}`);
           const footballerId = event.currentTarget.dataset.id;
           footballerButton.addEventListener('click', (buttonEvent) => {
             const modalArea = document.querySelector('.modal-body');
@@ -121,10 +141,13 @@ const teamViewInfo = () => {
           event.currentTarget.classList.remove('row-contracted');
           standardInner = event.currentTarget.innerHTML;
           event.currentTarget.classList.add('row-expanded');
-          event.currentTarget.innerHTML = expandedInner;
-          event.currentTarget.querySelector('.expanded-row-header').innerHTML = `<h4>${event.currentTarget.dataset.fullname}</h4`;
-          event.currentTarget.querySelector('.expanded-row-body').innerHTML = '<button type="button" id="footballer-details" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">See player</button>'
-          const footballerButton = document.getElementById('footballer-details');
+          const children = event.currentTarget.childNodes
+          children.forEach((child) => {
+            if (child instanceof HTMLDivElement) {
+              child.classList.toggle('hidden')
+            }
+          })
+          const footballerButton = document.getElementById(`footballer-details-${event.currentTarget.dataset.id}`);
           const footballerId = event.currentTarget.dataset.id;
           footballerButton.addEventListener('click', (buttonEvent) => {
             const modalArea = document.querySelector('.modal-body');

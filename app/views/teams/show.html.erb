@@ -183,6 +183,10 @@
             </div>
           <% end %>
         </div>
+        <div class="hidden expanded-content">
+          <h4><%= keeper.web_name %></h4>
+          <button type="button" id="footballer-details-<%= keeper.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+        </div>
       </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
@@ -202,6 +206,10 @@
               <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
             </div>
           <% end %>
+        </div>
+        <div class="hidden expanded-content">
+          <h4><%= defender.web_name %></h4>
+          <button type="button" id="footballer-details-<%= defender.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
         </div>
       </div>
       <% end %>
@@ -223,6 +231,10 @@
               </div>
             <% end %>
           </div>
+          <div class="hidden expanded-content">
+            <h4><%= midfielder.web_name %></h4>
+            <button type="button" id="footballer-details-<%= midfielder.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+          </div>
         </div>
       <% end %>
       <div class="row justify-content-between position-header align-items-center">
@@ -242,6 +254,10 @@
                 <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
               </div>
             <% end %>
+          </div>
+          <div class="hidden expanded-content">
+            <h4><%= forward.web_name %></h4>
+            <button type="button" id="footballer-details-<%= forward.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">See player</button>
           </div>
         </div>
       <% end %>

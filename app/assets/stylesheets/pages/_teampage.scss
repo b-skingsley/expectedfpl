@@ -211,6 +211,22 @@
     text-decoration: none;
     background-color: #366396;
   }
+
+  .call-to-action {
+    display: inline-block;
+    color: $off-white;
+    font-size: 18px;
+    padding: 8px 12px;
+    border: 1px solid $off-white;
+    background-color: $darker-blue;
+    border-radius: 5px;
+  }
+
+  .call-to-action:hover {
+    text-decoration: none;
+    background-color: #366396;
+  }
+
   .disabled a {
     pointer-events: none;
     cursor: default;
