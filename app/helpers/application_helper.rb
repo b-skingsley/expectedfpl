@@ -139,10 +139,10 @@ module ApplicationHelper
         fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)"}
       end
       if fixture.away_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(A)"}
+        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)"}
       end
     end
-    return fixtures_details
+    return fixtures_details.first(num)
   end
 
   def next_five(footballer)
@@ -164,22 +164,22 @@ module ApplicationHelper
   def attributes_list(footballer)
     arr = []
     if footballer.goals > 5
-      arr << "fas fa-futbol"
+      arr << {"Goalscorer" => "fas fa-futbol"}
     end
     if footballer.assists > 5
-      arr << "far fa-handshake"
+      arr << {"Prolific Assister" => "far fa-handshake"}
     end
     if footballer.yellow_cards + footballer.red_cards > 6
-      arr << "fas fa-copy"
+      arr << {"Dirty Player" => "fas fa-copy"}
     end
     if footballer.minutes / (next_gameweek_no - 1) > 65
-      arr << "fas fa-hourglass-half"
+      arr << {"Consistent Starter" => "fas fa-hourglass-half"}
     end
     if footballer.saves > 50
-      arr << "fas fa-hand-paper"
+      arr << {"Prolific Saver" => "fas fa-hand-paper"}
     end
     if footballer.price > 50
-      arr << "fas fa-pound-sign"
+      arr << {"Pricey" => "fas fa-pound-sign"}
     end
     arr
   end

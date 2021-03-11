@@ -13,6 +13,14 @@ class PlayersController < ApplicationController
     @max_p = (players_by_price.first.price) / 10.0
     @min_p = (players_by_price.last.price) / 10.0
 
+    # Available Budget -----
+    @team = Team.find(3)
+    @player = Player.find(params[:id])
+    @total_budget = @team.budget + @team.team_value
+    @team_value = helpers.price_sum(@team)
+    @player_price = @player.footballer.price
+    @available_budget = @total_budget - @team_value + @player_price
+
     if params[:query].present?
       @collection = @collection.search_by_first_and_last_name(params[:query])
     elsif params[:filter_by_club].present? || params[:filter_by_max_price].present?
