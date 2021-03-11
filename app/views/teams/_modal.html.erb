@@ -54,7 +54,7 @@
               <p>Forward</p>
             <% end %>
           </li>
-          <li class="list-group-item border-0"><h3>£<%= @footballer.price %></h3></li>
+          <li class="list-group-item border-0"><h3>£<%= @footballer.price / 10.to_f %></h3></li>
           <li class="list-group-item border-0"><strong><%= @footballer.minutes %></strong> minutes played ⌚</li>
           <li class="list-group-item border-0"><%= @footballer.minutes.zero? ? "No appearances this season" : "Averages #{((@footballer.bps / @footballer.minutes.to_f) * 90).round(2)}"%> bps per game</li>
           <li class="list-group-item border-0">
@@ -68,6 +68,9 @@
       </div>
     </div>
     <div class="flex-grow-1 pt-4 justify-content-center align-items-end">
+      <div id="graph-container" class="bg-light p-4">
+        <%= line_chart [[0,0], [0,0], [0,0] [0,0]] %>
+      </div>
       <table class="table table-dark" style="width: 98%">
         <thead>
           <tr>
