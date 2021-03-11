@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
     @clubs = Club.where(id: @collection.pluck(:club_id))
 
     # Available Budget -----
-    @team = Team.find(3)
+    @team = Team.find(params[:team])
     @player = Player.find(params[:id])
     @total_budget = @team.budget + @team.team_value
     @team_value = helpers.price_sum(@team)
