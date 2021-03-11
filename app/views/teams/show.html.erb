@@ -1,7 +1,7 @@
 <div class="container" id="overlay-container">
   <div class="left-section">
     <div class="team-view" style="background-image: linear-gradient(rgba(90,195,100,0.5),rgba(90,195,100,0.5)), url('<%= image_path "team-background.jpg" %>')">
-      <div class="league-link"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
+      <div class="league-link hidden"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
       <% if fplprice(@total_budget - @team_value) < 0 %>
         <div class="finalize-link disabled" data-toggle="tooltip" data-placement="top" title="Your team is over budget"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
       <% else %>

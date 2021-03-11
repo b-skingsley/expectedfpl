@@ -1,14 +1,37 @@
 <div class="container background-transparent">
   <h2 class="pt-4">Transfer Out - <%= @player.footballer.first_name %> <%= @player.footballer.last_name %></h2>
   <%= link_to "Back to Team", team_path(@team) %>
-  <div class="row m-3 justify-content-between">
+  <div class="row m-3 justify-content-between align-items-center">
     <div>
       <%= render "footballer_filter_form" %>
     </div>
   </div>
   <div class="container">
     <p id="footballer-count"></p>
-    <div class="row justify-content-between filters align-items-center">
+    <div class="row justify-content-between filters-icon-row align-items-center">
+      <div class="col"></div>
+      <div class="col">
+        <% if params[:filter_by_position].present? %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_position] %></p>
+        <% end %>
+      </div>
+      <div class="col">
+        <% if params[:filter_by_club].present? %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_club] %></p>
+        <% end %>
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
+          <p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %></p>
+        <% end %>
+      </div>
+      <div class="col"></div>
+    </div>
+
+
+
+    <div class="row justify-content-between sort-icon-row align-items-center">
       <div class="col-3"></div>
       <div class="col-1"></div>
       <div class="col-2"></div>
@@ -39,24 +62,16 @@
         <p>Total Points</p>
       </div>
     </div>
-    <div class="row justify-content-between filters align-items-center">
-      <div class="col-3"></div>
-      <div class="col-1">
-      </div>
-      <div class="col-2">
-        <% if params[:filter_by_club].present? %>
-          <p class="filter-feedback"><i class="fas fa-filter"></i> <%= params[:filter_by_club] %></p>
-        <% end %>
-      </div>
-      <div class="col-2"></div>
-      <div class="col-2">
-        <% if params[:filter_by_max_price].present? && params[:filter_by_max_price].to_f < @max_p %>
-          <p class="filter-feedback"><i class="fas fa-filter"></i> Max: <%= params[:filter_by_max_price] %></p>
-        <% end %>
+    <div class="row justify-content-between sort-icon-row align-items-center">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col">
         <p id="sort-price-down" class="sort-icon text-center hidden"><i class="fas fa-sort-down"></i></p>
       </div>
-      <div class="col-2">
-        <p id="sort-points-down" class="sort-icon active text-center"><i class="fas fa-sort-down"></i></p>
+      <div class="col">
+        <p id="sort-points-down" class="sort-icon activated text-center"><i class="fas fa-sort-down"></i></p>
       </div>
     </div>
 
