@@ -15,6 +15,7 @@
     %>
   </div>
   <div class="col">
+    <p>Available Budget: <%= fplprice(@available_budget) %></p>
     <%= label_tag :filter_by_max_price, 'Max Price', class: 'm-0' %>
     <p id="max-price-value" class="m-0 text-center"></p>
     <%= range_field_tag :filter_by_max_price,
