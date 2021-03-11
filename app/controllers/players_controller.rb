@@ -14,8 +14,6 @@ class PlayersController < ApplicationController
     @min_p = (players_by_price.last.price) / 10.0
 
     # Available Budget -----
-    @team = Team.find(3)
-    @player = Player.find(params[:id])
     @total_budget = @team.budget + @team.team_value
     @team_value = helpers.price_sum(@team)
     @player_price = @player.footballer.price
