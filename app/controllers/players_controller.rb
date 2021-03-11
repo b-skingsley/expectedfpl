@@ -19,21 +19,14 @@ class PlayersController < ApplicationController
         @collection = @collection.where("price <= ?", max_p)
       end
     end
+
     # price (float) instance variables for use in the view
-    case @player.footballer.position
-    when 'GK'
-      @max_p = (Footballer.gks.first.price) / 10.0
-      @min_p = (Footballer.gks.last.price) / 10.0
-    when 'DEF'
-      @max_p = (Footballer.defs.first.price) / 10.0
-      @min_p = (Footballer.defs.last.price) / 10.0
-    when 'MID'
-      @max_p = (Footballer.mids.first.price) / 10.0
-      @min_p = (Footballer.mids.last.price) / 10.0
-    else
-      @max_p = (Footballer.fwds.first.price) / 10.0
-      @min_p = (Footballer.fwds.last.price) / 10.0
-    end
+    # first a query to reorder the applicable players by price to ascertain max/mins depending on position
+    players_by_price = @collection.reorder('price DESC')
+
+    @max_p = (players_by_price.first.price) / 10.0
+    @min_p = (players_by_price.last.price) / 10.0
+
   end
 
   def update
