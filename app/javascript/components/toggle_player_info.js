@@ -18,6 +18,10 @@ const teamViewInfo = () => {
         footballers.forEach((footballer) => {
           footballer.classList.remove('row-contracted');
         });
+        const fixtures = document.querySelectorAll('.fixture')
+        fixtures.forEach((fixture) => {
+          fixture.classList.remove('small-font');
+        });
         // Branch if the user clicks on a row not expanded, but another row IS expanded
       } else if (table.querySelector('.row-expanded') && event.currentTarget.classList.contains('row-contracted')) {
           table.querySelector('.row-expanded').innerHTML = standardInner;
@@ -48,6 +52,10 @@ const teamViewInfo = () => {
       } else {
           footballers.forEach((footballer) => {
             footballer.classList.add('row-contracted');
+          });
+          const fixtures = document.querySelectorAll('.fixture')
+          fixtures.forEach((fixture) => {
+            fixture.classList.add('small-font');
           });
           event.currentTarget.classList.remove('row-contracted');
           standardInner = event.currentTarget.innerHTML;

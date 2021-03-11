@@ -8,17 +8,17 @@
   }
 }
 
-#team-table {
-  width: 90%;
-  height: 60vh;
 
-  p {
-    font-size: 12px;
-    margin-bottom: 0;
-  }
+#team-table {
+  width: 408px;
+  height: 60vh;
 
   .first-row {
     padding-left: 4px;
+  }
+  .col-1,.col-2,.col-3 {
+    padding-right: 5px;
+    padding-left: 5px;
   }
 
   .last-row {
@@ -40,6 +40,10 @@
   background: rgba(133, 167, 214, 0.7);
   font-family: $headers-font;
   height: 40px;
+   p {
+    margin-bottom: 0;
+    font-size: 12px;
+  }
 }
 
 .filters {
@@ -52,6 +56,7 @@
   border-bottom: 0.5px solid grey;
    p {
     margin-bottom: 0;
+    font-size: 12px;
   }
 }
 
@@ -65,6 +70,10 @@
 
   &:hover {
     cursor: pointer;
+  }
+  p {
+    font-size: 12px;
+    margin-bottom: 0;
   }
 }
 
@@ -107,6 +116,7 @@
 
   p {
     line-height: 18px;
+    font-size: 12px;
     margin: 0;
   }
 }
