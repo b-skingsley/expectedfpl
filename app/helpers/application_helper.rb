@@ -139,10 +139,10 @@ module ApplicationHelper
         fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)"}
       end
       if fixture.away_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(A)"}
+        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)"}
       end
     end
-    return fixtures_details
+    return fixtures_details.first(num)
   end
 
   def next_five(footballer)
