@@ -6,6 +6,17 @@ class PlayersController < ApplicationController
     @collection = Footballer.where(position: @player.footballer.position).where.not(id: @team.players.pluck(:footballer_id))
     @clubs = Club.where(id: @collection.pluck(:club_id))
 
+    # Available Budget -----
+    @team = Team.find(3)
+    @player = Player.find(params[:id])
+    @total_budget = @team.budget + @team.team_value
+    @team_value = helpers.price_sum(@team)
+    @player_price = @player.footballer.price
+    @available_budget = @total_budget - @team_value + @player_price
+    
+    # ----------------------
+
+
     if params[:query].present?
       @collection = @collection.search_by_first_and_last_name(params[:query])
     elsif params[:filter_by_club].present? || params[:filter_by_max_price].present?
