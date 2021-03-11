@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_113821) do
+ActiveRecord::Schema.define(version: 2021_03_11_005353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2021_03_10_113821) do
     t.float "at_possible_goals"
     t.float "ht_clean_sheet_probability"
     t.float "at_clean_sheet_probability"
+    t.integer "home_team_difficulty"
+    t.integer "away_team_difficulty"
     t.index ["away_team_id"], name: "index_fixtures_on_away_team_id"
     t.index ["home_team_id"], name: "index_fixtures_on_home_team_id"
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_113821) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "budget"
+    t.integer "team_value"
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
@@ -136,6 +139,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_113821) do
     t.bigint "player_out_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "gw"
     t.index ["player_in_id"], name: "index_transfers_on_player_in_id"
     t.index ["player_out_id"], name: "index_transfers_on_player_out_id"
     t.index ["team_id"], name: "index_transfers_on_team_id"

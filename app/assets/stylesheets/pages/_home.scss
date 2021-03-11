@@ -17,7 +17,7 @@
     width: 100%;
   }
   #logged-in a {
-      color: $off-white;
+      color: #F0F0F0;
   }
 
   .banner {
@@ -36,15 +36,15 @@
 
   .banner h1 {
     margin: 0;
-    color: white;
+    color: #F0F0F0;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    font-size: 56px;
+    font-size: 5vh;
     font-weight: bold;
   }
 
   .banner p {
-    font-size: 20px;
-    color: white;
+    font-size: 3vh;
+    color: #F0F0F0;
     opacity: .7;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   }
@@ -55,22 +55,23 @@
   }
 
   #banner-logo {
-    width: 40vw;
+    max-height: 20vh;
+    max-width: 40vw;
+    padding: 8px;
   }
 
   .banner-main-text {
-    position: relative;
-    left: 18vw;
-    bottom: 10vh;
+    width: 60vw;
+    padding: 8px;
   }
 
   #call-to-action {
     display: inline-block;
-    color: $off-white;
-    font-size: 18px;
+    color: #F0F0F0;
+    font-size: 2vh;
     padding: 12px 20px;
-    margin: 10px;
-    border: 1px solid $off-white;
+    margin-top: 10px;
+    border: 1px solid #F0F0F0;
     background-color: $darker-blue;
     border-radius: 12px;
   }
@@ -80,11 +81,6 @@
     background-color: #366396;
   }
 
-  #deadline {
-    p {
-      color: $off-white;
-    }
-  }
 }
 
 // margin of 80 px

@@ -99,6 +99,9 @@ const switchFunctionality = () => {
         const parent2 = event.currentTarget.parentElement;
         parent2.classList.toggle("active");
         switch2.value = parent2.parentElement.dataset.id;
+        activeButtons.forEach((activeButton) => {
+          activeButton.parentElement.classList.toggle("active2")
+        })
         form.submit();
       })
     })
@@ -106,6 +109,9 @@ const switchFunctionality = () => {
     selectedButton.addEventListener('click', (event) => {
       const parent2 = event.currentTarget.parentElement;
       parent2.classList.toggle("active");
+      activeButtons.forEach((activeButton) => {
+        activeButton.parentElement.classList.toggle("active2")
+      })
       location.reload();
     })
   }

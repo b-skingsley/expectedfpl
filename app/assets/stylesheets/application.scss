@@ -16,6 +16,7 @@
 @import "pages/index";
 @import "pages/teampage";
 @import "pages/leagues";
+@import "pages/finalize";
 
 
 // Background
@@ -41,6 +42,28 @@ div#pitch-bg {
 #overlay-container {
     background-color: rgba(247, 251, 252, 0.8);
     top: 30px;
+}
+
+.sessions.new {
+
+  #call-to-action {
+      display: inline-block;
+      color: $off-white;
+      font-size: 18px;
+      padding: 4px 12px;
+      border: 1px solid $off-white;
+      background-color: $darker-blue;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+  #call-to-action:hover {
+    text-decoration: none;
+    background-color: #366396;
+  }
+  .container {
+    padding-bottom: 10px;
+  }
 }
 
 a {

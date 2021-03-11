@@ -82,7 +82,7 @@ module FootballerHelper
 
     # Method for calculating moving average
   def wma_hash(hash, maws = MAWS)
-    hash = hash.reduce Hash.new, :merge
+    # hash = hash.reduce Hash.new, :merge
     sum = maws * (maws + 1) / 2
 
     values = hash.to_a.reverse # recent averages are the most important ones

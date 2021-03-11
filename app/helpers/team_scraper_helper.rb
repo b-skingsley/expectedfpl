@@ -19,6 +19,7 @@ module TeamScraperHelper
     data[:budget] = budget
     data[:points] = overall_points
     data[:rank] = overall_rank
+    data[:team_value] = deserialized['entry_history']['value']
     return data
   end
 

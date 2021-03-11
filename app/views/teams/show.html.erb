@@ -2,7 +2,11 @@
   <div class="left-section">
     <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
       <div class="league-link"><%= link_to "Leagues", team_leagues_path(@team), id: "call-to-action" %></div>
-      <div class="finalize-link"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
+      <% if fplprice(@total_budget - @team_value) < 0 %>
+        <div class="finalize-link disabled" data-toggle="tooltip" data-placement="top" title="Your team is over budget"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
+      <% else %>
+        <div class="finalize-link"><%= link_to "Finished?", finalize_team_path(@team), id: "call-to-action" %></div>
+      <% end %>
       <div class="main-team">
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
@@ -10,12 +14,11 @@
               <i class="fas fa-exchange-alt switch gk-s"></i>
               <i class="fas fa-info player-info"></i>
               <%= link_to edit_player_path(Player.find_by(team: @team, footballer: gks(@starters)[0])) do %>
-                <i class="fas fa-times transfer-out"></i>
+                <i class="fas fa-user-minus"></i>
               <% end %>
               <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
-              <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
               <div class="player-name"><%= gks(@starters)[0].web_name %></div>
-              <div class="next-fixture"><%= next_fixture(gks(@starters)[0]) %></div>
+              <div class="next-fixture">v <%= next_fixture(gks(@starters)[0]) %></div>
             </div>
           </div>
         </div>
@@ -26,11 +29,11 @@
                 <i class="fas fa-exchange-alt switch s-def"></i>
                 <i class="fas fa-info player-info"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: defender)) do %>
-                  <i class="fas fa-times transfer-out"></i>
+                  <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= defender.web_name %></div>
-                <div class="next-fixture"><%= next_fixture(defender) %></div>
+                <div class="next-fixture">v <%= next_fixture(defender) %></div>
               </div>
             </div>
           <% end %>
@@ -42,11 +45,11 @@
                 <i class="fas fa-exchange-alt switch s-mid"></i>
                 <i class="fas fa-info player-info"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: mid)) do %>
-                  <i class="fas fa-times transfer-out"></i>
+                  <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= mid.web_name %></div>
-                <div class="next-fixture"><%= next_fixture(mid) %></div>
+                <div class="next-fixture">v <%= next_fixture(mid) %></div>
               </div>
             </div>
           <% end %>
@@ -58,11 +61,11 @@
                 <i class="fas fa-exchange-alt switch s-fwd"></i>
                 <i class="fas fa-info player-info"></i>
                 <%= link_to edit_player_path(Player.find_by(team: @team, footballer: fwd)) do %>
-                  <i class="fas fa-times transfer-out"></i>
+                  <i class="fas fa-user-minus"></i>
                 <% end %>
                 <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
                 <div class="player-name"><%= fwd.web_name %></div>
-                <div class="next-fixture"><%= next_fixture(fwd) %></div>
+                <div class="next-fixture">v <%= next_fixture(fwd) %></div>
               </div>
             </div>
           <% end %>
@@ -74,12 +77,11 @@
             <i class="fas fa-exchange-alt switch bench-gk"></i>
             <i class="fas fa-info player-info"></i>
             <%= link_to edit_player_path(@gk) do %>
-              <i class="fas fa-times transfer-out"></i>
+              <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
-            <!-- <div class="gloves"><%= image_tag("gloves.png", size: "32x32") %></div> -->
             <div class="player-name"><%= @gk.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@gk.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@gk.footballer) %></div>
           </div>
           <div>GK</div>
         </div>
@@ -88,11 +90,11 @@
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
             <%= link_to edit_player_path(@firstsub) do %>
-              <i class="fas fa-times transfer-out"></i>
+              <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @firstsub.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@firstsub.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@firstsub.footballer) %></div>
           </div>
           <div class="bench-position"><%= @firstsub.bench_pos %></div>
         </div>
@@ -101,11 +103,11 @@
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
              <%= link_to edit_player_path(@secondsub) do %>
-               <i class="fas fa-times transfer-out"></i>
+               <i class="fas fa-user-minus"></i>
              <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @secondsub.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@secondsub.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@secondsub.footballer) %></div>
           </div>
           <div class="bench-position"><%= @secondsub.bench_pos %></div>
         </div>
@@ -114,88 +116,113 @@
             <i class="fas fa-exchange-alt switch bench-s"></i>
             <i class="fas fa-info player-info"></i>
             <%= link_to edit_player_path(@thirdsub) do %>
-              <i class="fas fa-times transfer-out"></i>
+              <i class="fas fa-user-minus"></i>
             <% end %>
             <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
             <div class="player-name"><%= @thirdsub.footballer.web_name %></div>
-            <div class="next-fixture"><%= next_fixture(@thirdsub.footballer) %></div>
+            <div class="next-fixture">v <%= next_fixture(@thirdsub.footballer) %></div>
           </div>
           <div class="bench-position"><%= @thirdsub.bench_pos %></div>
         </div>
       </div>
     </div>
   </div>
-
-  <div id="team-table">
-    <h3> <%= @team.name %> </h3>
-    <div class="row justify-content-between team-table-header align-items-center">
-      <div class="col-4 first-row">
-        <p>Name</p>
-      </div>
-      <div class="col-2">
-        <p>Club</p>
-      </div>
-      <div class="col-3">
-        <p>Price</p>
-      </div>
-      <div class="col-3">
-        <p>Total Points</p>
-      </div>
-    </div>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Goalkeepers</p>
+  <div class="right-section">
+    <div class="team-content">
+      <div class="team-title"><h3> <%= @team.name %> </h3></div>
+      <div class="team-info">
+        <div class="budget-info">
+          <p>Total Budget - <%= fplprice(@total_budget) %></p>
+          <p>Team Value - <%= fplprice(@team_value) %></p>
+          <% if fplprice(@total_budget - @team_value) >= 0 %>
+            <p>Money Remaining - <%= fplprice(@total_budget - @team_value) %></p>
+          <% else %>
+            <p class="negative-balance">Money Remaining <%= fplprice(@total_budget - @team_value) %></p>
+          <% end %>
+        </div>
+        <div class="team-stats">
+          <p>Overall Rank - <%= number_with_delimiter(@team.summary_overall_rank, :delimiter => ',') %></p>
+          <p>Overall Points - <%= number_with_delimiter(@team.summary_overall_points, :delimiter => ',') %></p>
+          <p>Transfers made - <%= Transfer.where(team: @team, gw: next_gameweek_no).count %></p>
+        </div>
       </div>
     </div>
-    <% @team.footballers.gks.each do |keeper| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
-      <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
-      <div class="col-3" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
-    </div>
-    <% end %>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Defenders</p>
+    <div id="team-table">
+      <div class="row justify-content-between team-table-header align-items-center">
+        <div class="col-4 first-row">
+          <p>Name</p>
+        </div>
+        <div class="col-2">
+          <p>Club</p>
+        </div>
+        <div class="col-3">
+          <p>Price</p>
+        </div>
+        <div class="col-3">
+          <p>Total Points</p>
+        </div>
       </div>
-    </div>
-    <% @team.footballers.defs.each do |defender| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
-      <div class="col-2" ><p><%= defender.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
-      <div class="col-3" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
-    </div>
-    <% end %>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Midfielders</p>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Goalkeepers</p>
+        </div>
       </div>
-    </div>
-    <% @team.footballers.mids.each do |midfielder| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
-      <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
-      <div class="col-3" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
-    </div>
-    <% end %>
-    <div class="row justify-content-between position-header align-items-center">
-      <div class="col-12 text-center">
-        <p>Forwards</p>
+      <% @team.footballers.gks.each do |keeper| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= keeper.photo %>" data-id="<%= keeper.id %>" data-webName="<%= keeper.web_name %>" data-fullName="<%= "#{keeper.first_name} #{keeper.last_name}" %>" data-club="<%= keeper.club.short_name  %>" data-price="<%= fplprice(keeper.price) %>" data-points="<%= keeper.total_points %>" data-form="<%= keeper.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= keeper.web_name %></p></div>
+        <div class="col-2" ><p><%= keeper.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(keeper.price) %></p></div>
+        <div class="col-3" ><p><%= keeper.total_points %> <%= form_formatter(keeper.form.to_f) %></p></div>
       </div>
+      <% end %>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Defenders</p>
+        </div>
+      </div>
+      <% @team.footballers.defs.each do |defender| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= defender.photo %>" data-id="<%= defender.id %>" data-webName="<%= defender.web_name %>" data-fullName="<%= "#{defender.first_name} #{defender.last_name}" %>" data-club="<%= defender.club.short_name  %>" data-price="<%= fplprice(defender.price) %>" data-points="<%= defender.total_points %>" data-form="<%= defender.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= defender.web_name %></p></div>
+        <div class="col-2" ><p><%= defender.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(defender.price) %></p></div>
+        <div class="col-3" ><p><%= defender.total_points %> <%= form_formatter(defender.form.to_f) %></p></div>
+      </div>
+      <% end %>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Midfielders</p>
+        </div>
+      </div>
+      <% @team.footballers.mids.each do |midfielder| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= midfielder.photo %>" data-id="<%= midfielder.id %>" data-webName="<%= midfielder.web_name %>" data-fullName="<%= "#{midfielder.first_name} #{midfielder.last_name}" %>" data-club="<%= midfielder.club.short_name  %>" data-price="<%= fplprice(midfielder.price) %>" data-points="<%= midfielder.total_points %>" data-form="<%= midfielder.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= midfielder.web_name %></p></div>
+        <div class="col-2" ><p><%= midfielder.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(midfielder.price) %></p></div>
+        <div class="col-3" ><p><%= midfielder.total_points %> <%= form_formatter(midfielder.form.to_f) %></p></div>
+      </div>
+      <% end %>
+      <div class="row justify-content-between position-header align-items-center">
+        <div class="col-12 text-center">
+          <p>Forwards</p>
+        </div>
+      </div>
+      <% @team.footballers.fwds.each do |forward| %>
+      <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-photo="<%= forward.photo %>" data-id="<%= forward.id %>" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
+        <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
+        <div class="col-2" ><p><%= forward.club.short_name %></p></div>
+        <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
+        <div class="col-3" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
+      </div>
+      <% end %>
     </div>
-    <% @team.footballers.fwds.each do |forward| %>
-    <div class="row justify-content-between team-table-row row-hover-highlight align-items-center footballer" data-webName="<%= forward.web_name %>" data-fullName="<%= "#{forward.first_name} #{forward.last_name}" %>" data-club="<%= forward.club.short_name  %>" data-price="<%= fplprice(forward.price) %>" data-points="<%= forward.total_points %>" data-form="<%= forward.form.to_f %>">
-      <div class="col-4 first-row" ><p><%= forward.web_name %></p></div>
-      <div class="col-2" ><p><%= forward.club.short_name %></p></div>
-      <div class="col-3" ><p><%= fplprice(forward.price) %></p></div>
-      <div class="col-3" ><p><%= forward.total_points %> <%= form_formatter(forward.form.to_f) %></p></div>
+    <div class="fixtures">
+      <% next_five(@gk.footballer).each do |fixture| %>
+        <div class="fixture difficulty-<%= fixture[:difficulty] %>">
+          <p><%= "#{fixture[:opponent]} #{fixture[:home_or_away]}" %></p>
+        </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
-
 </div>
 
 <div class="player-switch-form">
@@ -207,4 +234,20 @@
       <%= f.button :submit, class: 'btn btn-outline-light hidden' %>
     </div>
   <% end %>
+</div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
 </div>

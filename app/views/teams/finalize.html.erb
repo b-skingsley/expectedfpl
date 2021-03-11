@@ -1,1 +1,99 @@
-finalize.html.erb
+<div class="container" id="overlay-container">
+  <div class="left-section">
+    <h3>To Do List for GW <%= next_gameweek_no %></h3>
+    <ul>
+      <% @transfers.each do |transfer| %>
+        <li>Transfer out <%= transfer.player_out.web_name %> for <%= transfer.player_in.web_name %></li>
+      <% end %>
+      <li>Bench <%= @gk.footballer.web_name %></li>
+      <li>Bench <%= @firstsub.footballer.web_name %> in 1st position</li>
+      <li>Bench <%= @secondsub.footballer.web_name %> in 2nd position</li>
+      <li>Bench <%= @thirdsub.footballer.web_name %> in 3rd position</li>
+    </ul>
+    <a href="https://fantasy.premierleague.com/my-team" target="_blank"><strong>Make my changes on Fantasy PL</strong></a>
+    <br>
+    <%= link_to "Back to team", team_path(@team) %>
+  </div>
+  <div class="right-section">
+    <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
+      <div class="main-team">
+        <div class="row gks">
+          <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
+            <div class="player-content">
+              <div class="shirt"><%= image_tag("shirts/#{gks(@starters)[0].club.short_name.downcase}.png")  %></div>
+              <div class="player-name"><%= gks(@starters)[0].web_name %></div>
+              <div class="next-fixture">v <%= next_fixture(gks(@starters)[0]) %></div>
+            </div>
+          </div>
+        </div>
+        <div class="row defs">
+          <% defs(@starters).each do |defender| %>
+            <div class="starting-player def" id="player<%= defender.fplid %>" data-id="<%= defender.id %>">
+              <div class="player-content">
+                <div class="shirt"><%= image_tag("shirts/#{defender.club.short_name.downcase}.png")  %></div>
+                <div class="player-name"><%= defender.web_name %></div>
+                <div class="next-fixture">v <%= next_fixture(defender) %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="row mids">
+          <% mids(@starters).each do |mid| %>
+            <div class="starting-player mid" id="player<%= mid.fplid %>" data-id="<%= mid.id %>">
+              <div class="player-content">
+                <div class="shirt"><%= image_tag("shirts/#{mid.club.short_name.downcase}.png")  %></div>
+                <div class="player-name"><%= mid.web_name %></div>
+                <div class="next-fixture">v <%= next_fixture(mid) %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="row fwds">
+          <% fwds(@starters).each do |fwd| %>
+            <div class="starting-player fwd" id="player<%= fwd.fplid %>" data-id="<%= fwd.id %>">
+              <div class="player-content">
+                <div class="shirt"><%= image_tag("shirts/#{fwd.club.short_name.downcase}.png")  %></div>
+                <div class="player-name"><%= fwd.web_name %></div>
+                <div class="next-fixture">v <%= next_fixture(fwd) %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="bench" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(90,195,0,0.5)), url('<%= image_path "bench2.png" %>')">
+        <div class="bench-player gk" id="player<%= @gk.footballer.fplid %>" data-id="<%= @gk.footballer.id %>,<%= @gk.bench_pos %>">
+          <div class="player-content">
+            <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
+            <div class="player-name"><%= @gk.footballer.web_name %></div>
+            <div class="next-fixture">v <%= next_fixture(@gk.footballer) %></div>
+          </div>
+          <div>GK</div>
+        </div>
+        <div class="bench-player <%= @firstsub.footballer.position.downcase %>" id="player<%= @firstsub.footballer.fplid %>" data-id="<%= @firstsub.footballer.id %>,<%= @firstsub.bench_pos %>">
+          <div class="player-content">
+            <div class="shirt"><%= image_tag("shirts/#{@firstsub.footballer.club.short_name.downcase}.png")  %></div>
+            <div class="player-name"><%= @firstsub.footballer.web_name %></div>
+            <div class="next-fixture">v <%= next_fixture(@firstsub.footballer) %></div>
+          </div>
+          <div class="bench-position"><%= @firstsub.bench_pos %></div>
+        </div>
+        <div class="bench-player <%= @secondsub.footballer.position.downcase %>" id="player<%= @secondsub.footballer.fplid %>" data-id="<%=@secondsub.footballer.id %>,<%= @secondsub.bench_pos %>">
+          <div class="player-content">
+            <div class="shirt"><%= image_tag("shirts/#{@secondsub.footballer.club.short_name.downcase}.png")  %></div>
+            <div class="player-name"><%= @secondsub.footballer.web_name %></div>
+            <div class="next-fixture">v <%= next_fixture(@secondsub.footballer) %></div>
+          </div>
+          <div class="bench-position"><%= @secondsub.bench_pos %></div>
+        </div>
+        <div class="bench-player <%= @thirdsub.footballer.position.downcase %>" id="player<%= @thirdsub.footballer.fplid %>" data-id="<%= @thirdsub.footballer.id %>,<%= @thirdsub.bench_pos %>">
+          <div class="player-content">
+            <div class="shirt"><%= image_tag("shirts/#{@thirdsub.footballer.club.short_name.downcase}.png")  %></div>
+            <div class="player-name"><%= @thirdsub.footballer.web_name %></div>
+            <div class="next-fixture">v <%= next_fixture(@thirdsub.footballer) %></div>
+          </div>
+          <div class="bench-position"><%= @thirdsub.bench_pos %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

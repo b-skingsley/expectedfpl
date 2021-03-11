@@ -13,24 +13,39 @@
     padding-left: 10px;
   }
 
+  .modal .container {
+    display: block;
+    max-height: none;
+    padding: 0;
+    width: 100%;
+  }
+
   .left-section {
-    flex: 0 0 65%;
+    flex: 0 0 60%;
     padding-right: 10px;
     border-right: 1px solid black;
     overflow: auto;
     .team-view {
       margin-top: 10px;
       margin-bottom: 10px;
+      padding-top: 20px;
       // border: 1px solid  black;
-      min-height: 600px;
+      min-height: 680px;
       background-size: cover;
     }
     .active {
-      background-color: rgba(255, 255, 138, 0.9);
+      background-color: rgba(255, 255, 138, 0.7);
     }
     .active2 {
-      background-color: rgba(255, 172, 75, 0.9);
+      background-color: rgba(255, 172, 75, 0.7);
     }
+  }
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 10px;
   }
 
   .team-view {
@@ -112,13 +127,13 @@
       text-align: center;
       height: 23%;
       width: 100%;
-      font-size: 16px;
+      font-size: 13px;
     }
     .next-fixture {
       height: 22%;
       text-align: center;
       width: 100%;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 100;
     }
   }
@@ -151,16 +166,16 @@
     padding-top: 3px;
   }
 
-  .transfer-out {
+  .fa-user-minus {
     position: absolute;
     top: 24px;
     left: 2px;
     background-color: $off-white;
     border: 0.3px solid grey;
     border-radius: 4px;
-    padding-top: 1px;
+    padding-top: 2px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 13px;
     width: 20px;
     height: 20px;
     color: black;
@@ -195,5 +210,87 @@
   #call-to-action:hover {
     text-decoration: none;
     background-color: #366396;
+  }
+  .disabled a {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+  }
+
+  .team-content {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0.5px solid grey;
+    h3 {
+      text-align: center;
+      background-color: rgba(133, 167, 214, 0.7);
+      border-bottom: 0.5px solid grey;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .team-info {
+      background-color: rgba(133, 167, 214, 0.4);
+      flex-grow: 1;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      display: flex;
+      p {
+        font-size: 12px;
+        margin: 0;
+        font-weight: 700;
+      }
+      .budget-info {
+        flex: 0 0 50%;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 3px;
+        .negative-balance {
+          color: red;
+        }
+      }
+      .team-stats{
+        text-align: right;
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 3px;
+      }
+    }
+  }
+  .fixtures {
+    display: flex;
+    justify-content: space-around;
+    .fixture {
+      border: 0.5px solid grey;
+      text-align: center;
+      p {
+        margin: auto;
+        font-size: 10px;
+        padding: 1px;
+      }
+    }
+    .difficulty-1 {
+      background-color: rgba(42, 131, 0, 0.5);
+    }
+    .difficulty-2 {
+      background-color: rgba(42, 183, 0, 0.5);
+    }
+    .difficulty-3 {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    .difficulty-4 {
+      background-color: rgba(255, 55, 90, 0.5);
+    }
+    .difficulty-5 {
+      background-color: rgba(240, 30, 30, 0.5);
+    }
   }
 }

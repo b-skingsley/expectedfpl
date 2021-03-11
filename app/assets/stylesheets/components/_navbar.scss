@@ -1,10 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(135deg, rgba(40, 40, 40, 0.7),
-                                    rgba(120, 120, 120, 0.5)),
-                                    asset-url('pitch_background_nav');
-  // background-image: asset-url('pitch_background_nav');
+  background: linear-gradient(to right, rgba(59, 7, 68, 0.6),
+                                        rgba(50, 50, 50, 0.9));
   background-size: cover;
   height: 100px;
 }
@@ -14,7 +12,7 @@
 }
 
 #deadline {
-  font-family: 'DotGothic16', sans-serif;
+  font-family: $digital-font;
   font-size: 14px;
   color: #39D000;
   height: 100px;

@@ -1,0 +1,118 @@
+.teams.finalize {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-height: 100vh;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .right-section {
+    flex: 0 0 60%;
+    padding-left: 10px;
+    border-left: 1px solid black;
+    overflow: auto;
+    .team-view {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      // border: 1px solid  black;
+      min-height: 600px;
+      background-size: cover;
+    }
+  }
+
+  .left-section {
+
+  }
+
+  .team-view {
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    position: relative;
+    .main-team {
+      flex: 4;
+      // border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      .gks, .defs, .mids, .fwds {
+        flex: 1;
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+    .bench {
+      flex: 1;
+      border-top: 1px solid black;
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-around;
+      flex: 1;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      .bench-player {
+        // border: 1px solid black;
+        padding-top: 10px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .starting-player {
+    // border: 1px solid black;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .player-content {
+    border-radius: 4px;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 3px, 3px, 3px, rgba(30, 30, 30, 0.2);
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+    width: 90px;
+    position: relative;
+    .shirt {
+      height: 55%;
+      margin-top: 5%;
+    }
+
+    .shirt > img {
+      height: 95%;
+      padding-top: 5%;
+      width: 65%;
+      text-align: center;
+    }
+    .gloves {
+      position: absolute;
+      left: 59px;
+      top: 35px;
+    }
+
+    .player-name {
+      text-align: center;
+      height: 23%;
+      width: 100%;
+      font-size: 16px;
+    }
+    .next-fixture {
+      height: 22%;
+      text-align: center;
+      width: 100%;
+      font-size: 13px;
+      font-weight: 100;
+    }
+  }
+}

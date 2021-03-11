@@ -28,6 +28,17 @@ const teamViewInfo = () => {
           event.currentTarget.classList.add('row-expanded');
           event.currentTarget.innerHTML = expandedInner;
           event.currentTarget.querySelector('.expanded-row-header').innerHTML = `<h4>${event.currentTarget.dataset.fullname}</h4>`;
+          event.currentTarget.querySelector('.expanded-row-body').innerHTML = '<button type="button" id="footballer-details" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">See player</button>'
+          const footballerButton = document.getElementById('footballer-details');
+          const footballerId = event.currentTarget.dataset.id;
+          footballerButton.addEventListener('click', (buttonEvent) => {
+            const modalArea = document.querySelector('.modal-body');
+            fetch(`/footballers/${footballerId}/modal`)
+              .then(response => response.text())
+              .then(html => {
+                modalArea.insertAdjacentHTML('beforeend', html);
+              });
+          });
           if (event.currentTarget.news) {
             event.currentTarget.querySelector('.expanded-row-body').innerHTML = `<p class="news">${event.currentTarget.dataset.news}</p>`;
           }
@@ -60,8 +71,16 @@ const allFootballersInfo = () => {
     footballer.addEventListener('click', (_event) => {
       if (footballer.querySelector('.player-info')) {
         footballer.querySelector('.player-info').remove();
+        if (document.getElementById('transfer-out')) {
+          footballer.classList.remove('transfer-selected');
+          footballer.classList.add('row-hover-highlight')
+        }
       } else {
-        footballer.insertAdjacentHTML('beforeend', `<div class="w-100"></div><div class="col-12 player-info text-center"><p>${fullName}    |    Averaged ${form} points per-game, over last 5 games    |    <span class="news">${news}</span></p></div>`);
+          if (document.getElementById('transfer-out')) {
+            footballer.classList.add('transfer-selected');
+            footballer.classList.remove('row-hover-highlight')
+          }
+        footballer.insertAdjacentHTML('beforeend', `<div class="w-100"></div><div class="col-12 player-info text-center p-3"><p>${fullName}    |    Averaged ${form} points per-game, over last 5 games    |    <span class="news">${news}</span></p></div>`);
       }
     })
   });
