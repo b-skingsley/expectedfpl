@@ -29,7 +29,6 @@ const algoliasearch = require('algoliasearch');
 
 // Internal imports, e.g:
 import { rangeValue } from '../components/range_value';
-import { disableFilterFields } from '../components/disable_filter_fields';
 import { runCountdown } from '../components/run_countdown';
 import { togglePlayerInfo } from '../components/toggle_player_info';
 import { sortFootballers } from '../components/sort_footballers';
@@ -48,7 +47,6 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('footballer-count')) {
     rangeValue();
     sortFootballers();
-    disableFilterFields(); // THIS NEEDS SORTING STILL!!!
   }
 
   if (document.getElementById('typed')) {

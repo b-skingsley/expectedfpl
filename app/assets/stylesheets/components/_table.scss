@@ -46,7 +46,11 @@
   }
 }
 
-.filters {
+.filters-icon-row {
+  background: rgba(80, 80, 80, 0.9);
+}
+
+.sort-icon-row {
   background: rgba(133, 167, 214, 0.9);
 }
 
@@ -148,10 +152,10 @@
   transition-timing-function: linear;
 }
 
-.active {
+.activated {
   font-size: 28px;
   line-height: 20px;
-  color: #40E08C;
+  color: rgba(255, 172, 75, 0.9);
   text-shadow: 0 1px 4px rgba(30, 30, 30, 0.5);
   margin-bottom: none;
 
@@ -166,10 +170,10 @@
 
 .filter-feedback {
   font-weight: lighter;
-  font-size: 14px;
-  color: #40E08C;
+  font-size: 12px;
+  color: rgba(255, 172, 75, 0.9);
   text-shadow: 0 1px 4px rgba(30, 30, 30, 0.5);
-  margin-top: 16px;
+  margin: 2px 0 2px 0;
 }
 
 .form-inline {
