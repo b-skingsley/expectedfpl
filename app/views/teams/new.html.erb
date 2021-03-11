@@ -1,4 +1,4 @@
-<div class="container" id="overlay-container">
+<div class="container login-form" id="overlay-container">
   <h1>New Team</h1>
 
   <%= simple_form_for(@team) do |f| %>
@@ -11,9 +11,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, class: 'btn btn-outline-light' %>
+      <%= f.button :submit, id: "call-to-action" %>
     </div>
   <% end %>
-
-  <%= link_to 'Back', root_path %>
 </div>
