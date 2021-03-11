@@ -60,7 +60,7 @@
               <p>Forward</p>
             <% end %>
           </li>
-          <li class="list-group-item border-0"><h3>£<%= @footballer.price %></h3></li>
+          <li class="list-group-item border-0"><h3>£<%= @footballer.price / 10.to_f %></h3></li>
           <li class="list-group-item border-0"><strong><%= @footballer.minutes %></strong> minutes played ⌚</li>
           <li class="list-group-item border-0"><%= @footballer.minutes.zero? ? "No appearances this season" : "Averages #{((@footballer.bps / @footballer.minutes.to_f) * 90).round(2)}"%> bps per game</li>
           <li class="list-group-item border-0">

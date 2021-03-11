@@ -184,3 +184,11 @@
   color: rgb(64, 224, 140);
   text-shadow: 0 0 8px rgba(30, 30, 30, 0.8);
 }
+
+
+button.see-footballer {
+  background-color: $dark-blue;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
