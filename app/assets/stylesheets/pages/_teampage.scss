@@ -34,11 +34,13 @@
       background-size: cover;
     }
     .active {
-      background-color: rgba(255, 255, 138, 0.7);
+      box-shadow: 5px 8px 24px rgba(20, 20, 20, 0.6);
     }
     .active2 {
-      background-color: rgba(255, 172, 75, 0.7);
+      border: 5px solid rgba(255, 172, 75, 0.9);
+      box-shadow: 5px 8px 24px rgba(20, 20, 20, 0.6);
     }
+
   }
   .right-section {
     display: flex;
