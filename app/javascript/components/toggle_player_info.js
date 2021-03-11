@@ -173,13 +173,25 @@ const allFootballersInfo = () => {
     const fullName = footballer.dataset.fullname;
     const news = footballer.dataset.news;
     const form = footballer.dataset.form;
+    const footballerId = footballer.dataset.id;
     footballer.addEventListener('click', (event) => {
+      console.log(event.currentTarget);
+      const expandedContent = document.getElementById(`expanded-content-${footballerId}`);
+      expandedContent.classList.toggle('hidden');
+      const footballerShowButton = document.getElementById(`footballer-details-${event.currentTarget.dataset.id}`);
+      footballerShowButton.addEventListener('click', () => {
+        const modalArea = document.querySelector('.modal-body');
+        modalArea.innerHTML = "";
+        fetch(`/footballers/${footballerId}/modal`)
+          .then(response => response.text())
+          .then(html => {
+            modalArea.insertAdjacentHTML('beforeend', html);
+          });
+      });
       if (footballer.querySelector('.player-info')) {
         footballer.querySelector('.player-info').classList.toggle('hidden');
         footballer.querySelector('.player-info').classList.add('footballer-info');
         footballer.querySelector('.player-info').classList.remove('player-info');
-
-
         footballer.querySelector('.see-footballer').classList.toggle('hidden');
         if (document.getElementById('transfer-out')) {
           footballer.classList.remove('transfer-selected');
@@ -190,7 +202,6 @@ const allFootballersInfo = () => {
             footballer.classList.add('transfer-selected');
             footballer.classList.remove('row-hover-highlight')
           }
-          console.log(event.currentTarget);
           const footballerButton = event.currentTarget.querySelector('.see-footballer');
           const footballerInfo = event.currentTarget.querySelector('.footballer-info');
           footballerButton.classList.toggle('hidden');
@@ -199,7 +210,6 @@ const allFootballersInfo = () => {
           footballerButton.addEventListener('click', (event) => {
             event.stopPropagation();
           });
-
       }
     })
   });

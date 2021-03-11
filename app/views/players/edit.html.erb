@@ -79,7 +79,7 @@
     </div>
     <% end %>
     <% @collection.each do |footballer| %>
-    <div class="row justify-content-between table-row row-hover-highlight align-items-center footballer" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-position="<%= footballer.position %>" data-club="<%= footballer.club.name %>" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>" data-price="<%= fplprice(footballer.price) %>" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>">
+    <div class="row justify-content-between table-row row-hover-highlight align-items-center footballer" data-id="<%= footballer.id %>" data-webName="<%= footballer.web_name %>" data-fullName="<%= "#{footballer.first_name} #{footballer.last_name}" %>" data-position="<%= footballer.position %>" data-club="<%= footballer.club.name %>" data-chances="<%= footballer.chance_of_playing_next_round %>" data-news="<%= footballer.news %>" data-price="<%= fplprice(footballer.price) %>" data-points="<%= footballer.total_points %>" data-form="<%= footballer.form.to_f %>">
       <div class="col-3" ><p><%= footballer.web_name %></p></div>
       <div class="col-1" ><%= link_to player_path(in: footballer.id, out: @player.footballer.id), method: :patch, data: { confirm: "Would you like to transfer in #{footballer.web_name} for #{@player.footballer.web_name}?" } do %>
           <i class="fas fa-user-plus"></i>
@@ -89,7 +89,29 @@
       <div class="col-2" ><p><%= chances_formatter(footballer.chance_of_playing_next_round) %></p></div>
       <div class="col-2" ><p><%= fplprice(footballer.price) %></p></div>
       <div class="col-2" ><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
+
     </div>
+
+      <div id="expanded-content-<%= footballer.id %>" class="hidden footballer-info d-flex justify-content-center pt-2">
+        <h4 class="mr-2 align-item-end pt-1"><%= footballer.full_name %></h4>
+        <button type="button" id="footballer-details-<%= footballer.id %>" style="width: 150px;" class="btn btn-primary mx-2 mb-3" data-toggle="modal" data-target="#exampleModalLong">See more details</button>
+      </div> 
+
     <% end %>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
   </div>
 </div>
