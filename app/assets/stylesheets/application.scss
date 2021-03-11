@@ -83,6 +83,12 @@ body {
     background-color: #366396;
   }
 
+  #overlay-container {
+    position: relative;
+    top: 100px;
+    width: 40%;
+  }
+
   .container {
     padding-bottom: 10px;
   }
@@ -116,6 +122,12 @@ a {
   #call-to-action:hover {
     text-decoration: none;
     background-color: #366396;
+  }
+
+  #overlay-container {
+    position: relative;
+    top: 100px;
+    width: 30%;
   }
 }
 
