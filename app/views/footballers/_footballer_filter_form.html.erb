@@ -22,7 +22,7 @@
   </div>
   <div class="col">
     <%= label_tag :filter_by_max_price, 'Max Price', class: 'm-0' %>
-    <p id="max-price-value" class="m-0 text-center"></p>
+
     <%= range_field_tag :filter_by_max_price,
       params[:filter_by_max_price].present? ? params[:filter_by_max_price] : @max_p,
       min: @min_p,
@@ -30,7 +30,7 @@
       step: 0.1,
       class: "form-control form-control-sm mb-2"
     %>
-    <div></div>
+    <p id="max-price-value" class="m-0 text-center"></p>
   </div>
   <div class="row m-3 justify-content-between">
     <%= submit_tag "Go", class: "btn btn-success btn-sm mx-2" %>

@@ -44,7 +44,7 @@ class PlayersController < ApplicationController
     if @player.update(footballer: Footballer.find(params[:in]))
       redirect_to team_path(@team), notice: "Transfer Completed"
     else
-      render :edit, alert: "Could not complete transfer. Please try again."
+      render :edit
     end
   end
 end

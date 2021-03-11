@@ -27,6 +27,7 @@
               <% end %>
               <%= link_to "Fixtures", fixtures_path(status: "current", search: { query: params.dig(:search, :query) }), class: "dropdown-item" %>
               <%= link_to "Player Directory", footballers_path, class: "dropdown-item" %>
+              <a href="https://www.premierleague.com/" class="dropdown-item" target="_blank">Premier League</a>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
@@ -42,6 +43,7 @@
               <%= link_to 'Sign-up', new_user_registration_path, class: "nav-link" %>
               <%= link_to "Fixtures", fixtures_path, class: "dropdown-item" %>
               <%= link_to "Player Stats", footballers_path, class: "dropdown-item" %>
+              <a href="https://www.premierleague.com/" class="dropdown-item" target="_blank">Premier League</a>
             </div>
           </li>
         <% end %>
