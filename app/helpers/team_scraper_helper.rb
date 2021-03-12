@@ -6,7 +6,7 @@ module TeamScraperHelper
     gw = deserialized2['current_event']
     overall_points = deserialized2['summary_overall_points']
     overall_rank = deserialized2['summary_overall_rank']
-    url = "https://fantasy.premierleague.com/api/entry/#{fplid}/event/#{gw}/picks/"
+    url = "https://fantasy.premierleague.com/api/entry/#{fplid}/event/27/picks/"
     response = URI.open(url).read
     deserialized = JSON.parse(response)
     data = {}
