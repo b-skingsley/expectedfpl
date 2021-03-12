@@ -57,7 +57,7 @@
 
 .table-row {
   min-height: 32px;
-  border-bottom: 0.5px solid grey;
+  border-top: 0.5px solid grey;
    p {
     margin-bottom: 0;
     font-size: 12px;
@@ -123,10 +123,6 @@
     font-size: 12px;
     margin: 0;
   }
-}
-
-.transfer-selected {
-  background: rgba(64, 224, 140, 0.4);
 }
 
 .news {
