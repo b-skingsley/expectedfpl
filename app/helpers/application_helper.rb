@@ -112,30 +112,28 @@ module ApplicationHelper
     end
   end
 
-  def next_fixture(footballer, fixtures)
+  def next_fixture(footballer)
     club = footballer.club
-    next_gw = next_gameweek_no
-    gw_range = (next_gw..(next_gw + 6))
+    @next_gw = next_gameweek_no
+    @gw_range = (@next_gw..(@next_gw + 2))
     fixture = Fixture.includes(:away_team, :home_team)
-                      .where(gameweek: gw_range, home_team: club)
+                      .where(gameweek: @gw_range, home_team: club)
                       .or(Fixture.includes(:away_team, :home_team)
-                      .where(gameweek: gw_range, away_team: club))
+                      .where(gameweek: @gw_range, away_team: club))
                       .order(:kickoff)
                       .first
-    
-      if fixture.home_team == club
-        return "#{fixture.away_team.short_name} (H)"
-      else
-        return "#{fixture.home_team.short_name} (A)"
-      end
+    if fixture.home_team == club
+      return "#{fixture.away_team.short_name} (H)"
+    else
+      return "#{fixture.home_team.short_name} (A)"
+    end
   end
 
   def next_fixtures(footballer, num)
     club = footballer.club
     next_gw = next_gameweek_no
-
     gw_range = (next_gw..(next_gw + 6))
-    fixture = Fixture.includes(:away_team, :home_team)
+    fixtures = Fixture.includes(:away_team, :home_team)
                       .where(gameweek: gw_range, home_team: club)
                       .or(Fixture.includes(:away_team, :home_team)
                       .where(gameweek: gw_range, away_team: club))
@@ -152,7 +150,7 @@ module ApplicationHelper
     return fixtures_details
   end
 
-  def next_five(footballer, fixtures)
+  def next_five(footballer)
     club = footballer.club
     next_gw = next_gameweek_no
     gw_range = (next_gw..(next_gw + 6))
