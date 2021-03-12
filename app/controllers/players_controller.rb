@@ -38,10 +38,11 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
     @team = @player.team
     @gw = helpers.next_gameweek_no
-    @transfer = Transfer.new(team: @team, player_in: Footballer.find(params[:in]), player_out: @player.footballer, gw: @gw)
+    player_in = Footballer.find(params[:in])
+    @transfer = Transfer.new(team: @team, player_in: player_in, player_out: @player.footballer, gw: @gw)
     @transfer.save
     if @player.update(footballer: Footballer.find(params[:in]))
-      redirect_to team_path(@team), notice: "Transfer Completed"
+      redirect_to team_path(@team), notice: "#{player_in.web_name} succesfully transferred in"
     else
       render :edit
     end

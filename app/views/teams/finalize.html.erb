@@ -1,21 +1,60 @@
+<!--
+ -->
 <div class="container" id="overlay-container">
-  <div class="left-section">
-    <h3>To Do List for GW <%= next_gameweek_no %></h3>
-    <ul>
+  <div class="left-section p-4">
+    <h3>To-Do List for GW <%= next_gameweek_no %></h3>
+    <hr>
+    <ol>
       <% @transfers.each do |transfer| %>
-        <li>Transfer out <%= transfer.player_out.web_name %> for <%= transfer.player_in.web_name %></li>
+        <div class="row flex-nowrap">
+          <div class="col-11">
+            <li><%= "Transfer out #{transfer.player_out.web_name} for #{transfer.player_in.web_name}" %></li>
+          </div>
+          <div class="col-1">
+            <input type="checkbox">
+          </div>
+        </div>
       <% end %>
-      <li>Bench <%= @gk.footballer.web_name %></li>
-      <li>Bench <%= @firstsub.footballer.web_name %> in 1st position</li>
-      <li>Bench <%= @secondsub.footballer.web_name %> in 2nd position</li>
-      <li>Bench <%= @thirdsub.footballer.web_name %> in 3rd position</li>
-    </ul>
-    <a href="https://fantasy.premierleague.com/my-team" target="_blank"><strong>Make my changes on Fantasy PL</strong></a>
+
+        <div class="row flex-nowrap">
+        <div class="col-11">
+          <li>Bench <%= @gk.footballer.web_name %></li>
+        </div>
+        <div class="col-1">
+          <input type="checkbox">
+        </div>
+      </div>
+        <div class="row flex-nowrap">
+        <div class="col-11">
+          <li>Bench <%= @firstsub.footballer.web_name %> in 1st position</li>
+        </div>
+        <div class="col-1">
+          <input type="checkbox">
+        </div>
+      </div>
+        <div class="row flex-nowrap">
+        <div class="col-11">
+          <li>Bench <%= @secondsub.footballer.web_name %> in 2nd position</li>
+        </div>
+        <div class="col-1">
+          <input type="checkbox">
+        </div>
+      </div>
+        <div class="row flex-nowrap">
+        <div class="col-11">
+          <li>Bench <%= @thirdsub.footballer.web_name %> in 3rd position</li>
+        </div>
+        <div class="col-1">
+          <input type="checkbox">
+        </div>
+      </div>
+    </ol>
+    <a href="https://fantasy.premierleague.com/my-team" class="call-to-action my-3" target="_blank"><strong>Make my changes on Fantasy PL</strong></a>
     <br>
     <%= link_to "Back to team", team_path(@team) %>
   </div>
   <div class="right-section">
-    <div class="team-view" style="background-image: linear-gradient(rgba(90,195,0,0.5),rgba(90,195,0,0.5)), url('<%= image_path "team-background.jpg" %>')">
+    <div class="team-view" style="background-image: linear-gradient(rgba(90,195,100,0.5),rgba(90,195,100,0.5)), url('<%= image_path "team-background.jpg" %>')">
       <div class="main-team">
         <div class="row gks">
           <div class="starting-player gk" id="player<%= gks(@starters)[0].fplid %>" data-id="<%= gks(@starters)[0].id %>">
@@ -60,7 +99,7 @@
           <% end %>
         </div>
       </div>
-      <div class="bench" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(90,195,0,0.5)), url('<%= image_path "bench2.png" %>')">
+      <div class="bench" style="background-image: linear-gradient(rgba(150,150,150,0.5),rgba(150,150,150,0.5)), url('<%= image_path "bench2.png" %>')">
         <div class="bench-player gk" id="player<%= @gk.footballer.fplid %>" data-id="<%= @gk.footballer.id %>,<%= @gk.bench_pos %>">
           <div class="player-content">
             <div class="shirt"><%= image_tag("shirts/#{@gk.footballer.club.short_name.downcase}.png")  %></div>
