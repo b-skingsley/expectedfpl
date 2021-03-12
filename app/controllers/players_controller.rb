@@ -5,6 +5,8 @@ class PlayersController < ApplicationController
     @teamplayers = @team.players.map(&:footballer)
     @collection = Footballer.where(position: @player.footballer.position).where.not(id: @team.players.pluck(:footballer_id))
     @clubs = Club.where(id: @collection.pluck(:club_id))
+    @next_gw = helpers.next_gameweek_no
+    @fixtures = Fixture.where(gameweek: (@next_gw..(@next_gw + 6))).order(:kickoff)
 
     # price (float) instance variables for use in the view
     # first a query to reorder the applicable players by price to ascertain max/mins depending on position

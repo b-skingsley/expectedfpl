@@ -106,12 +106,40 @@
       <div class="col-2" ><p><%= footballer.total_points %> <%= form_formatter(footballer.form.to_f) %></p></div>
 
     </div>
-
       <div id="expanded-content-<%= footballer.id %>" class="footballer-info mx-auto hidden">
-        <h4 class="mr-2 align-item-end"><%= footballer.full_name %></h4>
-        <button type="button" id="footballer-details-<%= footballer.id %>" style="width: 150px;" class="btn btn-primary mr-2 mb-3" data-toggle="modal" data-target="#exampleModalLong">See player</button>
+        <div class="expanded-stats">
+          <div class="expanded-left">
+            <div class="expanded-name">
+              <h4><%= "#{footballer.first_name} #{footballer.last_name}" %></h4>
+            </div>
+            <div class="news-div">
+              <p class="news"><%= footballer.news if footballer.news.length > 0 %></p>
+            </div>
+            <div class="expanded-more-stats">
+              <p><i class="fas fa-tshirt"></i> <%= footballer.club.name %></p>
+              <p><i class="fas fa-pound-sign"></i> <%= fplprice(footballer.price) %>   |   <i class="fas fa-fire" data-toggle="tooltip" data-placement="top" title="Average points per game for last 5"></i> <%= footballer.form.to_f %>   |   <i class="fas fa-chart-bar" data-toggle="tooltip" data-placement="top" title="Total Points"></i> <%= footballer.total_points %></p>
+              <p><i class="far fa-futbol" data-toggle="tooltip" data-placement="top" title="Goals this season"></i> <%= footballer.goals %>   |   <i class="fas fa-hands-helping" data-toggle="tooltip" data-placement="top" title="Assists this season"></i> <%= footballer.assists %></p>
+            </div>
+            <button type="button" id="footballer-details-<%= footballer.id %>" class="call-to-action" data-toggle="modal" data-target="#exampleModalLong">More Info</button>
+          </div>
+          <div class="expanded-fixtures">
+            <div class="fixture-stats">
+              <p data-toggle="tooltip" data-placement="top" title="Opponent">vs</p>
+              <p data-toggle="tooltip" data-placement="top" title="Home or Away">H/A</p>
+              <p>Date</p>
+              <p class="cs-percent" data-toggle="tooltip" data-placement="top" title="Expected Clean Sheet % This is a projected clean sheet probability based on our complex algorithm">xCS</p>
+            </div>
+            <% next_five(footballer, @fixtures).each do |fixture| %>
+              <div class="expanded-fixture">
+                <p class= "difficulty-<%= fixture[:difficulty] %>"><%= fixture[:opponent] %></p>
+                <p class= "difficulty-<%= fixture[:difficulty] %>"><%= fixture[:home_or_away] %></p>
+                <p><%= fixture[:date] %></p>
+                <p class="cs-percent"><%= fixture[:cs] %>%</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
-
     <% end %>
   </div>
 </div>
