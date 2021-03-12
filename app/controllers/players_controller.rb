@@ -32,7 +32,6 @@ class PlayersController < ApplicationController
         @collection = @collection.where("price <= ?", max_p)
       end
     end
-
   end
 
   def update
