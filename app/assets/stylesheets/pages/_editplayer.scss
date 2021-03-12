@@ -6,6 +6,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: rgba(64, 224, 140, 0.4);
       p {
         margin-bottom: 0;
       }
@@ -33,6 +34,9 @@
 
     .news-div {
       height: 18px;
+      p {
+        font-size: 13px;
+      }
     }
     .expanded-more-stats {
       p {
