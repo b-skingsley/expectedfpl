@@ -135,7 +135,7 @@ module ApplicationHelper
     next_gw = next_gameweek_no
 
     gw_range = (next_gw..(next_gw + 6))
-    fixture = Fixture.includes(:away_team, :home_team)
+    fixtures = Fixture.includes(:away_team, :home_team)
                       .where(gameweek: gw_range, home_team: club)
                       .or(Fixture.includes(:away_team, :home_team)
                       .where(gameweek: gw_range, away_team: club))

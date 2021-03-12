@@ -37,6 +37,7 @@ const teamViewInfo = () => {
           const footballerId = correspondTablePlayer.dataset.id;
           footballerButton.addEventListener('click', (buttonEvent) => {
             const modalArea = document.querySelector('.modal-body');
+            modalArea.innerHTML = "";
             fetch(`/footballers/${footballerId}/modal`)
               .then(response => response.text())
               .then(html => {
@@ -69,6 +70,7 @@ const teamViewInfo = () => {
               const footballerId = correspondTablePlayer.dataset.id;
               footballerButton.addEventListener('click', (buttonEvent) => {
                 const modalArea = document.querySelector('.modal-body');
+                modalArea.innerHTML = "";
                 fetch(`/footballers/${footballerId}/modal`)
                   .then(response => response.text())
                   .then(html => {
