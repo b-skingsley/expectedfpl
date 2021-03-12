@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def show
-    @team = Team.find(params[:id])
+    @team = Team.includes(players: :footballer).find(params[:id])
     @starters = @team.players.where(starter: true)
     @bench = @team.players.where(starter: false)
     @gk = @bench.find_by(bench_pos: 0)
