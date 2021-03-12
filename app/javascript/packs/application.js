@@ -34,6 +34,7 @@ import { togglePlayerInfo } from '../components/toggle_player_info';
 import { sortFootballers } from '../components/sort_footballers';
 import { switchFunctionality } from '../components/switch_functionality';
 import { typedNews } from '../components/news_typer';
+import { clipDifficultyBar } from '../components/fixture_difficulty_bar';
 
 // window.setTimeout(() => console.log('hi'), 500);
 
@@ -59,6 +60,10 @@ document.addEventListener('turbolinks:load', () => {
     })
   }
 
+  if (document.getElementById('difficulty-bar')) {
+    clipDifficultyBar();
+  }
+
   switchFunctionality();
   algoliaFunctionality();
 });
@@ -74,7 +79,7 @@ const algoliaFunctionality = () => {
   const refineFixtureByPlayer = (event) => {
     event.preventDefault();
     playerSearch.value = playerResults.value;
-    // RefineFixtures.click();
+    RefineFixtures.click();
   }
 
   if (playerSearch) {
