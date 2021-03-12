@@ -51,6 +51,11 @@ module FootballerHelper
     data["history"].flatten
   end
 
+  # player_historical_data(400)
+  # values = player_historical_data(400).map { |hash| hash.select { |attribute| attribute["bps"] } }
+  # just_values = values.map!{ |key, item|item.values }.flatten
+  # p just_values
+
   def historical_value(fplid)
     values = player_historical_data(fplid).map { |hash| hash.select { |attribute| attribute["value"] } }
     arr = []
@@ -73,12 +78,14 @@ module FootballerHelper
 
   def bps(fplid)
     values = player_historical_data(fplid).map { |hash| hash.select { |attribute| attribute["bps"] } }
-    arr = []
-    values.each_with_index do |hash, index|
-      arr << { (index + 1) => hash["bps"] }
+    just_values = values.map!{ |item| item.values }.flatten
+    arr = {}
+    just_values.each_with_index do |value, index|
+      arr[index] = value
     end
     arr
   end
+
 
     # Method for calculating moving average
   def wma_hash(hash, maws = MAWS)
