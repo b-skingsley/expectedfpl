@@ -115,58 +115,58 @@ module ApplicationHelper
   def next_fixture(footballer, fixtures)
     club = footballer.club
     next_gw = next_gameweek_no
-    next_fixtures = []
-    fixtures.each do |fixture|
+    gw_range = (next_gw..(next_gw + 6))
+    fixture = Fixture.includes(:away_team, :home_team)
+                      .where(gameweek: gw_range, home_team: club)
+                      .or(Fixture.includes(:away_team, :home_team)
+                      .where(gameweek: gw_range, away_team: club))
+                      .order(:kickoff)
+                      .first
+    
       if fixture.home_team == club
-        next_fixtures << "#{fixture.away_team.short_name} (H)"
+        return "#{fixture.away_team.short_name} (H)"
+      else
+        return "#{fixture.home_team.short_name} (A)"
       end
-      if fixture.away_team == club
-        next_fixtures << "#{fixture.home_team.short_name} (A)"
-      end
-    end
-    return next_fixtures.first
   end
 
   def next_fixtures(footballer, num)
     club = footballer.club
     next_gw = next_gameweek_no
 
-    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + num)))
+    gw_range = (next_gw..(next_gw + 6))
+    fixture = Fixture.includes(:away_team, :home_team)
+                      .where(gameweek: gw_range, home_team: club)
+                      .or(Fixture.includes(:away_team, :home_team)
+                      .where(gameweek: gw_range, away_team: club))
+                      .order(:kickoff)
+                      .first(num)
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)", opponent_long: fixture.away_team.name, difficulty: fixture.home_team_difficulty }
-      end
-      if fixture.away_team == club
-        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)", opponent_long: fixture.home_team.name, difficulty: fixture.away_team_difficulty }
+        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)", opponent_long: fixture.away_team.name}
+      else
+        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)", opponent_long: fixture.home_team.name}
       end
     end
-    return fixtures_details.first(num)
+    return fixtures_details
   end
 
   def next_five(footballer, fixtures)
     club = footballer.club
     next_gw = next_gameweek_no
+    gw_range = (next_gw..(next_gw + 6))
+    fixtures = Fixture.includes(:away_team, :home_team)
+                      .where(gameweek: gw_range, home_team: club)
+                      .or(Fixture.includes(:away_team, :home_team)
+                      .where(gameweek: gw_range, away_team: club))
+                      .order(:kickoff)
+                      .first(5)
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club
         fixtures_details << {opponent: fixture.away_team.short_name, home_or_away: "(H)", difficulty: fixture.home_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.ht_possible_goals, cs: fixture.ht_clean_sheet_probability}
-      end
-      if fixture.away_team == club
-        fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.at_possible_goals, cs: fixture.at_clean_sheet_probability}
-      end
-    end
-    return fixtures_details.first(5)
-  end
-
-  def next_five_club(club, fixtures)
-    next_gw = next_gameweek_no
-    fixtures_details = []
-    fixtures.each do |fixture|
-      if fixture.home_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, home_or_away: "(H)", difficulty: fixture.home_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.ht_possible_goals, cs: fixture.ht_clean_sheet_probability}
-      end
-      if fixture.away_team == club
+      else
         fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.at_possible_goals, cs: fixture.at_clean_sheet_probability}
       end
     end
