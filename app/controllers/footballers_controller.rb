@@ -37,5 +37,7 @@ class FootballersController < ApplicationController
 
   def show
     @footballer = Footballer.find(params[:id])
+    @next_gw = helpers.next_gameweek_no
+    @fixtures = Fixture.where(gameweek: (@next_gw..(@next_gw + 6))).order(:kickoff)
   end
 end
