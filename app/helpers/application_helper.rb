@@ -142,9 +142,9 @@ module ApplicationHelper
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)", opponent_long: fixture.away_team.name}
+        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)", difficulty: fixture.home_team_difficulty, opponent_long: fixture.away_team.name}
       else
-        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)", opponent_long: fixture.home_team.name}
+        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)", difficulty: fixture.away_team_difficulty, opponent_long: fixture.home_team.name}
       end
     end
     return fixtures_details
@@ -163,9 +163,9 @@ module ApplicationHelper
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, home_or_away: "(H)", difficulty: fixture.home_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.ht_possible_goals, cs: fixture.ht_clean_sheet_probability}
+        fixtures_details << {opponent: fixture.away_team.short_name, home_or_away: "(H)", difficulty: fixture.home_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.ht_possible_goals, cs: fixture.ht_clean_sheet_probability, kickoff: fixture.kickoff}
       else
-        fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.at_possible_goals, cs: fixture.at_clean_sheet_probability}
+        fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.at_possible_goals, cs: fixture.at_clean_sheet_probability, kickoff: fixture.kickoff}
       end
     end
     return fixtures_details.first(5)
