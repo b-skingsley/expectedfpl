@@ -112,10 +112,9 @@ module ApplicationHelper
     end
   end
 
-  def next_fixture(footballer)
+  def next_fixture(footballer, fixtures)
     club = footballer.club
     next_gw = next_gameweek_no
-    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 1))).order(:kickoff)
     next_fixtures = []
     fixtures.each do |fixture|
       if fixture.home_team == club
@@ -145,10 +144,9 @@ module ApplicationHelper
     return fixtures_details.first(num)
   end
 
-  def next_five(footballer)
+  def next_five(footballer, fixtures)
     club = footballer.club
     next_gw = next_gameweek_no
-    fixtures = Fixture.where(gameweek: (next_gw..(next_gw + 6))).order(:kickoff)
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club

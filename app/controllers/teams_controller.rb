@@ -9,6 +9,8 @@ class TeamsController < ApplicationController
     @thirdsub = @bench.find_by(bench_pos: 3)
     @team_value = helpers.price_sum(@team)
     @total_budget = @team.budget + @team.team_value
+    @next_gw = helpers.next_gameweek_no
+    @fixtures = Fixture.where(gameweek: (@next_gw..(@next_gw + 6))).order(:kickoff)
   end
 
   def new
