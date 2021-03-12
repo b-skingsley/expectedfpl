@@ -11,7 +11,7 @@ class FixturesController < ApplicationController
 
 
     if params[:status] == "past"
-      @fixtures = @fixtures.results
+      @fixtures = @fixtures.results.reverse
     elsif params[:status] == "current"
       @fixtures = @fixtures.gameweek
     elsif params[:status] == "future" 

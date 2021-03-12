@@ -16,10 +16,11 @@
  
   <div id="scrollable" class="container stats mt-0">
     <div class="d-flex p-1 table-header shadow-sm"></div>
-    <% @fixtures.reverse.each do |fixture| %>
-      <div id="scoreboard-row" class="d-flex align-items-center justify-content-between p-3">
+    <% @fixtures.each do |fixture| %>
+      
+      <div id="scoreboard-row" class="d-flex align-items-center justify-content-center px-5 py-2">
         <%= image_tag("shirts/#{@clubs.find(fixture.home_team_id).short_name.downcase}.png", size: "65x45")  %>
-        <div id="scoreboard-team-div" class="flex-item text-left flex-grow ml-3">
+        <div id="scoreboard-team-div" class="flex-item text-left ml-3">
           <%= @clubs.find(fixture.home_team_id).name %>
           <div class="flex-item d-flex justify-content-start">
             <% Club.find(fixture.home_team_id)[:form].split("").each do |result| %>
@@ -32,18 +33,39 @@
                 <div class="flex-item">🔴</div>
               <% end %>
             <% end %>
+           
+          </div>
+         
+            <%# <div id="difficulty-bar" style="width:108px;height:6px;position:absolute;"  data-difficulty="<%= fixture.home_team_difficulty * 20 %>
+          
+        </div>
+         <div class="small-text">
+            <div>XFPL Verdict:</div>
+            <div><strong><%= fixture.ht_possible_goals || 0 %></strong> goals</div>
+            <div><strong><%= fixture.home_team_difficulty %>/5</strong> difficulty</div>
+          </div>
+        <% if fixture.kickoff > DateTime.now() %>
+        <div>
+          <div class="my-0">
+            <p class="text-center py-0 my-0 text-light"><%= fixture.kickoff.strftime("%e %b %y, %H:%M") %></p>
+          </div>
+          <div class="d-flex">
+            <div class="flex-item mx-5 text-light"></div>
+            <div class="flex-item text-light">-</div>
+            <div class="flex-item mx-5 text-light"></div>
           </div>
         </div>
-        <% if fixture.kickoff > DateTime.now() %>
-          <div class="flex-item mx-5 text-light"></div>
-          <div class="flex-item text-light">-</div>
-          <div class="flex-item mx-5 text-light"></div>
         <% else %>
           <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
-          <div class="flex-item text-light">-</div>
+          <div class="flex-item text-light text-center">-</div>
           <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>           
         <% end %>
-        <div id="scoreboard-team-div" class="flex-item text-right flex-grow mr-3">
+        <div class="small-text" style="text-align: right;">
+          <div>XFPL Verdict:</div>
+          <div><strong><%= fixture.at_possible_goals || 0 %></strong> goals</div>
+          <div><strong><%= fixture.away_team_difficulty %>/5</strong> difficulty</div>
+        </div>
+        <div id="scoreboard-team-div" class="flex-item text-right mr-3">
           <%= @clubs.find(fixture.away_team_id).name %>
           <div class="flex-item d-flex justify-content-end">
             <% @clubs.find(fixture.away_team_id)[:form].split("").each do |result| %>
@@ -51,7 +73,7 @@
               <% when "W" %>
                 <div class="flex-item">🟢</div>
               <% when "D" %>
-                <div class="flex-item">⚪</div>
+                <div class="flex-item">⚪</div> 
               <% else %>
                 <div class="flex-item">🔴</div>
               <% end %>
