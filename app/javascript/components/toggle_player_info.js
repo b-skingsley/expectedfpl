@@ -170,7 +170,7 @@ const teamViewInfo = () => {
 const allFootballersInfo = () => {
   const footballers = document.querySelectorAll('.footballer');
   footballers.forEach((footballer) => {
-    
+
     const fullName = footballer.dataset.fullname;
     const news = footballer.dataset.news;
     const form = footballer.dataset.form;
