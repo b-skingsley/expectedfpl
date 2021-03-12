@@ -101,6 +101,8 @@ class TeamsController < ApplicationController
 
   def footballer
     @footballer = Footballer.find(params[:footballer_id])
+    @next_gw = helpers.next_gameweek_no
+    @fixtures = Fixture.where(gameweek: (@next_gw..(@next_gw + 6))).order(:kickoff)
     render partial: "teams/modal"
   end
 
