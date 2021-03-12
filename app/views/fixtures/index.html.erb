@@ -7,17 +7,17 @@
     </div>
   </div>
 
-  
+
   <div id="tabs" class="d-flex my-0">
     <%= link_to "Results", fixtures_path(status: "past", query: params.dig(:query) ), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'past'}" %>
     <%= link_to "Current Gameweek", fixtures_path(status: "current", query: params.dig(:query) ), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'current'}"%>
     <%= link_to "Future Fixtures", fixtures_path(status: "future", query: params.dig(:query) ), class: "px-5 rounded-top link-tab #{'link-tab-active' if params[:status] == 'future'}"%>
   </div>
- 
+
   <div id="scrollable" class="container stats mt-0">
     <div class="d-flex p-1 table-header shadow-sm"></div>
     <% @fixtures.each do |fixture| %>
-      
+
       <div id="scoreboard-row" class="d-flex align-items-center justify-content-center px-5 py-2">
         <%= image_tag("shirts/#{@clubs.find(fixture.home_team_id).short_name.downcase}.png", size: "65x45")  %>
         <div id="scoreboard-team-div" class="flex-item text-left ml-3">
@@ -33,15 +33,15 @@
                 <div class="flex-item">🔴</div>
               <% end %>
             <% end %>
-           
+
           </div>
-         
+
             <%# <div id="difficulty-bar" style="width:108px;height:6px;position:absolute;"  data-difficulty="<%= fixture.home_team_difficulty * 20 %>
-          
+
         </div>
          <div class="small-text">
             <div>XFPL Verdict:</div>
-            <div><strong><%= fixture.ht_possible_goals || 0 %></strong> goals</div>
+            <div><strong><%= number_with_precision(fixture.ht_possible_goals, precision: 2) || 0 %></strong> goals</div>
             <div><strong><%= fixture.home_team_difficulty %>/5</strong> difficulty</div>
           </div>
         <% if fixture.kickoff > DateTime.now() %>
@@ -58,11 +58,11 @@
         <% else %>
           <div class="flex-item mx-5 text-light"><%= fixture.h_score %></div>
           <div class="flex-item text-light text-center">-</div>
-          <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>           
+          <div class="flex-item mx-5 text-light"><%= fixture.a_score %></div>
         <% end %>
         <div class="small-text" style="text-align: right;">
           <div>XFPL Verdict:</div>
-          <div><strong><%= fixture.at_possible_goals || 0 %></strong> goals</div>
+          <div><strong><%= number_with_precision(fixture.at_possible_goals, precision: 2) || 0 %></strong> goals</div>
           <div><strong><%= fixture.away_team_difficulty %>/5</strong> difficulty</div>
         </div>
         <div id="scoreboard-team-div" class="flex-item text-right mr-3">
@@ -73,7 +73,7 @@
               <% when "W" %>
                 <div class="flex-item">🟢</div>
               <% when "D" %>
-                <div class="flex-item">⚪</div> 
+                <div class="flex-item">⚪</div>
               <% else %>
                 <div class="flex-item">🔴</div>
               <% end %>
