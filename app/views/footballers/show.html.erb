@@ -32,7 +32,7 @@
 
 
   <div class="news-reel px-3">
-    <span id="typed" data-news="<%= @footballer.news.present? ? @footballer.news : 'No player news to show...' %>" data-fixture="<%= next_fixture(@footballer) %>"></span>
+    <span id="typed" data-news="<%= @footballer.news.present? ? @footballer.news : 'No player news to show...' %>" data-fixture="<%= next_fixture(@footballer, @fixtures) %>"></span>
   </div>
   <div class="d-flex bg-light justify-content-between">
     <div class="p-3 flex-grow-1">
@@ -75,6 +75,7 @@
       </div>
     </div>
     <div class="p-3 justify-content-center align-items-end">
+     
       <div id="graph-container" class="bg-light p-4">
         <%= line_chart wma_hash(bps_per_game(@footballer.fplid), maws = 3), id: "bps-chart", width: "700px", height: "150px", xtitle: "Game", ytitle: "BPS", precision: 3 %>
       </div>
@@ -92,6 +93,7 @@
             <td><%= image_tag("shirts/#{f[:shirt]}.png", size: "32x22")  %></td>
             <td><%= f[:opponent_long] %></td>
             <td><%= f[:home_or_away] %></td>
+            <td><div id="difficulty-bar" data-difficulty="<%= f[:difficulty] * 20 %>" data-toggle="tooltip" data-placement="top" title="Difficulty rating of this fixtue for <%= @footballer.club.short_name %>"></div></td>
           </tr>
         <% end %>
           <tfoot>

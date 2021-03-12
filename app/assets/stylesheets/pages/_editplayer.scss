@@ -1,0 +1,50 @@
+.players.edit {
+  .footballer-info {
+    padding: 8px;
+    width: 100%;
+    .expanded-left {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        margin-bottom: 0;
+      }
+    }
+    .call-to-action {
+      width: 20%;
+      padding: 2px 10px;
+      margin-top: 4px;
+    }
+
+    .call-to-action {
+      display: inline-block;
+      color: $off-white;
+      font-size: 18px;
+      padding: 8px 12px;
+      border: 1px solid $off-white;
+      background-color: $darker-blue;
+      border-radius: 5px;
+    }
+
+    .call-to-action:hover {
+      text-decoration: none;
+      background-color: #366396;
+    }
+
+    .news-div {
+      height: 18px;
+    }
+    .expanded-more-stats {
+      p {
+        font-size: 13px;
+      }
+    }
+    .expanded-stats {
+      width: 100%;
+    }
+    h4 {
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+  }
+}

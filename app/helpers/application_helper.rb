@@ -112,7 +112,7 @@ module ApplicationHelper
     end
   end
 
-  def next_fixture(footballer)
+  def next_fixture(footballer, fixtures)
     club = footballer.club
     next_gw = next_gameweek_no
     gw_range = (next_gw..(next_gw + 6))
@@ -152,7 +152,7 @@ module ApplicationHelper
     return fixtures_details
   end
 
-  def next_five(footballer)
+  def next_five(footballer, fixtures)
     club = footballer.club
     next_gw = next_gameweek_no
     gw_range = (next_gw..(next_gw + 6))
@@ -170,7 +170,7 @@ module ApplicationHelper
         fixtures_details << {opponent: fixture.home_team.short_name, home_or_away: "(A)", difficulty: fixture.away_team_difficulty, date: fixture.kickoff.strftime("%d/%m"), goals: fixture.at_possible_goals, cs: fixture.at_clean_sheet_probability}
       end
     end
-    fixtures_details
+    return fixtures_details.first(5)
   end
 
   def attributes_list(footballer)

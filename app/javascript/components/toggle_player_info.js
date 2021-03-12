@@ -170,6 +170,7 @@ const teamViewInfo = () => {
 const allFootballersInfo = () => {
   const footballers = document.querySelectorAll('.footballer');
   footballers.forEach((footballer) => {
+
     const fullName = footballer.dataset.fullname;
     const news = footballer.dataset.news;
     const form = footballer.dataset.form;
@@ -179,15 +180,17 @@ const allFootballersInfo = () => {
       const expandedContent = document.getElementById(`expanded-content-${footballerId}`);
       expandedContent.classList.toggle('hidden');
       const footballerShowButton = document.getElementById(`footballer-details-${event.currentTarget.dataset.id}`);
-      footballerShowButton.addEventListener('click', () => {
-        const modalArea = document.querySelector('.modal-body');
-        modalArea.innerHTML = "";
-        fetch(`/footballers/${footballerId}/modal`)
-          .then(response => response.text())
-          .then(html => {
-            modalArea.insertAdjacentHTML('beforeend', html);
-          });
-      });
+      if (footballerShowButton) {
+        footballerShowButton.addEventListener('click', () => {
+          const modalArea = document.querySelector('.modal-body');
+          modalArea.innerHTML = "";
+          fetch(`/footballers/${footballerId}/modal`)
+            .then(response => response.text())
+            .then(html => {
+              modalArea.insertAdjacentHTML('beforeend', html);
+            });
+        });
+      }
       if (footballer.querySelector('.player-info')) {
         footballer.querySelector('.player-info').classList.toggle('hidden');
         footballer.querySelector('.player-info').classList.add('footballer-info');
@@ -204,12 +207,16 @@ const allFootballersInfo = () => {
           }
           const footballerButton = event.currentTarget.querySelector('.see-footballer');
           const footballerInfo = event.currentTarget.querySelector('.footballer-info');
-          footballerButton.classList.toggle('hidden');
-          footballerInfo.classList.add('player-info');
-          footballerInfo.classList.remove('hidden');
-          footballerButton.addEventListener('click', (event) => {
-            event.stopPropagation();
-          });
+          if (footballerButton) {
+            footballerButton.classList.toggle('hidden');
+            footballerButton.addEventListener('click', (event) => {
+              event.stopPropagation();
+            });
+          }
+          if (footballerInfo) {
+            footballerInfo.classList.add('player-info');
+            footballerInfo.classList.remove('hidden');
+          }
       }
     })
   });

@@ -77,7 +77,8 @@ const algoliaFunctionality = () => {
   const playerSearch = document.getElementById("query")
 
   const refineFixtureByPlayer = (event) => {
-    event.preventDefault();
+    console.log("I've been clicked");
+    // event.preventDefault();
     playerSearch.value = playerResults.value;
     RefineFixtures.click();
   }
