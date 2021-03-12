@@ -135,10 +135,10 @@ module ApplicationHelper
     fixtures_details = []
     fixtures.each do |fixture|
       if fixture.home_team == club
-        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)", opponent_long: fixture.away_team.name}
+        fixtures_details << {opponent: fixture.away_team.short_name, kickoff: fixture.kickoff, shirt: fixture.away_team.short_name.downcase, home_or_away: "(H)", opponent_long: fixture.away_team.name, difficulty: fixture.home_team_difficulty }
       end
       if fixture.away_team == club
-        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)", opponent_long: fixture.home_team.name}
+        fixtures_details << {opponent: fixture.home_team.short_name, kickoff: fixture.kickoff, shirt: fixture.home_team.short_name.downcase, home_or_away: "(A)", opponent_long: fixture.home_team.name, difficulty: fixture.away_team_difficulty }
       end
     end
     return fixtures_details.first(num)
