@@ -1,6 +1,14 @@
 .alert {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  top: 16px;
+  right: 10%;
   z-index: 1000;
+  font-family: 'gill-sans-nova-inline';
+  background-color: #ADC2D3;
+  transition-property: display;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  border-radius: none;
+  border: 1px solid #95B4D6;
+  color: black;
 }

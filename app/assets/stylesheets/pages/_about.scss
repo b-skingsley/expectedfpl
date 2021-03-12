@@ -1,1 +1,26 @@
-_about.scss
+#about {
+  width: 50vw;
+  padding: 16px;
+}
+
+#developers {
+  width: 50vw;
+  padding: 16px;
+}
+
+.about-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-links a {
+  color: #4177B4;
+  opacity: 0.8;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.about-links a:hover {
+  opacity: 0.5;
+}
