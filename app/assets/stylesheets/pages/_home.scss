@@ -4,7 +4,7 @@
   .body-content {
     background-image: none !important;
     background-color: $off-white;
-    min-height: 100vh;
+    min-height: calc(100vh - 200px);
   }
   .navbar {
     background-color: transparent ;
@@ -16,6 +16,14 @@
     z-index: 10;
     width: 100%;
   }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+  }
+
   #logged-in a {
       color: #F0F0F0;
   }
@@ -81,6 +89,17 @@
     background-color: #366396;
   }
 
+  @media (min-width: 100px) and (max-width: 575px) {
+    .banner-main-text {
+      h1 {font-size: 25px;}
+      p {
+        font-size: 18px;
+      }
+    }
+    #call-to-action {
+      font-size: 2vh;
+    }
+  }
 }
 
 // margin of 80 px
