@@ -80,6 +80,14 @@ body {
     width: 40%;
   }
 
+  @media (min-width: 100px) and (max-width: 575px) {
+    #overlay-container {
+      position: static;
+      top: 0;
+      width: 90%;
+    }
+  }
+
   .container {
     padding-bottom: 10px;
   }
@@ -119,6 +127,14 @@ a {
     position: relative;
     top: 100px;
     width: 30%;
+  }
+
+  @media (min-width: 100px) and (max-width: 575px) {
+    #overlay-container {
+      position: static;
+      top: 0;
+      width: 90%;
+    }
   }
 }
 

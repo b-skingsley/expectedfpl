@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div>
+  <div class="nav-left">
     <% unless action_name == 'home' %>
       <%= link_to root_path do %>
         <%= image_tag "logo.png", alt: 'expected fpl logo', id: 'nav-logo' %>
@@ -10,6 +10,8 @@
   <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
+  <div class="nav-right">
+      <%= link_to "Login", new_user_session_path, class: "nav-link", id: "nav-call-to-action" %>
 
     <div class="navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -31,9 +33,6 @@
             </div>
           </li>
         <% else %>
-          <li class="nav-item active">
-            <%= link_to "Login", new_user_session_path, class: "nav-link", id: "nav-call-to-action" %>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-bars"></i>
@@ -51,7 +50,7 @@
             </div>
           </li>
         <% end %>
-      </ul>
+        </ul>
     </div>
   </div>
 </div>
