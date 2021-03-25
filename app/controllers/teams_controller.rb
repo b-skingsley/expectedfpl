@@ -38,7 +38,11 @@ class TeamsController < ApplicationController
           Player.create!(team: @team, footballer: footballer[0], starter: false, bench_pos: 3)
         end
       end
-      redirect_to team_path(@team), notice: 'Team successfully created'
+      if user_signed_in?
+        redirect_to team_path(@team), notice: 'Team successfully created'
+      else
+        redirect_to team_path(@team), alert: 'You are taking a tour as a guest. Data will be deleted once the session has ended.'
+      end
     else
       render :new
     end
