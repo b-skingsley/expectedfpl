@@ -13,6 +13,9 @@
         <% else %>
           <div><%= link_to "SAVE SOME TIME THIS GW", new_user_registration_path, id: "call-to-action" %></div>
         <% end %>
+        <% unless user_signed_in? %>
+          <div><%= link_to "TAKE A TOUR", new_team_path, id: "demo-button" %></div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -6,8 +6,16 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs">
-      <%= f.input :name, label: "Your team name" %>
-      <%= f.input :fpl_team_id, label: 'Your Fantasy PL team id', input_html: { "data-toggle" => "tooltip", "data-placement" => "top", :title => "You can find your FPL ID in the URL of your team page" } %>
+      <% if user_signed_in? %>
+        <%= f.input :name, label: "Your team name" %>
+      <% else %>
+        <%= f.input :name, label: "Your team name", :input_html => { :value => 'Guest Team' } %>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= f.input :fpl_team_id, label: 'Your Fantasy PL team id', input_html: { "data-toggle" => "tooltip", "data-placement" => "top", :title => "You can find your FPL ID in the URL of your team page" } %>
+      <% else %>
+        <%= f.input :fpl_team_id, label: 'Your Fantasy PL team id', input_html: { :value => 38281, "data-toggle" => "tooltip", "data-placement" => "top", :title => "You can find your FPL ID in the URL of your team page" } %>
+      <% end %>
     </div>
 
     <div class="form-actions">

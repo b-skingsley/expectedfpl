@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_005353) do
+ActiveRecord::Schema.define(version: 2021_03_25_121153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 2021_03_11_005353) do
     t.bigint "away_team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "home_team_difficulty"
+    t.integer "away_team_difficulty"
     t.float "ht_possible_goals"
     t.float "at_possible_goals"
     t.float "ht_clean_sheet_probability"
     t.float "at_clean_sheet_probability"
-    t.integer "home_team_difficulty"
-    t.integer "away_team_difficulty"
     t.index ["away_team_id"], name: "index_fixtures_on_away_team_id"
     t.index ["home_team_id"], name: "index_fixtures_on_home_team_id"
   end
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_005353) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false, null: false
+    t.boolean "guest", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

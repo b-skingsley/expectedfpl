@@ -89,6 +89,22 @@
     background-color: #366396;
   }
 
+  #demo-button {
+    display: inline-block;
+    color: #F0F0F0;
+    font-size: 2.5vh;
+    padding: 12px 20px;
+    margin-top: 10px;
+    border: 1px solid #F0F0F0;
+    background-color: #3A003D;
+    border-radius: 12px;
+  }
+
+  #demo-button:hover {
+    text-decoration: none;
+    background-color: rgba(58,0,61,0.8);
+  }
+
   @media (min-width: 100px) and (max-width: 575px) {
     .banner-main-text {
       h1 {font-size: 25px;}

@@ -39,6 +39,7 @@ gem 'capybara', '>= 2.15'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
+gem 'devise-guests'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

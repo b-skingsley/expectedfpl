@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    @team.user = current_user
+    @team.user = current_or_guest_user
     @data = helpers.teamscrape(params[:team][:fpl_team_id])
     @team.budget = @data[:budget]
     @team.team_value = @data[:team_value]
