@@ -5,6 +5,22 @@
   height: 120px;
 }
 
+.navbar {
+  flex-wrap: nowrap;
+}
+
+.navbar-nav {
+  .dropdown-menu {
+    position: absolute;
+    z-index: 100;
+  }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
 #nav-logo {
   height: 100px;
   padding-bottom: 4px;
