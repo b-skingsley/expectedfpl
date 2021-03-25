@@ -10,6 +10,12 @@
   padding-bottom: 4px;
 }
 
+@media (min-width: 100px) and (max-width: 575px) {
+  #nav-logo {
+      height: 50px;
+    }
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
