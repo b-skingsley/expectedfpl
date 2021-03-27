@@ -11,8 +11,9 @@
       <span class="navbar-toggler-icon"></span>
     </button> -->
   <div class="nav-right">
+    <% unless user_signed_in? %>
       <%= link_to "Login", new_user_session_path, class: "nav-link", id: "nav-call-to-action" %>
-
+    <% end %>
     <div class="navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
