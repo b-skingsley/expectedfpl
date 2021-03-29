@@ -3,7 +3,7 @@
 
 **To view the site's features as a guest:**
 
-![Take a Tour](/images/read_me/take_a_tour.jpg)
+![Take a Tour](app/assets/images/read_me/take_a_tour.jpg)
 Format: ![Alt Text](url)
 From the home page, select the 'Take a Tour' button.
 
