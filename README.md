@@ -3,7 +3,7 @@
 
 **To view the site's features as a guest:**
 
-[Take a Tour](https://github.com/b-skingsley/expectedfpl/tree/master/app/assets/images/read_me/take_a_tour.jpg?raw=true)
+[Take a Tour](https://github.com/b-skingsley/expectedfpl/blob/master/app/assets/images/read_me/take_a_tour_fpl.jpg?raw=true)
 
 From the home page, select the 'Take a Tour' button.
 
