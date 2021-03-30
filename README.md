@@ -13,13 +13,13 @@ Set up a demo team in seconds to see how the website operates, with team changes
 
 * Say hello to your team dashboard. 
     * Javascript player highlighting provides you with valid switches, based on player position    and team formation.
-    * Expand player rows in your team sideboard to view injuries and 'XGoals'.
+    * Expand player rows in your team sideboard to view injuries and 'xGoals'.
     * Get even more in-depth player information with the 'more-info' player modal.
 
 ![Team View](https://github.com/b-skingsley/expectedfpl/blob/master/app/assets/images/read_me/team_view_highlighted.jpg?raw=true)
 
-** XFPL's crowning feature ** 
-* We plug live and historical Premier League data from APIs into a Poisson formula, for our 'expected' event!
+** xFPL's crowning feature ** 
+* We plug live and historical Premier League data from APIs into a Poisson distribution, for our 'expected' events!
     * Expected goals for forwards and midfielders.
     * Clean sheets chances for defenders and keepers.
 
