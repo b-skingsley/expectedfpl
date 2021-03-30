@@ -9,7 +9,7 @@ From the home page, select the 'Take a Tour' button.
 
 ![Guest Team](https://github.com/b-skingsley/expectedfpl/blob/master/app/assets/images/read_me/create_guest_account.jpg?raw=true)
 
-Set up a demo team in seconds, without saving your changes.
+Set up a demo team in seconds to see how the website operates, with team changes saved until your session ends.
 
 ![Team View](https://github.com/b-skingsley/expectedfpl/blob/master/app/assets/images/read_me/team_view_highlighted.jpg?raw=true)
 * Say hello to your team dashboard. 
