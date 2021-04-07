@@ -18,7 +18,7 @@ Set up a demo team in seconds to see how the website operates, with team changes
 
 ![Team View](https://github.com/b-skingsley/expectedfpl/blob/master/app/assets/images/read_me/team_view_highlighted.jpg?raw=true)
 
-** xFPL's crowning feature ** 
+**xFPL's crowning feature** 
 * We plug live and historical Premier League data from APIs into a Poisson distribution, for our 'expected' events!
     * Expected goals for forwards and midfielders.
     * Clean sheets chances for defenders and keepers.

@@ -4,18 +4,27 @@
     <div class="banner-content">
       <%= image_tag "logo.png", alt: 'expected fpl logo', id: 'banner-logo' %>
       <div class="banner-main-text">
+        
         <h1>FPL made quick, easy and data driven</h1>
         <p>Climb up your Fantasy Premier League rankings with ExpectedFPL. We do all the hard work and drown out all the noise and analytics so you pick your team fast and efficiently </p>
-        <% if user_signed_in? && current_user.teams.present? %>
-          <div><%= link_to "SAVE SOME TIME THIS GW", team_path(current_user.teams.first), id: "call-to-action" %></div>
-        <% elsif user_signed_in?%>
-          <div><%= link_to "SAVE SOME TIME THIS GW", new_team_path, id: "call-to-action" %></div>
-        <% else %>
-          <div><%= link_to "SAVE SOME TIME THIS GW", new_user_registration_path, id: "call-to-action" %></div>
-        <% end %>
-        <% unless user_signed_in? %>
-          <div><%= link_to "TAKE A TOUR", new_team_path, id: "demo-button" %></div>
-        <% end %>
+        
+        <div class="row">
+          <div class="home-screen-call-to-action col-6">
+            <% if user_signed_in? && current_user.teams.present? %>
+              <div><%= link_to "START", team_path(current_user.teams.first), id: "call-to-action" %></div>
+            <% elsif user_signed_in?%>
+              <div><%= link_to "START", new_team_path, id: "call-to-action" %></div>
+            <% else %>
+              <div><%= link_to "START", new_user_registration_path, id: "call-to-action" %></div>
+            <% end %>
+          </div>
+          <div class="home-screen-call-to-action col-6">
+            <% unless user_signed_in? %>
+              <div><%= link_to "TAKE A TOUR", new_team_path, id: "demo-button" %></div>
+            <% end %>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

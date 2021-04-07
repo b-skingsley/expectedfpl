@@ -59,7 +59,7 @@
 
   .banner-content {
     position: fixed;
-    width: 70vw;
+    width: 100vw;
   }
 
   #banner-logo {
@@ -67,6 +67,8 @@
     max-width: 40vw;
     padding: 8px;
   }
+
+
 
   .banner-main-text {
     width: 60vw;
@@ -80,8 +82,11 @@
     padding: 12px 20px;
     margin-top: 10px;
     border: 1px solid #F0F0F0;
-    background-color: $darker-blue;
+    background-color: #3A003D;
     border-radius: 12px;
+    width: 200px;
+    text-align: center;
+    opacity: 80%;
   }
 
   #call-to-action:hover {
@@ -98,6 +103,9 @@
     border: 1px solid #F0F0F0;
     background-color: #3A003D;
     border-radius: 12px;
+    width: 200px;
+    text-align: center;
+    opacity: 80%;
   }
 
   #demo-button:hover {
@@ -105,17 +113,60 @@
     background-color: rgba(58,0,61,0.8);
   }
 
-  @media (min-width: 100px) and (max-width: 575px) {
-    .banner-main-text {
-      h1 {font-size: 25px;}
-      p {
-        font-size: 18px;
+  // Specifics for desktops
+  @media only screen and (min-width: 575px) {
+    .home-screen-call-to-action {
+      width: 100%;
+      max-width: none;
+      flex: none;
+      #demo-button {
+        background-color: $darker-blue;
       }
     }
+  }
+  // Mobile Screens
+  @media (min-width: 100px) and (max-width: 575px) {
+    .banner-main-text {
+      text-align: center;
+      width: 80vw;
+      h1 {
+        font-size: 25px;
+        padding-bottom: 20px;
+      }
+      p {
+        font-size: 18px;
+        padding-top: 5px;
+        padding-bottom: 20px;
+      }
+    }
+    
+    .banner > .container {
+      margin-top: 56px;
+      margin-left: 20px;
+      margin-right: 25px;
+    }
+
+    .banner-content {
+      width: 80vw;
+    }
+    
+
     #call-to-action {
       font-size: 2vh;
+      width: 35vw;
+    }
+
+    #demo-button {
+      font-size: 2vh;
+      width: 35vw;  
+    }
+
+    #banner-logo {
+      max-height: 40vh;
+      max-width: 60vw;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin: 0 35px;
     }
   }
 }
-
-// margin of 80 px
