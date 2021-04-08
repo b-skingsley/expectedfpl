@@ -104,7 +104,9 @@ class TeamsController < ApplicationController
   # Controller for retrieving player's league from the Premier League API
   def retrieve
     @team = Team.find(params[:id])
+    # Call helper to retrieve league data
     @our_leagues = helpers.leagues(@team.fpl_team_id)
+    # Intitialize each league and the teamentry instance of the team in that league
     @our_leagues.each do |league|
       League.create!(name: league[0], fpl_league_id: league[1])
       TeamEntry.create!(team: @team, league: League.find_by(fpl_league_id: league[1]))
@@ -112,7 +114,9 @@ class TeamsController < ApplicationController
     redirect_to team_leagues_path(@team), notice: 'Leagues successfully created'
   end
 
+  # Controller for finalize page with final squad information and transfers to do
   def finalize
+    # save the relevant players and their positions as instance variables for the team display
     @team = Team.find(params[:id])
     @starters = @team.players.where(starter: true)
     @bench = @team.players.where(starter: false)
@@ -120,6 +124,7 @@ class TeamsController < ApplicationController
     @firstsub = @bench.find_by(bench_pos: 1)
     @secondsub = @bench.find_by(bench_pos: 2)
     @thirdsub = @bench.find_by(bench_pos: 3)
+    # Retrieve all transfers made for that team in the current gameweek
     @transfers = Transfer.where(team: @team, gw: helpers.next_gameweek_no)
   end
 
