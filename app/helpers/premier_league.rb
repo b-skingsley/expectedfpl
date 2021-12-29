@@ -13,49 +13,49 @@ class PremierLeague
       fplid: 2
     },
     {
-      name: 'Brighton and Hove Albion',
+      name: 'Brentford',
+      short_name: 'BRE',
+      form: 'DWDLD',
+      fplid: 3,
+    },
+    {
+      name: 'Brighton',
       short_name: 'BHA',
       form: 'DDLLL',
-      fplid: 3
+      fplid: 4
     },
     {
       name: 'Burnley',
       short_name: 'BUR',
       form: 'DDLDD',
-      fplid: 4
+      fplid: 5
     },
     {
       name: 'Chelsea',
       short_name: 'CHE',
       form: 'WDDWW',
-      fplid: 5
+      fplid: 6
     },
     {
       name: 'Crystal Palace',
       short_name: 'CRY',
       form: 'LWDDL',
-      fplid: 6
+      fplid: 7
     },
     {
       name: 'Everton',
       short_name: 'EVE',
       form: 'LWWWL',
-      fplid: 7
-    },
-    {
-      name: 'Fulham',
-      short_name: 'FUL',
-      form: 'DWDLW',
       fplid: 8
     },
     {
-      name: 'Leicester City',
+      name: 'Leicester',
       short_name: 'LEI',
       form: 'WWLDW',
       fplid: 9
     },
     {
-      name: 'Leeds United',
+      name: 'Leeds',
       short_name: 'LEE',
       form: 'LLWLL',
       fplid: 10
@@ -67,26 +67,26 @@ class PremierLeague
       fplid: 11
     },
     {
-      name: 'Manchester City',
+      name: 'Man City',
       short_name: 'MCI',
       form: 'WWWLW',
       fplid: 12
     },
     {
-      name: 'Manchester United',
+      name: 'Man Utd',
       short_name: 'MUN',
       form: 'DWDDW',
       fplid: 13
     },
     {
-      name: 'Newcastle United',
+      name: 'Newcastle',
       short_name: 'NEW',
       form: 'WLLDD',
       fplid: 14
     },
     {
-      name: 'Sheffield United',
-      short_name: 'SHU',
+      name: 'Norwich',
+      short_name: 'NOR',
       form: 'LLLWL',
       fplid: 15
     },
@@ -97,14 +97,14 @@ class PremierLeague
       fplid: 16
     },
     {
-      name: 'Tottenham Hotspur',
+      name: 'Spurs',
       short_name: 'TOT',
       form: 'LLWWW',
       fplid: 17
     },
     {
-      name: 'West Bromwich Albion',
-      short_name: 'WBA',
+      name: 'Watford',
+      short_name: 'WAT',
       form: 'DDWLD',
       fplid: 18
     },
