@@ -5,18 +5,19 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.3.0",
+    "@rails/webpacker": "^5.4.3",
     "algoliasearch": "^4.8.5",
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
     "jquery": "^3.5.1",
+    "node-sass": "^7.0.1",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
     "typed.js": "^2.0.11"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.7.1"
   }
 }
